@@ -20,8 +20,7 @@ namespace NetWork {
 
 class ServerDelegate {
 public:
-    ServerDelegate();
-    virtual ~ServerDelegate();
+    static ServerDelegate* GetInstance();
 
     // for data_updater_server
     bool WriteOperationToPool(const Operation& operation);
@@ -44,6 +43,25 @@ public:
     Document GetLatestDocument(const std::string& meeting_id);
     DocumentList GetHistorySnapshots(const std::string& meeting_id);
     Document GetDocument(const std::string& meeting_id, int32_t serial_number);
+
+    //  pref for provider_server
+    bool BindServerIpAndPort(const std::string& ip_address, int port);
+
+private:
+    ServerDelegate();
+
+    static ServerDelegate* server_delegate_instance_;
+
+    class Garbo {
+    public:
+        ~Garbo() {
+            if (ServerDelegate::server_delegate_instance_ != NULL) {
+                delete ServerDelegate::server_delegate_instance_;
+            }
+        }
+    };
+
+    static Garbo garbo_;
 };
 }  // NetWork
 }  // Client
