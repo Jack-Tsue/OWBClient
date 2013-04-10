@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8588FE5D1715616A00699036 /* OwbClient-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8588FE5C1715616A00699036 /* OwbClient-Info.plist */; };
 		D12C928417144E95005C3F37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927117144E95005C3F37 /* AppDelegate.m */; };
 		D12C928517144E95005C3F37 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927417144E95005C3F37 /* HomeViewController.m */; };
 		D12C928617144E95005C3F37 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927617144E95005C3F37 /* LoginViewController.m */; };
@@ -15,7 +16,6 @@
 		D12C928917144E95005C3F37 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D12C927B17144E95005C3F37 /* Default@2x.png */; };
 		D12C928A17144E95005C3F37 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D12C927D17144E95005C3F37 /* InfoPlist.strings */; };
 		D12C928B17144E95005C3F37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927F17144E95005C3F37 /* main.m */; };
-		D12C928C17144E95005C3F37 /* OwbClient-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D12C928017144E95005C3F37 /* OwbClient-Info.plist */; };
 		D1D67F5A171169D200460199 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1D67F59171169D200460199 /* UIKit.framework */; };
 		D1D67F5C171169D200460199 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1D67F5B171169D200460199 /* Foundation.framework */; };
 		D1D67F5E171169D200460199 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1D67F5D171169D200460199 /* CoreGraphics.framework */; };
@@ -37,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8588FE5C1715616A00699036 /* OwbClient-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OwbClient-Info.plist"; sourceTree = "<group>"; };
+		8588FE5E171561A700699036 /* OwbClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OwbClient-Prefix.pch"; sourceTree = "<group>"; };
+		8588FE60171561C200699036 /* pref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pref.h; sourceTree = "<group>"; };
 		D12C927017144E95005C3F37 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D12C927117144E95005C3F37 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D12C927317144E95005C3F37 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -48,9 +51,6 @@
 		D12C927B17144E95005C3F37 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D12C927E17144E95005C3F37 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D12C927F17144E95005C3F37 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D12C928017144E95005C3F37 /* OwbClient-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OwbClient-Info.plist"; sourceTree = "<group>"; };
-		D12C928117144E95005C3F37 /* OwbClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OwbClient-Prefix.pch"; sourceTree = "<group>"; };
-		D12C928217144E95005C3F37 /* pref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pref.h; sourceTree = "<group>"; };
 		D1D67F56171169D200460199 /* OwbClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OwbClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1D67F59171169D200460199 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D1D67F5B171169D200460199 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,9 +87,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8588FE61171562B700699036 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MenuBar;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		D12C926F17144E95005C3F37 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8588FE61171562B700699036 /* MenuBar */,
 				D12C927017144E95005C3F37 /* AppDelegate.h */,
 				D12C927117144E95005C3F37 /* AppDelegate.m */,
 				D12C927217144E95005C3F37 /* Home */,
@@ -128,11 +137,8 @@
 		D12C927C17144E95005C3F37 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
-				D12C927D17144E95005C3F37 /* InfoPlist.strings */,
+				8588FE60171561C200699036 /* pref.h */,
 				D12C927F17144E95005C3F37 /* main.m */,
-				D12C928017144E95005C3F37 /* OwbClient-Info.plist */,
-				D12C928117144E95005C3F37 /* OwbClient-Prefix.pch */,
-				D12C928217144E95005C3F37 /* pref.h */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -177,6 +183,9 @@
 		D1D67F5F171169D200460199 /* OwbClient */ = {
 			isa = PBXGroup;
 			children = (
+				8588FE5E171561A700699036 /* OwbClient-Prefix.pch */,
+				8588FE5C1715616A00699036 /* OwbClient-Info.plist */,
+				D12C927D17144E95005C3F37 /* InfoPlist.strings */,
 				D12C926F17144E95005C3F37 /* Controller */,
 				D12C927717144E95005C3F37 /* NetWork */,
 				D12C927817144E95005C3F37 /* Resources */,
@@ -280,7 +289,7 @@
 				D12C928817144E95005C3F37 /* Default.png in Resources */,
 				D12C928917144E95005C3F37 /* Default@2x.png in Resources */,
 				D12C928A17144E95005C3F37 /* InfoPlist.strings in Resources */,
-				D12C928C17144E95005C3F37 /* OwbClient-Info.plist in Resources */,
+				8588FE5D1715616A00699036 /* OwbClient-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +356,7 @@
 				D12C927E17144E95005C3F37 /* en */,
 			);
 			name = InfoPlist.strings;
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
 		D1D67F80171169D200460199 /* InfoPlist.strings */ = {
@@ -453,6 +463,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OwbClient/OwbClient-Prefix.pch";
 				INFOPLIST_FILE = "OwbClientTests/OwbClientTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -470,6 +481,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OwbClient/OwbClient-Prefix.pch";
 				INFOPLIST_FILE = "OwbClientTests/OwbClientTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
