@@ -87,9 +87,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8588FE61171562B700699036 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MenuBar;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		D12C926F17144E95005C3F37 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8588FE61171562B700699036 /* MenuBar */,
 				D12C927017144E95005C3F37 /* AppDelegate.h */,
 				D12C927117144E95005C3F37 /* AppDelegate.m */,
 				D12C927217144E95005C3F37 /* Home */,
