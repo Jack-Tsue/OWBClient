@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
     self.tableView.frame = CGRectMake(260, 260, 100, 10);
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+    self.tableView.backgroundView.backgroundColor = [UIColor clearColor];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
