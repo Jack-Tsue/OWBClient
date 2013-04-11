@@ -18,6 +18,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.tableView.scrollEnabled = NO;
         self.labels = @[@"Username",@"Password"];
     }
     return self;
@@ -26,8 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.frame = CGRectMake(260, 260, 100, 60);
-    [self.view setBackgroundColor:[UIColor clearColor]];
+    self.tableView.frame = CGRectMake(260, 260, 100, 10);
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
