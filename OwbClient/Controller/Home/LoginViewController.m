@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 
 @interface LoginViewController () 
-@property  (nonatomic,strong) NSArray* labels;
+@property  (nonatomic,strong) NSArray *labels;
 @end
 @implementation LoginViewController
 
@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.frame = CGRectMake(260, 260, 100, 10);
+    self.tableView.frame = LOGIN_VIEW_FRAME;
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
     self.tableView.backgroundView.backgroundColor = [UIColor clearColor];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
@@ -77,8 +77,8 @@
         
     }
     
-    UILabel* label = (UILabel*)[cell viewWithTag:1];
-    NSString* title = [self.labels objectAtIndex:indexPath.row];
+    UILabel *label = (UILabel*)[cell viewWithTag:1];
+    NSString *title = [self.labels objectAtIndex:indexPath.row];
     CGRect cellFrame = [cell frame];
     cellFrame.origin = CGPointMake(10, 10);
     label.text = title;

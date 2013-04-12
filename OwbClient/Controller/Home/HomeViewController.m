@@ -11,9 +11,14 @@
 
 @interface HomeViewController()
 
-@property (strong, nonatomic) LoginViewController* login_view_controller_;
+@property (strong, nonatomic) LoginViewController *login_view_controller_;
 
-@property (strong, nonatomic) UIView *testView_; // test
+// test
+@property (strong, nonatomic) UIView *testView_; 
+
+@property (strong, nonatomic) UIButton *loginBtn;
+@property (strong, nonatomic) UIButton *createBtn;
+@property (strong, nonatomic) UIButton *joinBtn;
 
 @end
 
@@ -24,6 +29,18 @@
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     self.login_view_controller_ = [[LoginViewController alloc]initWithStyle:UITableViewStyleGrouped];
     [self.view addSubview:self.login_view_controller_.view];
+    [self.login_view_controller_.view setHidden:YES];
+    
+    self.loginBtn = [[UIButton alloc] initWithFrame:LOGIN_BTN_FRAME];
+    self.loginBtn.backgroundColor = [UIColor grayColor];
+    [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    self.createBtn = [[UIButton alloc] initWithFrame:CREATE_BTN_FRAME];
+    self.createBtn.backgroundColor = [UIColor grayColor];
+    self.joinBtn = [[UIButton alloc] initWithFrame:JOIN_BTN_FRAME];
+    self.joinBtn.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:self.loginBtn];
+    [self.view addSubview:self.createBtn];
+    [self.view addSubview:self.joinBtn];
     
     // test
     self.testView_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default.png"]];
@@ -107,5 +124,12 @@
     return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
+#pragma mark - btn action listeners
+- (void)loginBtnPress:(id) sender
+{
+    if (self.login_view_controller_.view.isHidden == YES) {
+        [self.login_view_controller_.view setHidden:NO];
+    }
+}
 
 @end
