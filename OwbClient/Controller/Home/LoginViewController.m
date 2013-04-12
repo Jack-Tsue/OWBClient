@@ -86,7 +86,7 @@
     label.frame = rect;
     [label sizeToFit];
     
-    UITextField *textField=[[UITextField alloc]initWithFrame:CGRectMake(120, 10, 260, 24)];
+    UITextField *textField=[[UITextField alloc]initWithFrame:LOGIN_INPUT_FRAME];
     [textField setBorderStyle:UITextBorderStyleRoundedRect];
     textField.returnKeyType = UIReturnKeyDone;
     if (indexPath.row==1) {
