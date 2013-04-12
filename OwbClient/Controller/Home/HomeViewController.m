@@ -8,10 +8,13 @@
 
 #import "HomeViewController.h"
 #import "LoginViewController.h"
+#import "MeetingCodeViewController.h"
 
 @interface HomeViewController()
 
-@property (strong, nonatomic) LoginViewController *login_view_controller_;
+@property (strong, nonatomic) LoginViewController *loginViewController_;
+@property (strong, nonatomic) MeetingCodeViewController *createMeetingCodeView_;
+@property (strong, nonatomic) MeetingCodeViewController *joinMeetingCodeView_;
 
 // test
 @property (strong, nonatomic) UIView *testView_; 
@@ -27,17 +30,33 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    self.login_view_controller_ = [[LoginViewController alloc]initWithStyle:UITableViewStyleGrouped];
-    [self.view addSubview:self.login_view_controller_.view];
-    [self.login_view_controller_.view setHidden:YES];
     
+    // login view
+    self.loginViewController_ = [[LoginViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    [self.view addSubview:self.loginViewController_.view];
+    [self.loginViewController_.view setHidden:YES];
+    
+    // create meeting code view
+    self.createMeetingCodeView_ = [[MeetingCodeViewController alloc]initWithStyle:UITableViewStyleGrouped withType:CREATE_BTN_STR];
+    [self.view addSubview:self.createMeetingCodeView_.view];
+    [self.createMeetingCodeView_.view setHidden:YES];
+    
+    // join meeting code view
+    self.joinMeetingCodeView_ = [[MeetingCodeViewController alloc]initWithStyle:UITableViewStyleGrouped withType:JOIN_BTN_STR];
+    [self.view addSubview:self.joinMeetingCodeView_.view];
+    [self.joinMeetingCodeView_.view setHidden:YES];
+
+    // buttons
     self.loginBtn = [[UIButton alloc] initWithFrame:LOGIN_BTN_FRAME];
     self.loginBtn.backgroundColor = [UIColor grayColor];
     [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     self.createBtn = [[UIButton alloc] initWithFrame:CREATE_BTN_FRAME];
     self.createBtn.backgroundColor = [UIColor grayColor];
+    [self.createBtn addTarget:self action:@selector(createBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     self.joinBtn = [[UIButton alloc] initWithFrame:JOIN_BTN_FRAME];
     self.joinBtn.backgroundColor = [UIColor grayColor];
+    [self.joinBtn addTarget:self action:@selector(joinBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.loginBtn];
     [self.view addSubview:self.createBtn];
     [self.view addSubview:self.joinBtn];
@@ -127,9 +146,24 @@
 #pragma mark - btn action listeners
 - (void)loginBtnPress:(id) sender
 {
-    if (self.login_view_controller_.view.isHidden == YES) {
-        [self.login_view_controller_.view setHidden:NO];
+    if (self.loginViewController_.view.isHidden == YES) {
+        [self.createMeetingCodeView_.view setHidden:YES];
+        [self.joinMeetingCodeView_.view setHidden:YES];
+        [self.loginViewController_.view setHidden:NO];
     }
 }
 
+- (void)createBtnPress:(id) sender
+{
+    [self.loginViewController_.view setHidden:YES];
+    [self.joinMeetingCodeView_.view setHidden:YES];
+    [self.createMeetingCodeView_.view setHidden:NO];
+}
+
+- (void)joinBtnPress:(id) sender
+{
+    [self.loginViewController_.view setHidden:YES];
+    [self.createMeetingCodeView_.view setHidden:YES];
+    [self.joinMeetingCodeView_.view setHidden:NO];
+}
 @end

@@ -33,6 +33,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.frame = LOGIN_VIEW_FRAME;
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+    self.tableView.backgroundView.backgroundColor = [UIColor clearColor];
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)viewDidUnload
@@ -74,10 +78,14 @@
     [textField setBorderStyle:UITextBorderStyleRoundedRect];
     textField.returnKeyType = UIReturnKeyDone;
     textField.delegate = self;
+    if (self.btnLabelStr_ == CREATE_BTN_STR) {
+        [textField setUserInteractionEnabled:NO];
+    }
     [cell.contentView addSubview:textField];
     
     UIButton *codeBtn = [[UIButton alloc] initWithFrame:MEETING_CODE_BTN_FRAME];
     [codeBtn setTitle:self.btnLabelStr_ forState:UIControlStateNormal];
+    [codeBtn setBackgroundColor:[UIColor blackColor]];
     [cell.contentView addSubview:codeBtn];
     
     return cell;
@@ -86,6 +94,14 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+}
+
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

@@ -23,7 +23,7 @@
 #define CREATE_BTN_STR @"paste"
 #define JOIN_BTN_STR @"join"
 #define MEETING_CODE_FRAME CGRectMake(20, 10, 260, 24)
-#define MEETING_CODE_BTN_FRAME CGRectMake(300, 10, 46, 24)
+#define MEETING_CODE_BTN_FRAME CGRectMake(340, 10, 46, 24)
 
 #define DURATION 0.3f
 

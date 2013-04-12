@@ -10,5 +10,5 @@
 #import "common.h"
 
 @interface MeetingCodeViewController : UITableViewController<UITextFieldDelegate>
-
+- (id)initWithStyle:(UITableViewStyle)style withType:(NSString *)type;
 @end
