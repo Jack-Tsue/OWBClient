@@ -6,12 +6,11 @@
     **Copyright [2013] <Copyright tsgsz>  [legal/copyright]
  ************************************************************************/
 
-#ifdef KINGSLANDING_ONLINEWHITEBOARD_CLIENT_NETWORK_SERVERDELEGATE_H_
+#ifndef KINGSLANDING_ONLINEWHITEBOARD_CLIENT_NETWORK_SERVERDELEGATE_H_
 #define KINGSLANDING_ONLINEWHITEBOARD_CLIENT_NETWORK_SERVERDELEGATE_H_
 
 #include <string>
-
-#include "NetModel/message.pb.h"
+#include "./internal/message.pb.h"
 
 namespace Kingslanding {
 namespace OnlineWhiteBoard {
@@ -32,7 +31,7 @@ public:
                                   const std::string& meeting_id);
     bool TransferAuth(const std::string& user_name,
                       const std::string& meeting_id);
-    bool RequestAuth(const std::string& user_name
+    bool RequestAuth(const std::string& user_name,
                      const std::string& meeting_id);
     UserList GetCurrentUserList(const std::string& meeting_id);
     HeartReturnPackage HeartBeat(const HeartBeatSendPackage& package);
@@ -44,8 +43,8 @@ public:
     DocumentList GetHistorySnapshots(const std::string& meeting_id);
     Document GetDocument(const std::string& meeting_id, int32_t serial_number);
 
-    //  pref for provider_server
-    bool BindServerIpAndPort(const std::string& ip_address, int port);
+    //  pref for updater_server
+    void BindServerIpAndPort(const std::string& ip_address, int port);
 
 private:
     ServerDelegate();
@@ -62,6 +61,9 @@ private:
     };
 
     static Garbo garbo_;
+
+    std::string updater_ip_address_;
+    int updater_port_;
 };
 }  // NetWork
 }  // Client
