@@ -27,9 +27,9 @@ public:
     // for monitor_server
     bool Login(const User& user);
     std::string CreateMeeting(const std::string& user_name);
-    MeetingServerInfo JoinMeeting(const std::string& user_name,
+    JoinMeetingReturn JoinMeeting(const std::string& user_name,
                                   const std::string& meeting_id);
-    bool TransferAuth(const std::string& user_name,
+    int32_t TransferAuth(const std::string& user_name,
                       const std::string& meeting_id);
     bool RequestAuth(const std::string& user_name,
                      const std::string& meeting_id);

@@ -49,10 +49,10 @@ clean :
 	rm -rf $(TESTS) *.a *.o test/*.o 
 
 
-libServerDelegate.a : ServerDelegate.o
+libServerDelegate.a : ServerDelegate.o RCF.o
 	$(AR) $(ARFLAGS) $@ $^
 
-ServerDelegate.o : $(SERVER_DELEGATE_SRCS_)
+ServerDelegate.o RCF.o : $(SERVER_DELEGATE_SRCS_) $(RCF_DIR)/src/RCF/RCF.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c *.cc $(RCF_DIR)/src/RCF/RCF.cpp
 
 $(TESTS) : $(SERVER_DELEGATE_TEST_SRCS_)

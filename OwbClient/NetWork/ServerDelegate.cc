@@ -59,14 +59,14 @@ str ServerDelegate::CreateMeeting(const str& user_name) {
     return client.CreateMeeting(user_name);
 }
 
-MeetingServerInfo ServerDelegate::JoinMeeting(const str& user_name,
+JoinMeetingReturn ServerDelegate::JoinMeeting(const str& user_name,
                                               const str& meeting_id) {
     RcfClient<Monitor> client(RCF::TcpEndpoint(FLAGS_monitor_ip_address,
                                                FLAGS_monitor_port));
     return client.JoinMeeting(user_name, meeting_id);
 }
 
-bool ServerDelegate::TransferAuth(const str& user_name,
+int32_t ServerDelegate::TransferAuth(const str& user_name,
                                   const str& meeting_id) {
     RcfClient<Monitor> client(RCF::TcpEndpoint(FLAGS_monitor_ip_address,
                                                FLAGS_monitor_port));

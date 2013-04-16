@@ -37,6 +37,7 @@ class Operations;
 class Document;
 class DocumentList;
 class MeetingServerInfo;
+class JoinMeetingReturn;
 class User;
 class HeartBeatSendPackage;
 class HeartReturnPackage;
@@ -83,6 +84,27 @@ inline bool Identity_Parse(
     const ::std::string& name, Identity* value) {
   return ::google::protobuf::internal::ParseNamedEnum<Identity>(
     Identity_descriptor(), name, value);
+}
+enum JoinState {
+  SUCCESS = 1,
+  FAIL = 2,
+  NOTAVAILABLE = 3,
+  DEAD = 4
+};
+bool JoinState_IsValid(int value);
+const JoinState JoinState_MIN = SUCCESS;
+const JoinState JoinState_MAX = DEAD;
+const int JoinState_ARRAYSIZE = JoinState_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* JoinState_descriptor();
+inline const ::std::string& JoinState_Name(JoinState value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    JoinState_descriptor(), value);
+}
+inline bool JoinState_Parse(
+    const ::std::string& name, JoinState* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<JoinState>(
+    JoinState_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -904,6 +926,99 @@ class MeetingServerInfo : public ::google::protobuf::Message {
   
   void InitAsDefaultInstance();
   static MeetingServerInfo* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class JoinMeetingReturn : public ::google::protobuf::Message {
+ public:
+  JoinMeetingReturn();
+  virtual ~JoinMeetingReturn();
+  
+  JoinMeetingReturn(const JoinMeetingReturn& from);
+  
+  inline JoinMeetingReturn& operator=(const JoinMeetingReturn& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const JoinMeetingReturn& default_instance();
+  
+  void Swap(JoinMeetingReturn* other);
+  
+  // implements Message ----------------------------------------------
+  
+  JoinMeetingReturn* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const JoinMeetingReturn& from);
+  void MergeFrom(const JoinMeetingReturn& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // required .JoinState join_state = 1;
+  inline bool has_join_state() const;
+  inline void clear_join_state();
+  static const int kJoinStateFieldNumber = 1;
+  inline JoinState join_state() const;
+  inline void set_join_state(JoinState value);
+  
+  // optional .MeetingServerInfo server_info = 2;
+  inline bool has_server_info() const;
+  inline void clear_server_info();
+  static const int kServerInfoFieldNumber = 2;
+  inline const ::MeetingServerInfo& server_info() const;
+  inline ::MeetingServerInfo* mutable_server_info();
+  inline ::MeetingServerInfo* release_server_info();
+  
+  // @@protoc_insertion_point(class_scope:JoinMeetingReturn)
+ private:
+  inline void set_has_join_state();
+  inline void clear_has_join_state();
+  inline void set_has_server_info();
+  inline void clear_has_server_info();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::MeetingServerInfo* server_info_;
+  int join_state_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_message_2eproto();
+  friend void protobuf_AssignDesc_message_2eproto();
+  friend void protobuf_ShutdownFile_message_2eproto();
+  
+  void InitAsDefaultInstance();
+  static JoinMeetingReturn* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -2058,6 +2173,62 @@ inline ::std::string* MeetingServerInfo::release_server_ip() {
 
 // -------------------------------------------------------------------
 
+// JoinMeetingReturn
+
+// required .JoinState join_state = 1;
+inline bool JoinMeetingReturn::has_join_state() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void JoinMeetingReturn::set_has_join_state() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void JoinMeetingReturn::clear_has_join_state() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void JoinMeetingReturn::clear_join_state() {
+  join_state_ = 1;
+  clear_has_join_state();
+}
+inline JoinState JoinMeetingReturn::join_state() const {
+  return static_cast< JoinState >(join_state_);
+}
+inline void JoinMeetingReturn::set_join_state(JoinState value) {
+  GOOGLE_DCHECK(JoinState_IsValid(value));
+  set_has_join_state();
+  join_state_ = value;
+}
+
+// optional .MeetingServerInfo server_info = 2;
+inline bool JoinMeetingReturn::has_server_info() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void JoinMeetingReturn::set_has_server_info() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void JoinMeetingReturn::clear_has_server_info() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void JoinMeetingReturn::clear_server_info() {
+  if (server_info_ != NULL) server_info_->::MeetingServerInfo::Clear();
+  clear_has_server_info();
+}
+inline const ::MeetingServerInfo& JoinMeetingReturn::server_info() const {
+  return server_info_ != NULL ? *server_info_ : *default_instance_->server_info_;
+}
+inline ::MeetingServerInfo* JoinMeetingReturn::mutable_server_info() {
+  set_has_server_info();
+  if (server_info_ == NULL) server_info_ = new ::MeetingServerInfo;
+  return server_info_;
+}
+inline ::MeetingServerInfo* JoinMeetingReturn::release_server_info() {
+  clear_has_server_info();
+  ::MeetingServerInfo* temp = server_info_;
+  server_info_ = NULL;
+  return temp;
+}
+
+// -------------------------------------------------------------------
+
 // User
 
 // required string user_name = 1;
@@ -2389,6 +2560,10 @@ inline const EnumDescriptor* GetEnumDescriptor< ::Operation_OperationData_Operat
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< Identity>() {
   return Identity_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< JoinState>() {
+  return JoinState_descriptor();
 }
 
 }  // namespace google

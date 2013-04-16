@@ -1,10 +1,10 @@
 message Operation {
-    //Î¨Ò»±àºÅ,·Ç¸ºÕûÊı
+    //å”¯ä¸€ç¼–å·,éè´Ÿæ•´æ•°
     required uint32 serial_number = 1;
     
-    //²Ù×÷µÄÊı¾İ½á¹¹
+    //æ“ä½œçš„æ•°æ®ç»“æ„
     message OperationData {
-        //²Ù×÷Êı¾İµÄÀàĞÍ
+        //æ“ä½œæ•°æ®çš„ç±»å‹
         enum OperationDataType {
             LINE = 0;
             ELLIPSE = 1;
@@ -13,7 +13,7 @@ message Operation {
             ERASER = 4;
         }
 
-        //µãµÄÊı¾İ½á¹¹
+        //ç‚¹çš„æ•°æ®ç»“æ„
         message Point {
             required int32 x = 1;
             required int32 y = 2;
@@ -21,33 +21,33 @@ message Operation {
 
         required OperationDataType data_type = 1;
 
-        //´ÖÏ¸
+        //ç²—ç»†
         required int32 thinkness = 2;
         
-        //ÑÕÉ«
+        //é¢œè‰²
         optional int32 color = 3;
 
-        //¶ÔÓÚÖ±Ïß
+        //å¯¹äºç›´çº¿
         optional Point start_point = 4;
         optional Point end_point = 5;
 
-        //¶ÔÓÚÍÖÔ²
+        //å¯¹äºæ¤­åœ†
         optional Point f_1 = 6;
         optional Point f_2 = 7;
         optional int32 a = 8;
         optional int32 b = 9;
         
-        //¶ÔÓÚ³¤·½ĞÎ
+        //å¯¹äºé•¿æ–¹å½¢
         optional Point top_left_corner = 10;
         optional Point bottom_right_corner = 11;
 
-        //¶ÔÓÚµãºÍÏğÆ¤
+        //å¯¹äºç‚¹å’Œæ©¡çš®
         optional Point position = 12;
 
-        //¶ÔÓÚÍÖÔ²ºÍ³¤·½ĞÎ
+        //å¯¹äºæ¤­åœ†å’Œé•¿æ–¹å½¢
         optional bool fill = 13;
 
-        //ÉîÇ³
+        //æ·±æµ…
         optional float alpha = 14;
 
     }
@@ -56,17 +56,17 @@ message Operation {
 }
 
 message Operations {
-    //operationÊÇ·ñÓĞĞ§
+    //operationæ˜¯å¦æœ‰æ•ˆ
     required bool operation_avaliable = 1;
     repeated Operation operations = 2;
 }
 
 message Document {
-    //Î¨Ò»±àºÅ,·Ç¸ºÕûÊı
+    //å”¯ä¸€ç¼–å·,éè´Ÿæ•´æ•°
     required uint32 serial_number = 1;
-    //ÎÄµµ¾µÏñ
+    //æ–‡æ¡£é•œåƒ
     required bytes data = 2;
-    //®”Ç°•ş×hÖ÷³ÖÈË
+    //ç•¶å‰æœƒè­°ä¸»æŒäºº
     optional string user_name = 3;
 }
 
@@ -75,46 +75,62 @@ message DocumentList {
 }
 
 
-//ÓÃ‘ôÉí·İ
+//ç”¨æˆ¶èº«ä»½
 enum Identity {
-    //•ş×hÖ÷³ÖÈË
+    //æœƒè­°ä¸»æŒäºº
     HOST = 1;
-    //Ö÷³ÖÈËºòßxÕß
+    //ä¸»æŒäººå€™é¸è€…
     CANDIDATE = 2;
-    //•ş×h…¢ÅcÕß
+    //æœƒè­°åƒèˆ‡è€…
     PARTICIPANTS = 3;
 }
 
 message MeetingServerInfo {
-    //¶Ë¿ÚÌ–
+    //ç«¯å£è™Ÿ
     required int32 port = 1;
-    //·ş„ÕÆ÷ip
+    //æœå‹™å™¨ip
     required string server_ip = 2;
 }
 
+enum JoinState {
+    //æˆåŠŸ
+    SUCCESS = 1;
+    //åŠ å…¥å¤±è´¥
+    FAIL = 2;
+    //æ²¡æœ‰åˆ›å»ºè¯¥ä¼šè®®
+    NOTAVAILABLE = 3;
+    //ä¼šè®®å·²æ­»
+    DEAD = 4;
+}
+
+message JoinMeetingReturn {
+    //æ“ä½œçŠ¶æ€
+    required JoinState join_state = 1;
+    //æœåŠ¡å™¨çŠ¶æ€
+    optional MeetingServerInfo server_info = 2;
+}
+
 message User {
-    //ÓÃ‘ôÃû
+    //ç”¨æˆ¶å
     required string user_name = 1;
-    //ÓÃ‘ôÃÜ´a
+    //ç”¨æˆ¶å¯†ç¢¼
     optional string password = 2;
-    //ÓÃ‘ôÉí·İ
+    //ç”¨æˆ¶èº«ä»½
     optional Identity identity = 3;
 }
 
 message HeartBeatSendPackage {
-    //ÓÃ‘ôÃû
+    //ç”¨æˆ¶å
     required string user_name = 1;
-    //•ş×hÃû
+    //æœƒè­°å
     required string meeting_id = 2;
 }
 
 message HeartReturnPackage {
-    //ÓÃ‘ô î‘B
+    //ç”¨æˆ¶ç‹€æ…‹
     required Identity identity = 1;
 }
 
 message UserList {
     repeated User users = 1;
 }
-
-

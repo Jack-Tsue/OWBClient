@@ -25,17 +25,19 @@ public:
         return std::string("meeting1");
     }
 
-    MeetingServerInfo JoinMeeting(const std::string& user_name,
+    JoinMeetingReturn JoinMeeting(const std::string& user_name,
                                   const std::string& meeting_id) {
-        MeetingServerInfo server_info;
-        server_info.set_port(9997);
-        server_info.set_server_ip("127.0.0.1");
-        return server_info;
+        JoinMeetingReturn _return;
+        _return.set_join_state(SUCCESS);
+        MeetingServerInfo* server_info = _return.mutable_server_info();
+        server_info->set_port(9997);
+        server_info->set_server_ip("127.0.0.1");
+        return _return;
     }
 
-    bool TransferAuth(const std::string& user_name,
+    int32_t TransferAuth(const std::string& user_name,
                       const std::string& meeting_id) {
-        return true;
+        return 1;
     }
 
     bool RequestAuth(const std::string& user_name,
@@ -127,10 +129,12 @@ TEST_F(ServerDelegateTest, TestMonitor) {
     user.set_user_name(user_name);
     EXPECT_TRUE(s_d->Login(user));
     EXPECT_STREQ(meeting_id.c_str(), s_d->CreateMeeting(user_name).c_str());
-    MeetingServerInfo server_info = s_d->JoinMeeting(user_name, meeting_id);
+    JoinMeetingReturn r_p = s_d->JoinMeeting(user_name, meeting_id);
+    MeetingServerInfo server_info = r_p.server_info();
+    EXPECT_EQ(SUCCESS, r_p.join_state());
     EXPECT_STREQ("127.0.0.1", server_info.server_ip().c_str());
     EXPECT_EQ(9997, server_info.port());
-    EXPECT_TRUE(s_d->TransferAuth(user_name, meeting_id));
+    EXPECT_EQ(1, s_d->TransferAuth(user_name, meeting_id));
     EXPECT_TRUE(s_d->RequestAuth(user_name, meeting_id));
     EXPECT_EQ(1, s_d->GetCurrentUserList(meeting_id).users_size());
     HeartBeatSendPackage pac;

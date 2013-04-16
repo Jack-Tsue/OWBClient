@@ -23,9 +23,10 @@ RCF_END(Updater)
 RCF_BEGIN(Monitor, "Monitor")
     RCF_METHOD_R1(bool, Login, const User&)
     RCF_METHOD_R1(std::string, CreateMeeting, const std::string&)
-    RCF_METHOD_R2(MeetingServerInfo, JoinMeeting, const std::string&, \
+    RCF_METHOD_R2(JoinMeetingReturn, JoinMeeting, const std::string&, \
                   const std::string&)
-    RCF_METHOD_R2(bool, TransferAuth, const std::string&, const std::string&)
+    RCF_METHOD_R2(int32_t, TransferAuth, const std::string&, const std::string&)
+    //0 for fail, 1 for success, 2 for there is some problem with the user
     RCF_METHOD_R2(bool, RequestAuth, const std::string&, const std::string&)
     RCF_METHOD_R1(UserList, GetCurrentUserList, const std::string&)
     RCF_METHOD_R1(HeartReturnPackage, HeartBeat, const HeartBeatSendPackage&)
