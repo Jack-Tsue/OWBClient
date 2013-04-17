@@ -28,7 +28,7 @@
 #define CANVAS_DEFAULT_FRAME CGRectMake(0, 726, 1024, 100)
 #define CANVAS_OPEN_FRAME CGRectMake(0, 0, 1024, 768)
 
-#define DURATION 0.3f
+#define DURATION 0.5f
 
 #define LOGIN_VIEW_FRAME CGRectMake(260, 260, 100, 10)
 

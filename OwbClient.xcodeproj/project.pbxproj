@@ -39,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		853649BA171D2D7000C90518 /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationQueue.h; sourceTree = "<group>"; };
+		853649BB171D31BE00C90518 /* UserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserList.h; sourceTree = "<group>"; };
+		853649BC171D32A300C90518 /* RefreshableList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableList.h; sourceTree = "<group>"; };
+		853649BD171E5E8200C90518 /* SnapshotList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotList.h; sourceTree = "<group>"; };
 		8585D3881717E6FF00FCA16C /* MeetingCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingCodeViewController.h; sourceTree = "<group>"; };
 		8585D3891717E6FF00FCA16C /* MeetingCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingCodeViewController.m; sourceTree = "<group>"; };
 		8588FE5C1715616A00699036 /* OwbClient-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OwbClient-Info.plist"; sourceTree = "<group>"; };
@@ -157,6 +161,10 @@
 			children = (
 				8588FE60171561C200699036 /* common.h */,
 				D12C927F17144E95005C3F37 /* main.m */,
+				853649BA171D2D7000C90518 /* OperationQueue.h */,
+				853649BB171D31BE00C90518 /* UserList.h */,
+				853649BC171D32A300C90518 /* RefreshableList.h */,
+				853649BD171E5E8200C90518 /* SnapshotList.h */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
