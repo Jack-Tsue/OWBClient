@@ -18,8 +18,9 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        [self.tableView setBackgroundColor:[UIColor clearColor]];
         self.tableView.scrollEnabled = NO;
-        self.labels = @[@"Username",@"Password"];
+        self.labels = @[@"账户",@"密码"];
     }
     return self;
 }
@@ -87,10 +88,13 @@
     [label sizeToFit];
     
     UITextField *textField=[[UITextField alloc]initWithFrame:LOGIN_INPUT_FRAME];
-    [textField setBorderStyle:UITextBorderStyleRoundedRect];
+    textField.borderStyle = UITextBorderStyleNone;
+    textField.backgroundColor = [UIColor clearColor];
     textField.returnKeyType = UIReturnKeyDone;
+    textField.placeholder = LOGIN_NAME_PLACEHOLDER;
     if (indexPath.row==1) {
         textField.secureTextEntry = YES;
+        textField.placeholder = LOGIN_PWD_PLACEHOLDER;
     }
     textField.delegate = self;
     [cell.contentView addSubview:textField];

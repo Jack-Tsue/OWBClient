@@ -75,7 +75,7 @@
     }
     
     UITextField *textField = [[UITextField alloc]initWithFrame:MEETING_CODE_FRAME];
-    [textField setBorderStyle:UITextBorderStyleRoundedRect];
+    [textField setBorderStyle:UITextBorderStyleNone];
     textField.returnKeyType = UIReturnKeyDone;
     textField.delegate = self;
     if (self.btnLabelStr_ == CREATE_BTN_STR) {

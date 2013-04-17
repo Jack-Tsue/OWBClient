@@ -10,7 +10,7 @@
 #define OwbClient_OperationQueue_h
 
 @interface OperationQueue {
-private
+@private
     NSMutableArray *operations_;
 }
 
