@@ -20,6 +20,8 @@
 - (BOOL)isEmpty;
 - (id)getHead;
 
+@property(nonatomic, strong) bool writable;
+
 @end
 
 #endif
