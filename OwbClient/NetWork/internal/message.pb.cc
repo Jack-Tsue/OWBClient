@@ -37,6 +37,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* MeetingServerInfo_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MeetingServerInfo_reflection_ = NULL;
+const ::google::protobuf::Descriptor* JoinMeetingReturn_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  JoinMeetingReturn_reflection_ = NULL;
 const ::google::protobuf::Descriptor* User_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   User_reflection_ = NULL;
@@ -50,6 +53,7 @@ const ::google::protobuf::Descriptor* UserList_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   UserList_reflection_ = NULL;
 const ::google::protobuf::EnumDescriptor* Identity_descriptor_ = NULL;
+const ::google::protobuf::EnumDescriptor* JoinState_descriptor_ = NULL;
 
 }  // namespace
 
@@ -185,7 +189,23 @@ void protobuf_AssignDesc_message_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(MeetingServerInfo));
-  User_descriptor_ = file->message_type(5);
+  JoinMeetingReturn_descriptor_ = file->message_type(5);
+  static const int JoinMeetingReturn_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(JoinMeetingReturn, join_state_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(JoinMeetingReturn, server_info_),
+  };
+  JoinMeetingReturn_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      JoinMeetingReturn_descriptor_,
+      JoinMeetingReturn::default_instance_,
+      JoinMeetingReturn_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(JoinMeetingReturn, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(JoinMeetingReturn, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(JoinMeetingReturn));
+  User_descriptor_ = file->message_type(6);
   static const int User_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(User, user_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(User, password_),
@@ -202,7 +222,7 @@ void protobuf_AssignDesc_message_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(User));
-  HeartBeatSendPackage_descriptor_ = file->message_type(6);
+  HeartBeatSendPackage_descriptor_ = file->message_type(7);
   static const int HeartBeatSendPackage_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HeartBeatSendPackage, user_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HeartBeatSendPackage, meeting_id_),
@@ -218,7 +238,7 @@ void protobuf_AssignDesc_message_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(HeartBeatSendPackage));
-  HeartReturnPackage_descriptor_ = file->message_type(7);
+  HeartReturnPackage_descriptor_ = file->message_type(8);
   static const int HeartReturnPackage_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HeartReturnPackage, identity_),
   };
@@ -233,7 +253,7 @@ void protobuf_AssignDesc_message_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(HeartReturnPackage));
-  UserList_descriptor_ = file->message_type(8);
+  UserList_descriptor_ = file->message_type(9);
   static const int UserList_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UserList, users_),
   };
@@ -249,6 +269,7 @@ void protobuf_AssignDesc_message_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(UserList));
   Identity_descriptor_ = file->enum_type(0);
+  JoinState_descriptor_ = file->enum_type(1);
 }
 
 namespace {
@@ -276,6 +297,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     MeetingServerInfo_descriptor_, &MeetingServerInfo::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    JoinMeetingReturn_descriptor_, &JoinMeetingReturn::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     User_descriptor_, &User::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     HeartBeatSendPackage_descriptor_, &HeartBeatSendPackage::default_instance());
@@ -302,6 +325,8 @@ void protobuf_ShutdownFile_message_2eproto() {
   delete DocumentList_reflection_;
   delete MeetingServerInfo::default_instance_;
   delete MeetingServerInfo_reflection_;
+  delete JoinMeetingReturn::default_instance_;
+  delete JoinMeetingReturn_reflection_;
   delete User::default_instance_;
   delete User_reflection_;
   delete HeartBeatSendPackage::default_instance_;
@@ -343,14 +368,18 @@ void protobuf_AddDesc_message_2eproto() {
     "(\r\022\014\n\004data\030\002 \002(\014\022\021\n\tuser_name\030\003 \001(\t\"3\n\014D"
     "ocumentList\022#\n\020history_document\030\001 \003(\0132\t."
     "Document\"4\n\021MeetingServerInfo\022\014\n\004port\030\001 "
-    "\002(\005\022\021\n\tserver_ip\030\002 \002(\t\"H\n\004User\022\021\n\tuser_n"
-    "ame\030\001 \002(\t\022\020\n\010password\030\002 \001(\t\022\033\n\010identity\030"
-    "\003 \001(\0162\t.Identity\"=\n\024HeartBeatSendPackage"
-    "\022\021\n\tuser_name\030\001 \002(\t\022\022\n\nmeeting_id\030\002 \002(\t\""
-    "1\n\022HeartReturnPackage\022\033\n\010identity\030\001 \002(\0162"
-    "\t.Identity\" \n\010UserList\022\024\n\005users\030\001 \003(\0132\005."
-    "User*5\n\010Identity\022\010\n\004HOST\020\001\022\r\n\tCANDIDATE\020"
-    "\002\022\020\n\014PARTICIPANTS\020\003", 1259);
+    "\002(\005\022\021\n\tserver_ip\030\002 \002(\t\"\\\n\021JoinMeetingRet"
+    "urn\022\036\n\njoin_state\030\001 \002(\0162\n.JoinState\022\'\n\013s"
+    "erver_info\030\002 \001(\0132\022.MeetingServerInfo\"H\n\004"
+    "User\022\021\n\tuser_name\030\001 \002(\t\022\020\n\010password\030\002 \001("
+    "\t\022\033\n\010identity\030\003 \001(\0162\t.Identity\"=\n\024HeartB"
+    "eatSendPackage\022\021\n\tuser_name\030\001 \002(\t\022\022\n\nmee"
+    "ting_id\030\002 \002(\t\"1\n\022HeartReturnPackage\022\033\n\010i"
+    "dentity\030\001 \002(\0162\t.Identity\" \n\010UserList\022\024\n\005"
+    "users\030\001 \003(\0132\005.User*5\n\010Identity\022\010\n\004HOST\020\001"
+    "\022\r\n\tCANDIDATE\020\002\022\020\n\014PARTICIPANTS\020\003*>\n\tJoi"
+    "nState\022\013\n\007SUCCESS\020\001\022\010\n\004FAIL\020\002\022\020\n\014NOTAVAI"
+    "LABLE\020\003\022\010\n\004DEAD\020\004", 1417);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "message.proto", &protobuf_RegisterTypes);
   Operation::default_instance_ = new Operation();
@@ -360,6 +389,7 @@ void protobuf_AddDesc_message_2eproto() {
   Document::default_instance_ = new Document();
   DocumentList::default_instance_ = new DocumentList();
   MeetingServerInfo::default_instance_ = new MeetingServerInfo();
+  JoinMeetingReturn::default_instance_ = new JoinMeetingReturn();
   User::default_instance_ = new User();
   HeartBeatSendPackage::default_instance_ = new HeartBeatSendPackage();
   HeartReturnPackage::default_instance_ = new HeartReturnPackage();
@@ -371,6 +401,7 @@ void protobuf_AddDesc_message_2eproto() {
   Document::default_instance_->InitAsDefaultInstance();
   DocumentList::default_instance_->InitAsDefaultInstance();
   MeetingServerInfo::default_instance_->InitAsDefaultInstance();
+  JoinMeetingReturn::default_instance_->InitAsDefaultInstance();
   User::default_instance_->InitAsDefaultInstance();
   HeartBeatSendPackage::default_instance_->InitAsDefaultInstance();
   HeartReturnPackage::default_instance_->InitAsDefaultInstance();
@@ -394,6 +425,22 @@ bool Identity_IsValid(int value) {
     case 1:
     case 2:
     case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::google::protobuf::EnumDescriptor* JoinState_descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return JoinState_descriptor_;
+}
+bool JoinState_IsValid(int value) {
+  switch(value) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
       return true;
     default:
       return false;
@@ -2752,6 +2799,268 @@ void MeetingServerInfo::Swap(MeetingServerInfo* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = MeetingServerInfo_descriptor_;
   metadata.reflection = MeetingServerInfo_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int JoinMeetingReturn::kJoinStateFieldNumber;
+const int JoinMeetingReturn::kServerInfoFieldNumber;
+#endif  // !_MSC_VER
+
+JoinMeetingReturn::JoinMeetingReturn()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void JoinMeetingReturn::InitAsDefaultInstance() {
+  server_info_ = const_cast< ::MeetingServerInfo*>(&::MeetingServerInfo::default_instance());
+}
+
+JoinMeetingReturn::JoinMeetingReturn(const JoinMeetingReturn& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void JoinMeetingReturn::SharedCtor() {
+  _cached_size_ = 0;
+  join_state_ = 1;
+  server_info_ = NULL;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+JoinMeetingReturn::~JoinMeetingReturn() {
+  SharedDtor();
+}
+
+void JoinMeetingReturn::SharedDtor() {
+  if (this != default_instance_) {
+    delete server_info_;
+  }
+}
+
+void JoinMeetingReturn::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* JoinMeetingReturn::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return JoinMeetingReturn_descriptor_;
+}
+
+const JoinMeetingReturn& JoinMeetingReturn::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_message_2eproto();  return *default_instance_;
+}
+
+JoinMeetingReturn* JoinMeetingReturn::default_instance_ = NULL;
+
+JoinMeetingReturn* JoinMeetingReturn::New() const {
+  return new JoinMeetingReturn;
+}
+
+void JoinMeetingReturn::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    join_state_ = 1;
+    if (has_server_info()) {
+      if (server_info_ != NULL) server_info_->::MeetingServerInfo::Clear();
+    }
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool JoinMeetingReturn::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required .JoinState join_state = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (JoinState_IsValid(value)) {
+            set_join_state(static_cast< JoinState >(value));
+          } else {
+            mutable_unknown_fields()->AddVarint(1, value);
+          }
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(18)) goto parse_server_info;
+        break;
+      }
+      
+      // optional .MeetingServerInfo server_info = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_server_info:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_server_info()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void JoinMeetingReturn::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // required .JoinState join_state = 1;
+  if (has_join_state()) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      1, this->join_state(), output);
+  }
+  
+  // optional .MeetingServerInfo server_info = 2;
+  if (has_server_info()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, this->server_info(), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* JoinMeetingReturn::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // required .JoinState join_state = 1;
+  if (has_join_state()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      1, this->join_state(), target);
+  }
+  
+  // optional .MeetingServerInfo server_info = 2;
+  if (has_server_info()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        2, this->server_info(), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int JoinMeetingReturn::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required .JoinState join_state = 1;
+    if (has_join_state()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->join_state());
+    }
+    
+    // optional .MeetingServerInfo server_info = 2;
+    if (has_server_info()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->server_info());
+    }
+    
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void JoinMeetingReturn::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const JoinMeetingReturn* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const JoinMeetingReturn*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void JoinMeetingReturn::MergeFrom(const JoinMeetingReturn& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_join_state()) {
+      set_join_state(from.join_state());
+    }
+    if (from.has_server_info()) {
+      mutable_server_info()->::MeetingServerInfo::MergeFrom(from.server_info());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void JoinMeetingReturn::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void JoinMeetingReturn::CopyFrom(const JoinMeetingReturn& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool JoinMeetingReturn::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
+  
+  if (has_server_info()) {
+    if (!this->server_info().IsInitialized()) return false;
+  }
+  return true;
+}
+
+void JoinMeetingReturn::Swap(JoinMeetingReturn* other) {
+  if (other != this) {
+    std::swap(join_state_, other->join_state_);
+    std::swap(server_info_, other->server_info_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata JoinMeetingReturn::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = JoinMeetingReturn_descriptor_;
+  metadata.reflection = JoinMeetingReturn_reflection_;
   return metadata;
 }
 
