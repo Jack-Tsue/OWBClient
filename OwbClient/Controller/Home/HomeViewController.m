@@ -29,8 +29,9 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    [self.view setBackgroundColor:[UIColor grayColor]];
-
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
+    [self.view setBackgroundColor:background];
+    
     // login view
     self.loginViewController_ = [[LoginViewController alloc]initWithStyle:UITableViewStyleGrouped];
     [self.view addSubview:self.loginViewController_.view];
@@ -48,13 +49,16 @@
 
     // buttons
     self.loginBtn = [[UIButton alloc] initWithFrame:LOGIN_BTN_FRAME];
-    self.loginBtn.backgroundColor = [UIColor whiteColor];
+    UIColor *loginBack = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"login.png"]];
+    self.loginBtn.backgroundColor = loginBack;
     [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     self.createBtn = [[UIButton alloc] initWithFrame:CREATE_BTN_FRAME];
-    self.createBtn.backgroundColor = [UIColor whiteColor];
+    UIColor *createBack = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"create.png"]];
+    self.createBtn.backgroundColor = createBack;
     [self.createBtn addTarget:self action:@selector(createBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     self.joinBtn = [[UIButton alloc] initWithFrame:JOIN_BTN_FRAME];
-    self.joinBtn.backgroundColor = [UIColor whiteColor];
+    UIColor *joinBack = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"join.png"]];
+    self.joinBtn.backgroundColor = joinBack;
     [self.joinBtn addTarget:self action:@selector(joinBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.loginBtn];
     [self.view addSubview:self.createBtn];

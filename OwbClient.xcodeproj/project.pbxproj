@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		8585D38A1717E6FF00FCA16C /* MeetingCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8585D3891717E6FF00FCA16C /* MeetingCodeViewController.m */; };
 		8588FE5D1715616A00699036 /* OwbClient-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8588FE5C1715616A00699036 /* OwbClient-Info.plist */; };
+		85A5C896171E63F200003CC3 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C892171E63F200003CC3 /* background.jpg */; };
+		85A5C897171E63F200003CC3 /* create.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C893171E63F200003CC3 /* create.png */; };
+		85A5C898171E63F200003CC3 /* join.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C894171E63F200003CC3 /* join.png */; };
+		85A5C899171E63F200003CC3 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C895171E63F200003CC3 /* login.png */; };
 		85C0AA191719347200915556 /* CanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0AA181719347200915556 /* CanvasViewController.m */; };
 		D12C928417144E95005C3F37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927117144E95005C3F37 /* AppDelegate.m */; };
 		D12C928517144E95005C3F37 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927417144E95005C3F37 /* HomeViewController.m */; };
 		D12C928617144E95005C3F37 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927617144E95005C3F37 /* LoginViewController.m */; };
-		D12C928717144E95005C3F37 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D12C927917144E95005C3F37 /* Default-568h@2x.png */; };
-		D12C928817144E95005C3F37 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D12C927A17144E95005C3F37 /* Default.png */; };
-		D12C928917144E95005C3F37 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D12C927B17144E95005C3F37 /* Default@2x.png */; };
 		D12C928A17144E95005C3F37 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D12C927D17144E95005C3F37 /* InfoPlist.strings */; };
 		D12C928B17144E95005C3F37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927F17144E95005C3F37 /* main.m */; };
 		D1D67F5A171169D200460199 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1D67F59171169D200460199 /* UIKit.framework */; };
@@ -48,6 +49,10 @@
 		8588FE5C1715616A00699036 /* OwbClient-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OwbClient-Info.plist"; sourceTree = "<group>"; };
 		8588FE5E171561A700699036 /* OwbClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OwbClient-Prefix.pch"; sourceTree = "<group>"; };
 		8588FE60171561C200699036 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		85A5C892171E63F200003CC3 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
+		85A5C893171E63F200003CC3 /* create.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create.png; sourceTree = "<group>"; };
+		85A5C894171E63F200003CC3 /* join.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = join.png; sourceTree = "<group>"; };
+		85A5C895171E63F200003CC3 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		85C0AA171719347200915556 /* CanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CanvasViewController.h; path = Canvas/CanvasViewController.h; sourceTree = "<group>"; };
 		85C0AA181719347200915556 /* CanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CanvasViewController.m; path = Canvas/CanvasViewController.m; sourceTree = "<group>"; };
 		D12C927017144E95005C3F37 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,9 +61,6 @@
 		D12C927417144E95005C3F37 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D12C927517144E95005C3F37 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		D12C927617144E95005C3F37 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		D12C927917144E95005C3F37 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D12C927A17144E95005C3F37 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		D12C927B17144E95005C3F37 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D12C927E17144E95005C3F37 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D12C927F17144E95005C3F37 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1D67F56171169D200460199 /* OwbClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OwbClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,9 +151,10 @@
 		D12C927817144E95005C3F37 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D12C927917144E95005C3F37 /* Default-568h@2x.png */,
-				D12C927A17144E95005C3F37 /* Default.png */,
-				D12C927B17144E95005C3F37 /* Default@2x.png */,
+				85A5C892171E63F200003CC3 /* background.jpg */,
+				85A5C893171E63F200003CC3 /* create.png */,
+				85A5C894171E63F200003CC3 /* join.png */,
+				85A5C895171E63F200003CC3 /* login.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -311,11 +314,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D12C928717144E95005C3F37 /* Default-568h@2x.png in Resources */,
-				D12C928817144E95005C3F37 /* Default.png in Resources */,
-				D12C928917144E95005C3F37 /* Default@2x.png in Resources */,
 				D12C928A17144E95005C3F37 /* InfoPlist.strings in Resources */,
 				8588FE5D1715616A00699036 /* OwbClient-Info.plist in Resources */,
+				85A5C896171E63F200003CC3 /* background.jpg in Resources */,
+				85A5C897171E63F200003CC3 /* create.png in Resources */,
+				85A5C898171E63F200003CC3 /* join.png in Resources */,
+				85A5C899171E63F200003CC3 /* login.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -69,7 +69,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.tag = 1;
-        label.highlightedTextColor = [UIColor whiteColor];
+        label.highlightedTextColor = [UIColor clearColor];
         label.numberOfLines = 0;
         label.opaque = NO;
         label.backgroundColor = [UIColor clearColor];
@@ -94,7 +94,6 @@
     }
     textField.delegate = self;
     [cell.contentView addSubview:textField];
-    
     return cell;
 }
 
