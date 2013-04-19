@@ -37,5 +37,5 @@
     id<DisplayerDelegate> displayDelegate_;
     id<DrawerDelegate> drawerDelegate_;
 }
--(void)trigerDisplay;
+-(void)display;
 @end

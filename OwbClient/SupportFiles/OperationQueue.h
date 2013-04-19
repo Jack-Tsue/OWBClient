@@ -19,8 +19,9 @@
 - (id)dequeue;
 - (BOOL)isEmpty;
 - (id)getHead;
+-(void)getServerData;
 
-@property(nonatomic, strong) bool writable;
+@property bool writable;
 
 @end
 

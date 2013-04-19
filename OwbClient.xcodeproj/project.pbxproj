@@ -22,6 +22,8 @@
 		85A5C8A9171E93C700003CC3 /* SnapshotList.h in Sources */ = {isa = PBXBuildFile; fileRef = 853649BD171E5E8200C90518 /* SnapshotList.h */; };
 		85A5C8AA171E93C700003CC3 /* Canvas.h in Sources */ = {isa = PBXBuildFile; fileRef = 85A5C8A2171E8F8800003CC3 /* Canvas.h */; };
 		85C0AA191719347200915556 /* CanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0AA181719347200915556 /* CanvasViewController.m */; };
+		85DBC87617211D34006E6666 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87517211D34006E6666 /* MainController.m */; };
+		85DBC87A17211DFF006E6666 /* HBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87917211DFF006E6666 /* HBController.m */; };
 		D12C928417144E95005C3F37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927117144E95005C3F37 /* AppDelegate.m */; };
 		D12C928517144E95005C3F37 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927417144E95005C3F37 /* HomeViewController.m */; };
 		D12C928617144E95005C3F37 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927617144E95005C3F37 /* LoginViewController.m */; };
@@ -66,6 +68,10 @@
 		85A5C8A3171E8F8800003CC3 /* Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
 		85C0AA171719347200915556 /* CanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CanvasViewController.h; path = Canvas/CanvasViewController.h; sourceTree = "<group>"; };
 		85C0AA181719347200915556 /* CanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CanvasViewController.m; path = Canvas/CanvasViewController.m; sourceTree = "<group>"; };
+		85DBC87417211D34006E6666 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		85DBC87517211D34006E6666 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
+		85DBC87817211DFF006E6666 /* HBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBController.h; sourceTree = "<group>"; };
+		85DBC87917211DFF006E6666 /* HBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBController.m; sourceTree = "<group>"; };
 		D12C927017144E95005C3F37 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D12C927117144E95005C3F37 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D12C927317144E95005C3F37 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -135,6 +141,10 @@
 				D12C927017144E95005C3F37 /* AppDelegate.h */,
 				D12C927117144E95005C3F37 /* AppDelegate.m */,
 				D12C927217144E95005C3F37 /* Home */,
+				85DBC87417211D34006E6666 /* MainController.h */,
+				85DBC87517211D34006E6666 /* MainController.m */,
+				85DBC87817211DFF006E6666 /* HBController.h */,
+				85DBC87917211DFF006E6666 /* HBController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -382,6 +392,8 @@
 				8585D38A1717E6FF00FCA16C /* MeetingCodeViewController.m in Sources */,
 				85C0AA191719347200915556 /* CanvasViewController.m in Sources */,
 				85A5C8A4171E8F8800003CC3 /* Canvas.m in Sources */,
+				85DBC87617211D34006E6666 /* MainController.m in Sources */,
+				85DBC87A17211DFF006E6666 /* HBController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
