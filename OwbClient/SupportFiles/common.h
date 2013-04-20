@@ -12,9 +12,17 @@
 #define ScreenHeight    320
 #define ScreenWidth     640
 
-#define TESTVIEW_FRAME CGRectMake(100, 726, 804, 100)
-#define TESTVIEW_OPEN_FRAME CGRectMake(100, 680, 804, 100)
-#define TESTVIEW_CLOSE_FRAME CGRectMake(100, 726, 804, 100)
+#define MENU_FRAME CGRectMake(140, 726, 744, 100)
+#define MENU_OPEN_FRAME CGRectMake(140, 680, 744, 100)
+#define MENU_CLOSE_FRAME CGRectMake(140, 726, 744, 100)
+
+#define USER_LIST_FRAME CGRectMake(-120, 60, 140, 600)
+#define USER_LIST_OPEN_FRAME CGRectMake(0, 60, 140, 600)
+#define USER_LIST_CLOSE_FRAME CGRectMake(-120, 60, 140, 600)
+
+#define SNAP_LIST_FRAME CGRectMake(1004, 60, 140, 600)
+#define SNAP_LIST_OPEN_FRAME CGRectMake(884, 60, 140, 600)
+#define SNAP_LIST_CLOSE_FRAME CGRectMake(1004, 60, 140, 600)
 
 #define LOGIN_INPUT_FRAME CGRectMake(80, 10, 220, 24)
 #define LOGIN_BTN_FRAME CGRectMake(610, 500, 60, 60)

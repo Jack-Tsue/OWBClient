@@ -10,6 +10,6 @@
 
 @interface QueueSender : NSObject
 
-+ (bool)sendToServer:(OperationQueue *)operationQueue;
+//+ (bool)sendToServer:(OperationQueue *)operationQueue;
 
 @end

@@ -13,6 +13,7 @@
 
 - (CGImageRef)getData;
 - (CGImageRef)getLatestSnapshot;
+- (bool)saveSnapshot;
 
 @end
 

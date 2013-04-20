@@ -10,6 +10,13 @@
 #import "common.h"
 #import "Canvas.h"
 
-@interface CanvasViewController : UIViewController <DisplayerDataSource, DisplayerDelegate, DrawerDelegate>
+@interface CanvasViewController : UIViewController {
+@private
+    bool isDrawFromServer;
+}
+
+- (bool)switchDrawMethods;
+
 @property(nonatomic, strong) Canvas *canvas;
+
 @end
