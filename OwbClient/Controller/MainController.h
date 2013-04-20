@@ -10,9 +10,7 @@
 
 @interface MainController : NSObject
 
--(void)startHBTimer;
--(void)startBoardTimer;
--(void)switchNetworkTimer;
-
+- (void)startHBTimer;
+- (void)startBoardTimer;
 
 @end

@@ -19,7 +19,7 @@
 - (id)dequeue;
 - (BOOL)isEmpty;
 - (id)getHead;
--(void)getServerData;
+- (void)getServerData;
 
 @property bool writable;
 

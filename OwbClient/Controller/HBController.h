@@ -10,6 +10,6 @@
 
 @interface HBController : NSObject
 
--(int)hearHB;
+- (int)hearHB;
 
 @end

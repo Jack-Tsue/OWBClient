@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "common.h"
+#import "Canvas.h"
 
-@interface CanvasViewController : UIViewController
-
+@interface CanvasViewController : UIViewController <DisplayerDataSource, DisplayerDelegate, DrawerDelegate>
+@property(nonatomic, strong) Canvas *canvas;
 @end

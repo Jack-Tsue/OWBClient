@@ -11,23 +11,23 @@
 
 @protocol DisplayerDataSource <NSObject>
 
--(CGImageRef)getData;
--(CGImageRef)getLatestSnapshot;
+- (CGImageRef)getData;
+- (CGImageRef)getLatestSnapshot;
 
 @end
 
 @protocol DisplayerDelegate <NSObject>
 
-- (CGImageRef) displayerWillRefresh : (id<DisplayerDataSource>) dataSouce_;
--(void)scaleDisplayer:(float)scale;
--(void)moveDisplayerX:(int) x withY:(int)y;
+- (CGImageRef)displayerWillRefresh:(id<DisplayerDataSource>) dataSouce_;
+- (void)scaleDisplayer:(float)scale;
+- (void)moveDisplayerX:(int) x withY:(int)y;
 
 @end
 
 @protocol DrawerDelegate <NSObject>
 
--(void)attachQueue:(OperationQueue *)queue;
--(void)writeToQueue;
+- (void)attachQueue:(OperationQueue *)queue;
+//- (void)writeToQueue:(OwbClientOperation *)operation;
 
 @end
 
@@ -37,5 +37,5 @@
     id<DisplayerDelegate> displayDelegate_;
     id<DrawerDelegate> drawerDelegate_;
 }
--(void)display;
+- (void)display;
 @end

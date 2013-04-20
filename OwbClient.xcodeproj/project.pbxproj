@@ -24,6 +24,7 @@
 		85C0AA191719347200915556 /* CanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0AA181719347200915556 /* CanvasViewController.m */; };
 		85DBC87617211D34006E6666 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87517211D34006E6666 /* MainController.m */; };
 		85DBC87A17211DFF006E6666 /* HBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87917211DFF006E6666 /* HBController.m */; };
+		85DBC8801722829C006E6666 /* QueueSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87F1722829C006E6666 /* QueueSender.m */; };
 		D12C928417144E95005C3F37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927117144E95005C3F37 /* AppDelegate.m */; };
 		D12C928517144E95005C3F37 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927417144E95005C3F37 /* HomeViewController.m */; };
 		D12C928617144E95005C3F37 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C927617144E95005C3F37 /* LoginViewController.m */; };
@@ -72,6 +73,8 @@
 		85DBC87517211D34006E6666 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		85DBC87817211DFF006E6666 /* HBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBController.h; sourceTree = "<group>"; };
 		85DBC87917211DFF006E6666 /* HBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBController.m; sourceTree = "<group>"; };
+		85DBC87E1722829C006E6666 /* QueueSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueSender.h; sourceTree = "<group>"; };
+		85DBC87F1722829C006E6666 /* QueueSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueSender.m; sourceTree = "<group>"; };
 		D12C927017144E95005C3F37 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D12C927117144E95005C3F37 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D12C927317144E95005C3F37 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				85DBC87517211D34006E6666 /* MainController.m */,
 				85DBC87817211DFF006E6666 /* HBController.h */,
 				85DBC87917211DFF006E6666 /* HBController.m */,
+				85DBC87E1722829C006E6666 /* QueueSender.h */,
+				85DBC87F1722829C006E6666 /* QueueSender.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 				85A5C8A4171E8F8800003CC3 /* Canvas.m in Sources */,
 				85DBC87617211D34006E6666 /* MainController.m in Sources */,
 				85DBC87A17211DFF006E6666 /* HBController.m in Sources */,
+				85DBC8801722829C006E6666 /* QueueSender.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
