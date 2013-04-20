@@ -35,8 +35,7 @@
 @property (nonatomic) int color_;
 @property (nonatomic) int alpha_;
 @property (nonatomic) bool fill_;
-@property (nonatomic) Point f1_;
-@property (nonatomic) Point f2_;
+@property (nonatomic) Point center_;
 @property (nonatomic) int a_;
 @property (nonatomic) int b_;
 @end
