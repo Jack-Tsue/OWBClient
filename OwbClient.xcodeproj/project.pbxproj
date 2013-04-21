@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8552F0741723DB8E00F497C9 /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8552F0731723DB8E00F497C9 /* UserListViewController.m */; };
+		8552F0781723DD0F00F497C9 /* SnapshotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8552F0771723DD0F00F497C9 /* SnapshotListViewController.m */; };
 		8585D38A1717E6FF00FCA16C /* MeetingCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8585D3891717E6FF00FCA16C /* MeetingCodeViewController.m */; };
 		8588FE5D1715616A00699036 /* OwbClient-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8588FE5C1715616A00699036 /* OwbClient-Info.plist */; };
 		85A5C896171E63F200003CC3 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C892171E63F200003CC3 /* background.jpg */; };
@@ -21,6 +23,7 @@
 		85A5C8A8171E93C700003CC3 /* RefreshableList.h in Sources */ = {isa = PBXBuildFile; fileRef = 853649BC171D32A300C90518 /* RefreshableList.h */; };
 		85A5C8A9171E93C700003CC3 /* SnapshotList.h in Sources */ = {isa = PBXBuildFile; fileRef = 853649BD171E5E8200C90518 /* SnapshotList.h */; };
 		85A5C8AA171E93C700003CC3 /* Canvas.h in Sources */ = {isa = PBXBuildFile; fileRef = 85A5C8A2171E8F8800003CC3 /* Canvas.h */; };
+		85BC192A1723D433002F7AA8 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC19291723D433002F7AA8 /* MenuViewController.m */; };
 		85C0AA191719347200915556 /* CanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0AA181719347200915556 /* CanvasViewController.m */; };
 		85DBC87617211D34006E6666 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87517211D34006E6666 /* MainController.m */; };
 		85DBC87A17211DFF006E6666 /* HBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87917211DFF006E6666 /* HBController.m */; };
@@ -55,6 +58,10 @@
 		853649BB171D31BE00C90518 /* UserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserList.h; sourceTree = "<group>"; };
 		853649BC171D32A300C90518 /* RefreshableList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableList.h; sourceTree = "<group>"; };
 		853649BD171E5E8200C90518 /* SnapshotList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotList.h; sourceTree = "<group>"; };
+		8552F0721723DB8E00F497C9 /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListViewController.h; sourceTree = "<group>"; };
+		8552F0731723DB8E00F497C9 /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListViewController.m; sourceTree = "<group>"; };
+		8552F0761723DD0F00F497C9 /* SnapshotListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotListViewController.h; sourceTree = "<group>"; };
+		8552F0771723DD0F00F497C9 /* SnapshotListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnapshotListViewController.m; sourceTree = "<group>"; };
 		8585D3881717E6FF00FCA16C /* MeetingCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingCodeViewController.h; sourceTree = "<group>"; };
 		8585D3891717E6FF00FCA16C /* MeetingCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingCodeViewController.m; sourceTree = "<group>"; };
 		8588FE5C1715616A00699036 /* OwbClient-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OwbClient-Info.plist"; sourceTree = "<group>"; };
@@ -67,6 +74,8 @@
 		85A5C8A0171E84FB00003CC3 /* createHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createHighlight.png; sourceTree = "<group>"; };
 		85A5C8A2171E8F8800003CC3 /* Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
 		85A5C8A3171E8F8800003CC3 /* Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
+		85BC19281723D433002F7AA8 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		85BC19291723D433002F7AA8 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		85C0AA171719347200915556 /* CanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CanvasViewController.h; path = Canvas/CanvasViewController.h; sourceTree = "<group>"; };
 		85C0AA181719347200915556 /* CanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CanvasViewController.m; path = Canvas/CanvasViewController.m; sourceTree = "<group>"; };
 		85DBC87417211D34006E6666 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
@@ -132,6 +141,12 @@
 			children = (
 				85C0AA171719347200915556 /* CanvasViewController.h */,
 				85C0AA181719347200915556 /* CanvasViewController.m */,
+				85BC19281723D433002F7AA8 /* MenuViewController.h */,
+				85BC19291723D433002F7AA8 /* MenuViewController.m */,
+				8552F0721723DB8E00F497C9 /* UserListViewController.h */,
+				8552F0731723DB8E00F497C9 /* UserListViewController.m */,
+				8552F0761723DD0F00F497C9 /* SnapshotListViewController.h */,
+				8552F0771723DD0F00F497C9 /* SnapshotListViewController.m */,
 			);
 			name = Canvas;
 			sourceTree = "<group>";
@@ -400,6 +415,9 @@
 				85DBC87617211D34006E6666 /* MainController.m in Sources */,
 				85DBC87A17211DFF006E6666 /* HBController.m in Sources */,
 				85DBC8801722829C006E6666 /* QueueSender.m in Sources */,
+				85BC192A1723D433002F7AA8 /* MenuViewController.m in Sources */,
+				8552F0741723DB8E00F497C9 /* UserListViewController.m in Sources */,
+				8552F0781723DD0F00F497C9 /* SnapshotListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

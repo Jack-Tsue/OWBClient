@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "common.h"
 #import "Canvas.h"
+#import "MenuViewController.h"
+#import "UserListViewController.h"
+#import "SnapshotListViewController.h"
 
 @interface CanvasViewController : UIViewController {
 @private

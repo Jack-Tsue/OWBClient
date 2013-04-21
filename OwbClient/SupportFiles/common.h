@@ -12,9 +12,9 @@
 #define ScreenHeight    320
 #define ScreenWidth     640
 
-#define MENU_FRAME CGRectMake(140, 726, 744, 100)
-#define MENU_OPEN_FRAME CGRectMake(140, 680, 744, 100)
-#define MENU_CLOSE_FRAME CGRectMake(140, 726, 744, 100)
+#define MENU_FRAME CGRectMake(140, 726, 744, 160)
+#define MENU_OPEN_FRAME CGRectMake(140, 620, 744, 160)
+#define MENU_CLOSE_FRAME CGRectMake(140, 726, 744, 160)
 
 #define USER_LIST_FRAME CGRectMake(-120, 60, 140, 600)
 #define USER_LIST_OPEN_FRAME CGRectMake(0, 60, 140, 600)
