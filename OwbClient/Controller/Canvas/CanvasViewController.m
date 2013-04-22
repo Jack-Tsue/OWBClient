@@ -7,10 +7,15 @@
 //
 
 #import "CanvasViewController.h"
+#import "MenuViewController.h"
+#import "MenuViewController.h"
+#import "MenuViewController.h"
 
 @interface CanvasViewController ()
 
-@property (strong, nonatomic) UIView *menuView_;
+@property (strong, nonatomic) MenuViewController *menuVC_;
+@property (strong, nonatomic) UserListViewController *userListVC_;
+@property (strong, nonatomic) SnapshotListViewController *snapshotListVC_;
 
 @end
 
@@ -19,18 +24,19 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:CANVAS_DEFAULT_FRAME];
-    
-    // menu
-    self.menuView_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default.png"]];
-    self.menuView_.frame = TESTVIEW_FRAME;
-    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
-                                                    initWithTarget:self  
-                                                    action:@selector(handleMenuPan:)];
-    [self.menuView_ setUserInteractionEnabled:YES];
-    [self.menuView_ addGestureRecognizer:panGestureRecognizer];
     [self.view setBackgroundColor:[UIColor whiteColor]];  
-    [self.view addSubview:self.menuView_];
 
+    // menu
+    self.menuVC_ = [[MenuViewController alloc] init];
+    [self.view addSubview:self.menuVC_.view];
+    
+    // user list
+    self.userListVC_ = [[UserListViewController alloc] init];
+    [self.view addSubview:self.userListVC_.view];
+    
+    // snapshot list
+    self.snapshotListVC_ = [[SnapshotListViewController alloc] init];
+    [self.view addSubview:self.snapshotListVC_.view];
 }
 
 - (void)viewDidLoad
@@ -41,60 +47,10 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
-# pragma mark - gesture handlers
-- (void) handleMenuPan:(UIPanGestureRecognizer*) recognizer
-{
-    ;
-    if( ([recognizer state] == UIGestureRecognizerStateBegan) ||
-       ([recognizer state] == UIGestureRecognizerStateChanged) )
-    {
-        CGPoint movement = [recognizer translationInView:self.view];
-        CGRect oldRect = self.menuView_.frame;
-        
-        oldRect.origin.y = oldRect.origin.y + movement.y;
-        if(oldRect.origin.y < TESTVIEW_OPEN_FRAME.origin.y)
-        {
-            self.menuView_.frame = TESTVIEW_OPEN_FRAME;
-        }
-        else if(oldRect.origin.y > TESTVIEW_CLOSE_FRAME.origin.y)
-        {
-            self.menuView_.frame = TESTVIEW_CLOSE_FRAME;
-        }
-        else
-        {
-            self.menuView_.frame = oldRect;
-        }
-        
-        [recognizer setTranslation:CGPointZero inView:self.view];
-    }
-    else if(recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled)
-    {
-        CGFloat halfPoint = (TESTVIEW_CLOSE_FRAME.origin.y + TESTVIEW_OPEN_FRAME.origin.y)/ 2;
-        if(self.menuView_.frame.origin.y > halfPoint)
-        {
-            [UIView animateWithDuration:DURATION delay:0.0f options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseOut animations:^{
-                
-                self.menuView_.frame = TESTVIEW_CLOSE_FRAME;
-            } completion:^(BOOL finished) {
-                
-            }];
-        }
-        else
-        {
-            [UIView animateWithDuration:DURATION delay:0.0f options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseOut animations:^{
-                
-                self.menuView_.frame = TESTVIEW_OPEN_FRAME;
-            } completion:^(BOOL finished) {
-                
-            }];
-        }
-    }
-}
 @end

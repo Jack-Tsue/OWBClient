@@ -29,8 +29,9 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    [self.view setBackgroundColor:[UIColor grayColor]];
-
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
+    [self.view setBackgroundColor:background];
+    
     // login view
     self.loginViewController_ = [[LoginViewController alloc]initWithStyle:UITableViewStyleGrouped];
     [self.view addSubview:self.loginViewController_.view];
@@ -48,13 +49,14 @@
 
     // buttons
     self.loginBtn = [[UIButton alloc] initWithFrame:LOGIN_BTN_FRAME];
-    self.loginBtn.backgroundColor = [UIColor whiteColor];
+    [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"login.png"] forState:UIControlStateNormal];
     [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     self.createBtn = [[UIButton alloc] initWithFrame:CREATE_BTN_FRAME];
-    self.createBtn.backgroundColor = [UIColor whiteColor];
+    [self.createBtn setBackgroundImage:[UIImage imageNamed:@"create.png"] forState:UIControlStateNormal];
+    [self.createBtn setBackgroundImage:[UIImage imageNamed:@"createHighlight.png"] forState:UIControlStateHighlighted];
     [self.createBtn addTarget:self action:@selector(createBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     self.joinBtn = [[UIButton alloc] initWithFrame:JOIN_BTN_FRAME];
-    self.joinBtn.backgroundColor = [UIColor whiteColor];
+    [self.joinBtn setBackgroundImage:[UIImage imageNamed:@"join.png"] forState:UIControlStateNormal];
     [self.joinBtn addTarget:self action:@selector(joinBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.loginBtn];
     [self.view addSubview:self.createBtn];
@@ -89,7 +91,13 @@
     if (self.loginViewController_.view.isHidden == YES) {
         [self.createMeetingCodeView_.view setHidden:YES];
         [self.joinMeetingCodeView_.view setHidden:YES];
+        [self.loginViewController_.view setAlpha:0];
         [self.loginViewController_.view setHidden:NO];
+        [UIView animateWithDuration:DURATION delay:0.0f options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationCurveLinear animations:^{
+            [self.loginViewController_.view setAlpha:1];
+        } completion:^(BOOL finished) {
+            
+        }];
     } else {
         [UIView animateWithDuration:DURATION delay:0.0f options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseOut animations:^{
             
@@ -102,16 +110,28 @@
 }
 
 - (void)createBtnPress:(id) sender
-{
+{    
     [self.loginViewController_.view setHidden:YES];
     [self.joinMeetingCodeView_.view setHidden:YES];
+    [self.createMeetingCodeView_.view setAlpha:0];
     [self.createMeetingCodeView_.view setHidden:NO];
+    [UIView animateWithDuration:DURATION delay:0.0f options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationCurveLinear animations:^{
+        [self.createMeetingCodeView_.view setAlpha:1];
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)joinBtnPress:(id) sender
 {
     [self.loginViewController_.view setHidden:YES];
     [self.createMeetingCodeView_.view setHidden:YES];
+    [self.joinMeetingCodeView_.view setAlpha:0];
     [self.joinMeetingCodeView_.view setHidden:NO];
+    [UIView animateWithDuration:DURATION delay:0.0f options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationCurveLinear animations:^{
+        [self.joinMeetingCodeView_.view setAlpha:1];
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 @end

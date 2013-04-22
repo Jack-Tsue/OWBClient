@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "common.h"
+#import "Canvas.h"
+#import "MenuViewController.h"
+#import "UserListViewController.h"
+#import "SnapshotListViewController.h"
 
-@interface CanvasViewController : UIViewController
+@interface CanvasViewController : UIViewController {
+@private
+    bool isDrawFromServer;
+}
+
+- (bool)switchDrawMethods;
+
+@property(nonatomic, strong) Canvas *canvas;
 
 @end
