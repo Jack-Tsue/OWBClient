@@ -320,21 +320,20 @@ class Operation_OperationData : public ::google::protobuf::Message {
   inline ::Operation_OperationData_Point* mutable_end_point();
   inline ::Operation_OperationData_Point* release_end_point();
   
-  // optional .Operation.OperationData.Point f_1 = 6;
-  inline bool has_f_1() const;
-  inline void clear_f_1();
-  static const int kF1FieldNumber = 6;
-  inline const ::Operation_OperationData_Point& f_1() const;
-  inline ::Operation_OperationData_Point* mutable_f_1();
-  inline ::Operation_OperationData_Point* release_f_1();
+  // optional .Operation.OperationData.Point center = 6;
+  inline bool has_center() const;
+  inline void clear_center();
+  static const int kCenterFieldNumber = 6;
+  inline const ::Operation_OperationData_Point& center() const;
+  inline ::Operation_OperationData_Point* mutable_center();
+  inline ::Operation_OperationData_Point* release_center();
   
-  // optional .Operation.OperationData.Point f_2 = 7;
-  inline bool has_f_2() const;
-  inline void clear_f_2();
-  static const int kF2FieldNumber = 7;
-  inline const ::Operation_OperationData_Point& f_2() const;
-  inline ::Operation_OperationData_Point* mutable_f_2();
-  inline ::Operation_OperationData_Point* release_f_2();
+  // optional float angle = 7;
+  inline bool has_angle() const;
+  inline void clear_angle();
+  static const int kAngleFieldNumber = 7;
+  inline float angle() const;
+  inline void set_angle(float value);
   
   // optional int32 a = 8;
   inline bool has_a() const;
@@ -400,10 +399,10 @@ class Operation_OperationData : public ::google::protobuf::Message {
   inline void clear_has_start_point();
   inline void set_has_end_point();
   inline void clear_has_end_point();
-  inline void set_has_f_1();
-  inline void clear_has_f_1();
-  inline void set_has_f_2();
-  inline void clear_has_f_2();
+  inline void set_has_center();
+  inline void clear_has_center();
+  inline void set_has_angle();
+  inline void clear_has_angle();
   inline void set_has_a();
   inline void clear_has_a();
   inline void set_has_b();
@@ -426,14 +425,14 @@ class Operation_OperationData : public ::google::protobuf::Message {
   ::Operation_OperationData_Point* start_point_;
   ::Operation_OperationData_Point* end_point_;
   ::google::protobuf::int32 color_;
+  float angle_;
+  ::Operation_OperationData_Point* center_;
   ::google::protobuf::int32 a_;
-  ::Operation_OperationData_Point* f_1_;
-  ::Operation_OperationData_Point* f_2_;
+  ::google::protobuf::int32 b_;
   ::Operation_OperationData_Point* top_left_corner_;
   ::Operation_OperationData_Point* bottom_right_corner_;
-  ::google::protobuf::int32 b_;
-  bool fill_;
   ::Operation_OperationData_Point* position_;
+  bool fill_;
   float alpha_;
   
   mutable int _cached_size_;
@@ -1577,62 +1576,55 @@ inline ::Operation_OperationData_Point* Operation_OperationData::release_end_poi
   return temp;
 }
 
-// optional .Operation.OperationData.Point f_1 = 6;
-inline bool Operation_OperationData::has_f_1() const {
+// optional .Operation.OperationData.Point center = 6;
+inline bool Operation_OperationData::has_center() const {
   return (_has_bits_[0] & 0x00000020u) != 0;
 }
-inline void Operation_OperationData::set_has_f_1() {
+inline void Operation_OperationData::set_has_center() {
   _has_bits_[0] |= 0x00000020u;
 }
-inline void Operation_OperationData::clear_has_f_1() {
+inline void Operation_OperationData::clear_has_center() {
   _has_bits_[0] &= ~0x00000020u;
 }
-inline void Operation_OperationData::clear_f_1() {
-  if (f_1_ != NULL) f_1_->::Operation_OperationData_Point::Clear();
-  clear_has_f_1();
+inline void Operation_OperationData::clear_center() {
+  if (center_ != NULL) center_->::Operation_OperationData_Point::Clear();
+  clear_has_center();
 }
-inline const ::Operation_OperationData_Point& Operation_OperationData::f_1() const {
-  return f_1_ != NULL ? *f_1_ : *default_instance_->f_1_;
+inline const ::Operation_OperationData_Point& Operation_OperationData::center() const {
+  return center_ != NULL ? *center_ : *default_instance_->center_;
 }
-inline ::Operation_OperationData_Point* Operation_OperationData::mutable_f_1() {
-  set_has_f_1();
-  if (f_1_ == NULL) f_1_ = new ::Operation_OperationData_Point;
-  return f_1_;
+inline ::Operation_OperationData_Point* Operation_OperationData::mutable_center() {
+  set_has_center();
+  if (center_ == NULL) center_ = new ::Operation_OperationData_Point;
+  return center_;
 }
-inline ::Operation_OperationData_Point* Operation_OperationData::release_f_1() {
-  clear_has_f_1();
-  ::Operation_OperationData_Point* temp = f_1_;
-  f_1_ = NULL;
+inline ::Operation_OperationData_Point* Operation_OperationData::release_center() {
+  clear_has_center();
+  ::Operation_OperationData_Point* temp = center_;
+  center_ = NULL;
   return temp;
 }
 
-// optional .Operation.OperationData.Point f_2 = 7;
-inline bool Operation_OperationData::has_f_2() const {
+// optional float angle = 7;
+inline bool Operation_OperationData::has_angle() const {
   return (_has_bits_[0] & 0x00000040u) != 0;
 }
-inline void Operation_OperationData::set_has_f_2() {
+inline void Operation_OperationData::set_has_angle() {
   _has_bits_[0] |= 0x00000040u;
 }
-inline void Operation_OperationData::clear_has_f_2() {
+inline void Operation_OperationData::clear_has_angle() {
   _has_bits_[0] &= ~0x00000040u;
 }
-inline void Operation_OperationData::clear_f_2() {
-  if (f_2_ != NULL) f_2_->::Operation_OperationData_Point::Clear();
-  clear_has_f_2();
+inline void Operation_OperationData::clear_angle() {
+  angle_ = 0;
+  clear_has_angle();
 }
-inline const ::Operation_OperationData_Point& Operation_OperationData::f_2() const {
-  return f_2_ != NULL ? *f_2_ : *default_instance_->f_2_;
+inline float Operation_OperationData::angle() const {
+  return angle_;
 }
-inline ::Operation_OperationData_Point* Operation_OperationData::mutable_f_2() {
-  set_has_f_2();
-  if (f_2_ == NULL) f_2_ = new ::Operation_OperationData_Point;
-  return f_2_;
-}
-inline ::Operation_OperationData_Point* Operation_OperationData::release_f_2() {
-  clear_has_f_2();
-  ::Operation_OperationData_Point* temp = f_2_;
-  f_2_ = NULL;
-  return temp;
+inline void Operation_OperationData::set_angle(float value) {
+  set_has_angle();
+  angle_ = value;
 }
 
 // optional int32 a = 8;

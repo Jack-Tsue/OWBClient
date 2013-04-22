@@ -8,11 +8,12 @@
 #ifndef KINGSLANDING_ONLINEWHITEBOARD_CLIENT_TOOLS_DRAWER_H_
 #define KINGSLANDING_ONLINEWHITEBOARD_CLIENT_TOOLS_DRAWER_H_
 
-#import "../Models/MessageModel.h"
+@class OwbClientOperation;
 
 @protocol OwbClientDrawer <NSObject>
 @required
-    void draw(CGContextRef* canvas, OwbClientOpeartion* opeartion);
+- (void)draw:(OwbClientOperation *)operation InCanvas:(CGContextRef *)canvas;
+- (void)sliceOpertion:(OwbClientOperation *)operation IntoQueue:(id) queue;
 @end
 
 @interface LineDrawer : NSObject <OwbClientDrawer>
@@ -27,7 +28,7 @@
 @interface PointDrawer : NSObject <OwbClientDrawer>
 @end
 
-@interface Earser : NSObject <OwbClientDrawer>
+@interface Eraser : NSObject <OwbClientDrawer>
 @end
 
 #endif  // KINGSLANDING_ONLINEWHITEBOARD_CLIENT_TOOLS_DRAWER_H_
