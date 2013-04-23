@@ -9,6 +9,20 @@
 #import "MenuViewController.h"
 
 @interface MenuViewController ()
+@property(nonatomic, strong) UIButton *penBtn_;
+@property(nonatomic, strong) UIButton *eraserBtn_;
+@property(nonatomic, strong) UIButton *lineBtn_;
+@property(nonatomic, strong) UIButton *rectBtn_;
+@property(nonatomic, strong) UIButton *ellipseBtn_;
+@property(nonatomic, strong) UIPickerView *colorThicknessAlphaPicker_;
+
+@property(nonatomic, strong) NSArray *colorData_;
+@property(nonatomic, strong) NSArray *thicknessData_;
+@property(nonatomic, strong) NSArray *alphaData_;
+
+@property int colorNo_;
+@property int thicknessNo_;
+@property float alpha_;
 
 @end
 
@@ -24,6 +38,42 @@
                                                          action:@selector(handleMenuPan:)];
         [self.view setUserInteractionEnabled:YES];
         [self.view addGestureRecognizer:menuGestureRecognizer];
+        
+        self.penBtn_ = [[UIButton alloc] initWithFrame:PEN_BTN_FRAME];
+        [self.penBtn_ setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:self.penBtn_];
+        [self.penBtn_ addTarget:self action:@selector(penBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.eraserBtn_ = [[UIButton alloc] initWithFrame:ERASER_BTN_FRAME];
+        [self.eraserBtn_ setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:self.eraserBtn_];
+        [self.eraserBtn_ addTarget:self action:@selector(eraserBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.lineBtn_ = [[UIButton alloc] initWithFrame:LINE_BTN_FRAME];
+        [self.lineBtn_ setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:self.lineBtn_];
+        [self.lineBtn_ addTarget:self action:@selector(lineBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+
+        self.rectBtn_ = [[UIButton alloc] initWithFrame:RECT_BTN_FRAME];
+        [self.rectBtn_ setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:self.rectBtn_];
+        [self.rectBtn_ addTarget:self action:@selector(rectBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+
+        self.ellipseBtn_ = [[UIButton alloc] initWithFrame:ELLIPSE_BTN_FRAME];
+        [self.ellipseBtn_ setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:self.ellipseBtn_];
+        [self.ellipseBtn_ addTarget:self action:@selector(ellipseBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        self.colorData_ = [[NSArray alloc] initWithObjects:[UIColor blackColor], [UIColor redColor], [UIColor blueColor], [UIColor yellowColor], [UIColor greenColor], nil];
+        
+        self.colorThicknessAlphaPicker_ = [[UIPickerView alloc] initWithFrame:PICKER_FRAME];
+        self.colorThicknessAlphaPicker_.dataSource = self;
+        self.colorThicknessAlphaPicker_.delegate = self;
+        [self.colorThicknessAlphaPicker_ setBackgroundColor:[UIColor clearColor]];
+        [self.colorThicknessAlphaPicker_ setOpaque:NO];
+        [self.view addSubview:self.colorThicknessAlphaPicker_];
+        
     }
     return self;
 }
@@ -94,4 +144,73 @@
     }
 }
 
+#pragma mark - Picker Data Soucrce Methods
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 3;
+}
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (component==0) {
+        return [self.colorData_ count];
+    } else if (component==1) {
+        return 10;
+    } else {
+        return 10;
+    }
+}
+
+#pragma mark - Picker Data Delegate Methods;
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UIView *tmpView = [[UIView alloc]initWithFrame:PICKER_TMP_VIEW_FRAME];
+    if (component==0) {
+        [tmpView setBackgroundColor:[self.colorData_ objectAtIndex:row]];
+    } else if (component==1) {
+        [tmpView setFrame:PICKER_TMP_THICKNESS_FRAME];
+        [tmpView setBackgroundColor:[self.colorData_ objectAtIndex:self.colorNo_]];
+    } else {
+        PICKER_TMP_ALPHA_SETTER;
+        [tmpView setBackgroundColor:[self.colorData_ objectAtIndex:self.colorNo_]];
+    }
+    return tmpView;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (component==0) {
+        self.colorNo_ = row;
+        [self.colorThicknessAlphaPicker_ reloadAllComponents];
+    } else if (component==1) {
+        self.thicknessNo_ = row;
+    } else {
+        self.alpha_ = 1-0.1*row;
+    }
+}
+
+#pragma mark - btn handlers
+- (void)penBtnPress
+{
+    
+}
+
+- (void)eraserBtnPress
+{
+    
+}
+
+- (void)lineBtnPress
+{
+    
+}
+
+- (void)rectBtnPress
+{
+    
+}
+
+- (void)ellipseBtnPress
+{
+    
+}
 @end

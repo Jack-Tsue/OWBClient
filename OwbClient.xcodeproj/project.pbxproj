@@ -11,18 +11,13 @@
 		8552F0781723DD0F00F497C9 /* SnapshotListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8552F0771723DD0F00F497C9 /* SnapshotListViewController.m */; };
 		8585D38A1717E6FF00FCA16C /* MeetingCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8585D3891717E6FF00FCA16C /* MeetingCodeViewController.m */; };
 		8588FE5D1715616A00699036 /* OwbClient-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8588FE5C1715616A00699036 /* OwbClient-Info.plist */; };
+		85A388BF172665D3004EF365 /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A388BE172665D3004EF365 /* Canvas.m */; };
 		85A5C896171E63F200003CC3 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C892171E63F200003CC3 /* background.jpg */; };
 		85A5C897171E63F200003CC3 /* create.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C893171E63F200003CC3 /* create.png */; };
 		85A5C898171E63F200003CC3 /* join.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C894171E63F200003CC3 /* join.png */; };
 		85A5C899171E63F200003CC3 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C895171E63F200003CC3 /* login.png */; };
 		85A5C8A1171E84FB00003CC3 /* createHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C8A0171E84FB00003CC3 /* createHighlight.png */; };
-		85A5C8A4171E8F8800003CC3 /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A5C8A3171E8F8800003CC3 /* Canvas.m */; };
 		85A5C8A5171E93C700003CC3 /* common.h in Sources */ = {isa = PBXBuildFile; fileRef = 8588FE60171561C200699036 /* common.h */; };
-		85A5C8A6171E93C700003CC3 /* OperationQueue.h in Sources */ = {isa = PBXBuildFile; fileRef = 853649BA171D2D7000C90518 /* OperationQueue.h */; };
-		85A5C8A7171E93C700003CC3 /* UserList.h in Sources */ = {isa = PBXBuildFile; fileRef = 853649BB171D31BE00C90518 /* UserList.h */; };
-		85A5C8A8171E93C700003CC3 /* RefreshableList.h in Sources */ = {isa = PBXBuildFile; fileRef = 853649BC171D32A300C90518 /* RefreshableList.h */; };
-		85A5C8A9171E93C700003CC3 /* SnapshotList.h in Sources */ = {isa = PBXBuildFile; fileRef = 853649BD171E5E8200C90518 /* SnapshotList.h */; };
-		85A5C8AA171E93C700003CC3 /* Canvas.h in Sources */ = {isa = PBXBuildFile; fileRef = 85A5C8A2171E8F8800003CC3 /* Canvas.h */; };
 		85BC192A1723D433002F7AA8 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BC19291723D433002F7AA8 /* MenuViewController.m */; };
 		85C0AA191719347200915556 /* CanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0AA181719347200915556 /* CanvasViewController.m */; };
 		85DBC87617211D34006E6666 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87517211D34006E6666 /* MainController.m */; };
@@ -54,10 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		853649BA171D2D7000C90518 /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationQueue.h; sourceTree = "<group>"; };
-		853649BB171D31BE00C90518 /* UserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserList.h; sourceTree = "<group>"; };
-		853649BC171D32A300C90518 /* RefreshableList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableList.h; sourceTree = "<group>"; };
-		853649BD171E5E8200C90518 /* SnapshotList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotList.h; sourceTree = "<group>"; };
 		8552F0721723DB8E00F497C9 /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListViewController.h; sourceTree = "<group>"; };
 		8552F0731723DB8E00F497C9 /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListViewController.m; sourceTree = "<group>"; };
 		8552F0761723DD0F00F497C9 /* SnapshotListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotListViewController.h; sourceTree = "<group>"; };
@@ -67,15 +58,19 @@
 		8588FE5C1715616A00699036 /* OwbClient-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OwbClient-Info.plist"; sourceTree = "<group>"; };
 		8588FE5E171561A700699036 /* OwbClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OwbClient-Prefix.pch"; sourceTree = "<group>"; };
 		8588FE60171561C200699036 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		85A388BD172665D3004EF365 /* Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
+		85A388BE172665D3004EF365 /* Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
+		85A388C1172665F2004EF365 /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OperationQueue.h; path = DataStructure/OperationQueue.h; sourceTree = "<group>"; };
+		85A388C2172665F2004EF365 /* RefreshableList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RefreshableList.h; path = DataStructure/RefreshableList.h; sourceTree = "<group>"; };
+		85A388C3172665F2004EF365 /* SnapshotList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SnapshotList.h; path = DataStructure/SnapshotList.h; sourceTree = "<group>"; };
+		85A388C4172665F2004EF365 /* UserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserList.h; path = DataStructure/UserList.h; sourceTree = "<group>"; };
 		85A5C892171E63F200003CC3 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		85A5C893171E63F200003CC3 /* create.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create.png; sourceTree = "<group>"; };
 		85A5C894171E63F200003CC3 /* join.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = join.png; sourceTree = "<group>"; };
 		85A5C895171E63F200003CC3 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		85A5C8A0171E84FB00003CC3 /* createHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createHighlight.png; sourceTree = "<group>"; };
-		85A5C8A2171E8F8800003CC3 /* Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
-		85A5C8A3171E8F8800003CC3 /* Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
-		85BC19281723D433002F7AA8 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		85BC19291723D433002F7AA8 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		85BC19281723D433002F7AA8 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Controller/MenuViewController.h; sourceTree = "<group>"; };
+		85BC19291723D433002F7AA8 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Controller/MenuViewController.m; sourceTree = "<group>"; };
 		85C0AA171719347200915556 /* CanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CanvasViewController.h; path = Canvas/CanvasViewController.h; sourceTree = "<group>"; };
 		85C0AA181719347200915556 /* CanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CanvasViewController.m; path = Canvas/CanvasViewController.m; sourceTree = "<group>"; };
 		85DBC87417211D34006E6666 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
@@ -131,18 +126,37 @@
 		8588FE61171562B700699036 /* MenuBar */ = {
 			isa = PBXGroup;
 			children = (
+				85BC19281723D433002F7AA8 /* MenuViewController.h */,
+				85BC19291723D433002F7AA8 /* MenuViewController.m */,
 			);
 			name = MenuBar;
 			path = ..;
 			sourceTree = "<group>";
 		};
+		85A388BC1726651D004EF365 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		85A388C0172665DC004EF365 /* DataStructure */ = {
+			isa = PBXGroup;
+			children = (
+				85A388C1172665F2004EF365 /* OperationQueue.h */,
+				85A388C2172665F2004EF365 /* RefreshableList.h */,
+				85A388C3172665F2004EF365 /* SnapshotList.h */,
+				85A388C4172665F2004EF365 /* UserList.h */,
+			);
+			name = DataStructure;
+			sourceTree = "<group>";
+		};
 		85C0AA151719345400915556 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
+				8588FE61171562B700699036 /* MenuBar */,
 				85C0AA171719347200915556 /* CanvasViewController.h */,
 				85C0AA181719347200915556 /* CanvasViewController.m */,
-				85BC19281723D433002F7AA8 /* MenuViewController.h */,
-				85BC19291723D433002F7AA8 /* MenuViewController.m */,
 				8552F0721723DB8E00F497C9 /* UserListViewController.h */,
 				8552F0731723DB8E00F497C9 /* UserListViewController.m */,
 				8552F0761723DD0F00F497C9 /* SnapshotListViewController.h */,
@@ -155,7 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				85C0AA151719345400915556 /* Canvas */,
-				8588FE61171562B700699036 /* MenuBar */,
 				D12C927017144E95005C3F37 /* AppDelegate.h */,
 				D12C927117144E95005C3F37 /* AppDelegate.m */,
 				D12C927217144E95005C3F37 /* Home */,
@@ -206,12 +219,6 @@
 			children = (
 				8588FE60171561C200699036 /* common.h */,
 				D12C927F17144E95005C3F37 /* main.m */,
-				853649BA171D2D7000C90518 /* OperationQueue.h */,
-				853649BB171D31BE00C90518 /* UserList.h */,
-				853649BC171D32A300C90518 /* RefreshableList.h */,
-				853649BD171E5E8200C90518 /* SnapshotList.h */,
-				85A5C8A2171E8F8800003CC3 /* Canvas.h */,
-				85A5C8A3171E8F8800003CC3 /* Canvas.m */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -219,6 +226,8 @@
 		D12C928317144E95005C3F37 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				85A388BD172665D3004EF365 /* Canvas.h */,
+				85A388BE172665D3004EF365 /* Canvas.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -256,6 +265,8 @@
 		D1D67F5F171169D200460199 /* OwbClient */ = {
 			isa = PBXGroup;
 			children = (
+				85A388C0172665DC004EF365 /* DataStructure */,
+				85A388BC1726651D004EF365 /* Model */,
 				8588FE5E171561A700699036 /* OwbClient-Prefix.pch */,
 				8588FE5C1715616A00699036 /* OwbClient-Info.plist */,
 				D12C927D17144E95005C3F37 /* InfoPlist.strings */,
@@ -400,24 +411,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				85A5C8A5171E93C700003CC3 /* common.h in Sources */,
-				85A5C8A6171E93C700003CC3 /* OperationQueue.h in Sources */,
-				85A5C8A7171E93C700003CC3 /* UserList.h in Sources */,
-				85A5C8A8171E93C700003CC3 /* RefreshableList.h in Sources */,
-				85A5C8A9171E93C700003CC3 /* SnapshotList.h in Sources */,
-				85A5C8AA171E93C700003CC3 /* Canvas.h in Sources */,
 				D12C928417144E95005C3F37 /* AppDelegate.m in Sources */,
 				D12C928517144E95005C3F37 /* HomeViewController.m in Sources */,
 				D12C928617144E95005C3F37 /* LoginViewController.m in Sources */,
 				D12C928B17144E95005C3F37 /* main.m in Sources */,
 				8585D38A1717E6FF00FCA16C /* MeetingCodeViewController.m in Sources */,
 				85C0AA191719347200915556 /* CanvasViewController.m in Sources */,
-				85A5C8A4171E8F8800003CC3 /* Canvas.m in Sources */,
 				85DBC87617211D34006E6666 /* MainController.m in Sources */,
 				85DBC87A17211DFF006E6666 /* HBController.m in Sources */,
 				85DBC8801722829C006E6666 /* QueueSender.m in Sources */,
 				85BC192A1723D433002F7AA8 /* MenuViewController.m in Sources */,
 				8552F0741723DB8E00F497C9 /* UserListViewController.m in Sources */,
 				8552F0781723DD0F00F497C9 /* SnapshotListViewController.m in Sources */,
+				85A388BF172665D3004EF365 /* Canvas.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

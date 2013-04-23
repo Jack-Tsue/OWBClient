@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "common.h"
 
-@interface MenuViewController : UIViewController
+@interface MenuViewController : UIViewController<UIPickerViewDelegate,UIPickerViewDataSource>
 
 @end
