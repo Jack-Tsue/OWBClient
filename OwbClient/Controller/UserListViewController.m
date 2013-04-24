@@ -9,7 +9,7 @@
 #import "UserListViewController.h"
 
 @interface UserListViewController ()
-
+@property(nonatomic, strong) UITableView *userTable_;
 @end
 
 @implementation UserListViewController
@@ -24,6 +24,12 @@
                                                              action:@selector(handleUserListPan:)];
         [self.view setUserInteractionEnabled:YES];
         [self.view addGestureRecognizer:userListGestureRecognizer];
+        
+        self.userTable_ = [[UITableView alloc] initWithFrame:USER_TABLE_FRAME style:UITableViewStyleGrouped];
+        self.userTable_.backgroundColor = [UIColor clearColor];
+        self.userTable_.delegate = self;
+        self.userTable_.dataSource = self;
+        [self.view addSubview:self.userTable_];
     }
     return self;
 }
@@ -94,4 +100,58 @@
     }
 }
 
+#pragma mark - Table view data source and delegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+#warning get from user list
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Configure the cell...
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+#warning info should get from user list
+        //test
+        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+        cell.textLabel.text = @"Jack";
+        cell.detailTextLabel.text=@"申";
+    }
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return USER_CELL_HEIGHT;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return TABLE_HEADER_HEIGHT;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:TABLE_HEADER_FRAME];
+    headerView.backgroundColor = [UIColor clearColor];
+    UILabel *HeaderLabel = [[UILabel alloc] initWithFrame:TABLE_HEADER_FRAME];
+    HeaderLabel.backgroundColor = [UIColor clearColor];
+    HeaderLabel.font = [UIFont boldSystemFontOfSize:TABLE_HEADER_FONT_SIZE];
+    HeaderLabel.textColor = [UIColor blackColor];
+    HeaderLabel.text = USER_HEADER_LABEL;
+    [headerView addSubview:HeaderLabel];    
+    return headerView;
+}
 @end

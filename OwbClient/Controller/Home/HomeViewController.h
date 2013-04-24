@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "common.h"
+#import "CanvasViewController.h"
 
 @interface HomeViewController : UIViewController
 

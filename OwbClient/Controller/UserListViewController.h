@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "common.h"
 
-@interface UserListViewController : UIViewController
-
+@interface UserListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+//- (void)setUserList:(UserList *)list;
 @end

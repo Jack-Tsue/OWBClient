@@ -133,6 +133,24 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		8597287A1727BFD500499349 /* UserList */ = {
+			isa = PBXGroup;
+			children = (
+				8552F0721723DB8E00F497C9 /* UserListViewController.h */,
+				8552F0731723DB8E00F497C9 /* UserListViewController.m */,
+			);
+			name = UserList;
+			sourceTree = "<group>";
+		};
+		8597287C1727BFE100499349 /* SnapList */ = {
+			isa = PBXGroup;
+			children = (
+				8552F0761723DD0F00F497C9 /* SnapshotListViewController.h */,
+				8552F0771723DD0F00F497C9 /* SnapshotListViewController.m */,
+			);
+			name = SnapList;
+			sourceTree = "<group>";
+		};
 		85A388BC1726651D004EF365 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,13 +172,11 @@
 		85C0AA151719345400915556 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
+				8597287C1727BFE100499349 /* SnapList */,
+				8597287A1727BFD500499349 /* UserList */,
 				8588FE61171562B700699036 /* MenuBar */,
 				85C0AA171719347200915556 /* CanvasViewController.h */,
 				85C0AA181719347200915556 /* CanvasViewController.m */,
-				8552F0721723DB8E00F497C9 /* UserListViewController.h */,
-				8552F0731723DB8E00F497C9 /* UserListViewController.m */,
-				8552F0761723DD0F00F497C9 /* SnapshotListViewController.h */,
-				8552F0771723DD0F00F497C9 /* SnapshotListViewController.m */,
 			);
 			name = Canvas;
 			sourceTree = "<group>";

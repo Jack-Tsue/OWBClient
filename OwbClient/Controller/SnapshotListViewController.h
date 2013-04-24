@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "common.h"
 
-@interface SnapshotListViewController : UIViewController
-
+@interface SnapshotListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+//- (void)setSnapshotList:(SnapshotList *)list;
 @end

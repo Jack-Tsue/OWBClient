@@ -9,7 +9,10 @@
 #import "SnapshotListViewController.h"
 
 @interface SnapshotListViewController ()
-
+@property CGImageRef currentSnapshot_;
+@property(nonatomic, strong) UITableView *snapshotHistoryTable_;
+@property(nonatomic, strong) UIButton *snapshotCurrentBtn_;
+@property(nonatomic, strong) UIButton *saveSnapshotBtn_;
 @end
 
 @implementation SnapshotListViewController
@@ -24,6 +27,17 @@
                                                              action:@selector(handleSnapListPan:)];
         [self.view setUserInteractionEnabled:YES];
         [self.view addGestureRecognizer:snapListGestureRecognizer];
+        
+        self.snapshotCurrentBtn_ = [[UIButton alloc] initWithFrame:SNAP_CUR_BTN_FRAME];
+        [self.snapshotCurrentBtn_ setBackgroundColor:[UIColor grayColor]];
+        [self.snapshotCurrentBtn_ addTarget:self action:@selector(currentSnapBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.snapshotCurrentBtn_];
+        
+        self.snapshotHistoryTable_ = [[UITableView alloc] initWithFrame:SNAP_HIS_TABLE_FRAME style:UITableViewStyleGrouped];
+        self.snapshotHistoryTable_.backgroundColor = [UIColor clearColor];
+        self.snapshotHistoryTable_.delegate = self;
+        self.snapshotHistoryTable_.dataSource = self;
+        [self.view addSubview:self.snapshotHistoryTable_];
     }
     return self;
 }
@@ -31,13 +45,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -94,4 +106,59 @@
     }
 }
 
+#pragma mark - Table view data source and delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+#warning get from snapshot list
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Configure the cell...
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+#warning image should get from snapshot list
+//        cell.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cell_normal.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:0.0]];
+    }
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return SNAP_CELL_HEIGHT;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return TABLE_HEADER_HEIGHT;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:TABLE_HEADER_FRAME];
+    headerView.backgroundColor = [UIColor clearColor];
+    UILabel *HeaderLabel = [[UILabel alloc] initWithFrame:TABLE_HEADER_FRAME];
+    HeaderLabel.backgroundColor = [UIColor clearColor];
+    HeaderLabel.font = [UIFont boldSystemFontOfSize:TABLE_HEADER_FONT_SIZE];
+    HeaderLabel.textColor = [UIColor blackColor];
+    HeaderLabel.text = SNAP_HEADER_LABEL;
+    [headerView addSubview:HeaderLabel];    
+    return headerView;
+}
+
+#pragma mark - btn handlers
+- (void)currentSnapBtnPress:(id)sender
+{
+    NSLog(@"===");
+}
 @end

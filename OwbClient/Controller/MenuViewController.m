@@ -189,27 +189,27 @@
 }
 
 #pragma mark - btn handlers
-- (void)penBtnPress
+- (void)penBtnPress:(id)sender
 {
     
 }
 
-- (void)eraserBtnPress
+- (void)eraserBtnPress:(id)sender
 {
     
 }
 
-- (void)lineBtnPress
+- (void)lineBtnPress:(id)sender
 {
     
 }
 
-- (void)rectBtnPress
+- (void)rectBtnPress:(id)sender
 {
     
 }
 
-- (void)ellipseBtnPress
+- (void)ellipseBtnPress:(id)sender
 {
     
 }
