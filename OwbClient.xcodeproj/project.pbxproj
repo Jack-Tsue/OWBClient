@@ -197,6 +197,7 @@
 		85D8CA38172BD0D5005EACE9 /* BoardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardModel.h; sourceTree = "<group>"; };
 		85D8CA39172BD0D5005EACE9 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		85D8CA3A172BD0FF005EACE9 /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationQueue.h; sourceTree = "<group>"; };
+		85D8CA9A172BE046005EACE9 /* UserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserList.h; sourceTree = "<group>"; };
 		85DBC87417211D34006E6666 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		85DBC87517211D34006E6666 /* MainController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainController.mm; sourceTree = "<group>"; };
 		85DBC87817211DFF006E6666 /* HBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBController.h; sourceTree = "<group>"; };
@@ -453,6 +454,7 @@
 				85D8CA2E172BB488005EACE9 /* ColorMaker.h */,
 				85D8CA3A172BD0FF005EACE9 /* OperationQueue.h */,
 				85D8CA2F172BB488005EACE9 /* Drawer.h */,
+				85D8CA9A172BE046005EACE9 /* UserList.h */,
 				85D8CA31172BB488005EACE9 /* RefreshableList.h */,
 				85D8CA32172BB488005EACE9 /* SnapshotList.h */,
 			);
