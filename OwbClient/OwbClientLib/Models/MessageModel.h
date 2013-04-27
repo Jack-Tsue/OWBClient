@@ -14,11 +14,94 @@
 #import "../ProtoBuffer/message.pb.h"
 #import "../Tools/Drawer.h"
 
+
+# pragma mark - DocumentModel
+@interface OwbClientDocument : NSObject {
+    Document document_;
+    int _serialNumber_;
+    NSData* _data_;
+}
+- (id)initFromDocument:(const Document*) document;
+@property (nonatomic, readonly, assign) int serialNumber_;
+@property (nonatomic, readonly, retain) NSData* data_; 
+@end
+
+# pragma mark - UserModel
+@interface OwbClientUser : NSObject {
+    User user_;
+    NSString* _userName_;
+    NSString* _passWord_;
+    enum Identity _identity_;
+}
+- (id)initFromUser:(const User *)user;
+- (User)toUser;
+@property (nonatomic, copy) NSString* userName_;
+@property (nonatomic, copy) NSString* passWord_;
+@property (nonatomic, assign) enum Identity identity_;
+@end
+
+# pragma mark - HeartBeatModel
+@interface OwbClientHeartReturnPackage : NSObject {
+    HeartReturnPackage package_;
+    enum Identity _identity_;
+}
+- (id)initFromRPac:(const HeartReturnPackage *)hb_package;
+@property (nonatomic, readonly, assign) enum Identity identity_;
+@end
+
+@interface OwbClientHeartSendPackage : NSObject {
+    HeartBeatSendPackage package_;
+    NSString* _userName_;
+    NSString* _meetingId_;
+}
+- (HeartBeatSendPackage) toSPac;
+@property (nonatomic, copy) NSString* userName_;
+@property (nonatomic, copy) NSString* meetingId_;
+@end
+
+# pragma mark - JoinMeetingReturnModel
+@interface OwbClientJoinMeetingReturn : NSObject {
+    JoinMeetingReturn package_;
+    enum JoinState _joinState_;
+    int _port_;
+    NSString* _serverIp_;
+}
+- (id)initFromJoinPac:(const JoinMeetingReturn *)re_package;
+@property (nonatomic, readonly, assign) enum JoinState joinState_;
+@property (nonatomic, readonly, assign) int port_;
+@property (nonatomic, readonly, copy) NSString* serverIp_;
+@end
+
+# pragma mark - OperationListModel
+@interface OwbClientOperationList : NSObject {
+    bool _operationAvaliable_;
+    NSArray* _operationList_;
+}
+- (id)initFromOperationList:(const Operations *)operations;
+@property (nonatomic, readonly, assign)  bool operationAvaliable_;
+@property (nonatomic, readonly, retain) NSArray* operationList_;
+@end
+
+@interface OwbClientDocumentList : NSObject {
+    NSArray* _documentList_;
+}
+- (id)initFromDocumentList:(const DocumentList *)documentList;
+@property (nonatomic, readonly, retain) NSArray* documentList_;
+@end
+
+@interface OwbClientUserList : NSObject {
+    NSArray* _userList_;
+}
+- (id)initFromUserList:(const UserList*) userList;
+@property (nonatomic, readonly, retain) NSArray* userList_;
+@end
+
+
 # pragma mark - OperationModelFactory
 
 @interface OwbClientOperationFactory : NSObject
 
-+ (OwbClientOperation*)CreateOperationFromPb:(const Operation *)operation;
++ (OwbClientOperation*)CreateOperationFromOperation:(const Operation *)operation;
 
 @end
 
@@ -26,110 +109,76 @@
 
 @interface OwbClientOperation : NSObject {
     Operation operation_;
+    int _serialNumber_;
+    enum Operation_OperationData_OperationDataType _operationType_;
+    int _thinkness_;
+    id<OwbClientDrawer> _drawer_;
 }
-- (id)initFromPb:(const Operation *)operation;
-- (Operation)toPb;
+- (id)initFromOperation:(const Operation *)operation;
+- (Operation)toOperation;
 
-@property (nonatomic) int serialNumber_;
-@property (nonatomic) enum Operation_OperationData_OperationDataType operationType_;
-@property (nonatomic) int thinkness_;
-@property (nonatomic, strong) id<OwbClientDrawer> drawer_;
+@property (nonatomic, assign) int serialNumber_;
+@property (nonatomic, assign) enum Operation_OperationData_OperationDataType operationType_;
+@property (nonatomic, assign) int thinkness_;
+@property (nonatomic, retain) id<OwbClientDrawer> drawer_;
 @end
 
-@interface DrawLine : OwbClientOperation
-@property (nonatomic) int color_;
-@property (nonatomic) float alpha_;
-@property (nonatomic) CGPoint startPoint_;
-@property (nonatomic) CGPoint endPoint_;
-@end
-
-@interface DrawEllipse : OwbClientOperation
-@property (nonatomic) int color_;
-@property (nonatomic) float alpha_;
-@property (nonatomic) bool fill_;
-@property (nonatomic) CGPoint center_;
-@property (nonatomic) int a_;
-@property (nonatomic) int b_;
-@end
-
-@interface DrawRectange : OwbClientOperation
-@property (nonatomic) int color_;
-@property (nonatomic) float alpha_;
-@property (nonatomic) bool fill_;
-@property (nonatomic) CGPoint topLeftCorner_;
-@property (nonatomic) CGPoint bottomRightCorner_;
-@end
-
-@interface DrawPoint : OwbClientOperation
-@property (nonatomic) int color_;
-@property (nonatomic) float alpha_;
-@property (nonatomic) CGPoint position_;
-@end
-
-@interface Erase : OwbClientOperation
-@property (nonatomic) CGPoint position_;
-@end
-
-# pragma mark - DocumentModel
-@interface OwbClientDocument : NSObject {
-    Document document_;
+@interface DrawLine : OwbClientOperation {
+    int _color_;
+    float _alpha_;
+    CGPoint _startPoint_;
+    CGPoint _endPoint_;
 }
-- (id)initFromPb:(const Document*) document;
-@property (nonatomic, readonly) int serialNumber_;
-@property (nonatomic, readonly, strong) NSData* data_; 
+@property (nonatomic, assign) int color_;
+@property (nonatomic, assign) float alpha_;
+@property (nonatomic, assign) CGPoint startPoint_;
+@property (nonatomic, assign) CGPoint endPoint_;
 @end
 
-# pragma mark - UserModel
-@interface OwbClientUser : NSObject {
-    User user_;
+@interface DrawEllipse : OwbClientOperation {
+    int _color_;
+    float _alpha_;
+    bool _fill_;
+    CGPoint _center_;
+    int _a_;
+    int _b_;
 }
-- (id)initFromPb:(const User *)user;
-- (User)toPb;
-@property (nonatomic, strong) NSString* userName_;
-@property (nonatomic, strong) NSString* passWord_;
-@property (nonatomic) enum Identity identity_;
+@property (nonatomic, assign) int color_;
+@property (nonatomic, assign) float alpha_;
+@property (nonatomic, assign) bool fill_;
+@property (nonatomic, assign) CGPoint center_;
+@property (nonatomic, assign) int a_;
+@property (nonatomic, assign) int b_;
 @end
 
-# pragma mark - HeartBeatModel
-@interface OwbClientHeartReturnPackage : NSObject {
-    HeartReturnPackage package_;
+@interface DrawRectange : OwbClientOperation {
+    int _color_;
+    float _alpha_;
+    bool _fill_;
+    CGPoint _topLeftCorner_;
+    CGPoint _bottomRightCorner_;
 }
-- (id)initFromPb:(const HeartReturnPackage *)hb_package;
-@property (nonatomic, readonly) enum Identity identity_;
+@property (nonatomic, assign) int color_;
+@property (nonatomic, assign) float alpha_;
+@property (nonatomic, assign) bool fill_;
+@property (nonatomic, assign) CGPoint topLeftCorner_;
+@property (nonatomic, assign) CGPoint bottomRightCorner_;
 @end
 
-@interface OwbClientHeartSendPackage : NSObject {
-    HeartBeatSendPackage package_;
+@interface DrawPoint : OwbClientOperation {
+    int _color_;
+    float _alpha_;
+    CGPoint _position_;
 }
-- (HeartBeatSendPackage) toPb;
-@property (nonatomic, strong) NSString* userName_;
-@property (nonatomic, strong) NSString* meetingId_;
+@property (nonatomic, assign) int color_;
+@property (nonatomic, assign) float alpha_;
+@property (nonatomic, assign) CGPoint position_;
 @end
 
-# pragma mark - JoinMeetingReturnModel
-@interface OwbClientJoinMeetingReturn : NSObject {
-    JoinMeetingReturn package_;
+@interface Erase : OwbClientOperation {
+    CGPoint _position_;
 }
-- (id)initFromPb:(const JoinMeetingReturn *)re_package;
-@property (nonatomic, readonly) enum JoinState joinState_;
-@property (nonatomic, readonly) int port_;
-@property (nonatomic, readonly) NSString* serverIp_;
+@property (nonatomic, assign) CGPoint position_;
 @end
 
-# pragma mark - OperationListModel
-@interface OwbClientOperationList : NSObject
-- (id)initFromPb:(const Operations *)operations;
-@property (nonatomic, readonly) bool operationAvaliable_;
-@property (nonatomic, readonly) NSArray* operationList_;
-@end
-
-@interface OwbClientDocumentList : NSObject
-- (id)initFromPb:(const DocumentList *)documentList;
-@property (nonatomic, readonly) NSArray* documentList_;
-@end
-
-@interface OwbClientUserList : NSObject
-- (id)initFromPb:(const UserList*) userList;
-@property (nonatomic, readonly) NSArray* userList_;
-@end
 #endif  // KINGSLANDING_ONLINEWHITEBOARD_CLIENT_MODELS_MESSAGEMODEL_H_

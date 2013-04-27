@@ -22,6 +22,7 @@
     bool isReading_;
     bool isDrawing_;
     OperationQueue* realOperationQueue_;
+    bool _inHostMode_;
 }
 + (BoardModel *) SharedBoard;
 - (void) attachCanvas:(Canvas* ) canvas;
@@ -31,7 +32,7 @@
 - (void) trigerReadOperationQueue;
 - (void) drawMiddleOperation:(OwbClientOperation*) operation;
 - (void) drawOperation:(OwbClientOperation *)operation;
-@property bool inHostMode_;
+@property (assign) bool inHostMode_;
 @end
 
 #endif  // KINGSLANDING_ONLINEWHITEBOARD_CLIENT_MODELS_BOARDMODEL_H_

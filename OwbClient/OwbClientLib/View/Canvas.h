@@ -34,7 +34,7 @@
 
 @interface Canvas : NSObject{
 @private
-    id<DisplayerDataSource> dataSouce_;
+    id<DisplayerDataSource> dataSource_;
     id<DisplayerDelegate> displayDelegate_;
     id<DrawerDelegate> drawerDelegate_;
 }

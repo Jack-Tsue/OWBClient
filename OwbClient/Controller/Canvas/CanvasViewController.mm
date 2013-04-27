@@ -23,7 +23,6 @@
 
 - (void)loadView
 {
-    
     self.view = [[UIView alloc] initWithFrame:CANVAS_DEFAULT_FRAME];
     [self.view setBackgroundColor:[UIColor whiteColor]];  
 

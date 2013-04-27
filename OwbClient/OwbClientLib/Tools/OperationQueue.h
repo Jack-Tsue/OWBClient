@@ -17,6 +17,9 @@
     NSMutableArray *operations_;
     NSLock *enqueueLocker_;
     NSLock *dequeueLocker_;
+    bool _writable_;
+    NSString* _meetingId_;
+    int _latestSerialNumber_;
 }
 
 - (void)enqueue:(OwbClientOperation *)operation;
@@ -27,9 +30,9 @@
 - (void)lock;
 - (void)unLock;
 
-@property bool writable;
-@property (nonatomic, strong) NSString* meetingId;
-@property int latestSerialNumber_;
+@property (assign) bool writable_;
+@property (nonatomic, copy) NSString* meetingId_;
+@property (assign) int latestSerialNumber_;
 
 @end
 

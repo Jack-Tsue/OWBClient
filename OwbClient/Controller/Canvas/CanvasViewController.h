@@ -12,7 +12,7 @@
 #import "MenuViewController.h"
 #import "UserListViewController.h"
 #import "SnapshotListViewController.h"
-#import "/Users/xujack/OWBClient/OwbClient/OwbClientLib/Tools/OperationQueue.h"
+#import "OperationQueue.h"
 
 @interface CanvasViewController : UIViewController {
 @private
