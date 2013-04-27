@@ -32,11 +32,14 @@
 
 @end
 
-@interface Canvas : UIView{
+@interface Canvas : NSObject{
 @private
-    id<DisplayerDataSource> dataSource_;
-    id<DisplayerDelegate> displayDelegate_;
-    id<DrawerDelegate> drawerDelegate_;
+    id<DisplayerDataSource> _dataSource_;
+    id<DisplayerDelegate> _displayerDelegate_;
+    id<DrawerDelegate> _drawerDelegate_;
 }
 - (void)display;
+@property (nonatomic, retain) id<DisplayerDataSource> dataSource_;
+@property (nonatomic, retain) id<DisplayerDelegate> displayerDelegate_;
+@property (nonatomic, retain) id<DrawerDelegate> drawerDelegate_;
 @end

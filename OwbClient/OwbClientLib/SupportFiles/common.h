@@ -1,9 +1,9 @@
 /*************************************************************************
- ** File Name: common.h
- ** Author: tsgsz
- ** Mail: cdtsgsz@gmail.com
- ** Created Time: Wed Apr 10 16:46:51 2013
- **Copyright [2013] <Copyright tsgsz>  [legal/copyright]
+     ** File Name: common.h
+    ** Author: tsgsz
+    ** Mail: cdtsgsz@gmail.com
+    ** Created Time: Wed Apr 10 16:46:51 2013
+    **Copyright [2013] <Copyright tsgsz>  [legal/copyright]
  ************************************************************************/
 
 #ifndef KINGSLANDING_ONLINEWHITEBOARD_CLIENT_SUPPORTFILES_COMMON_H_

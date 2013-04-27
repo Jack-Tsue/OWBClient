@@ -10,6 +10,8 @@
 #define KINGSLANDING_ONLINEWHITEBOARD_CLIENT_NETWORK_SERVERDELEGATE_H_
 
 #include <string>
+//#include <glog/logging.h>
+//#include <gflags/gflags.h>
 #include "../ProtoBuffer/message.pb.h"
 
 namespace Kingslanding {

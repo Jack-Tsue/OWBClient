@@ -13,7 +13,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D1D67F55171169D100460199"
+               BlueprintIdentifier = "85BBEF3F172BFE4C00568C38"
                BuildableName = "OwbClient.app"
                BlueprintName = "OwbClient"
                ReferencedContainer = "container:OwbClient.xcodeproj">
@@ -31,7 +31,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D1D67F75171169D200460199"
+               BlueprintIdentifier = "85BBEF5C172BFE4D00568C38"
                BuildableName = "OwbClientTests.octest"
                BlueprintName = "OwbClientTests"
                ReferencedContainer = "container:OwbClient.xcodeproj">
@@ -41,7 +41,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D1D67F55171169D100460199"
+            BlueprintIdentifier = "85BBEF3F172BFE4C00568C38"
             BuildableName = "OwbClient.app"
             BlueprintName = "OwbClient"
             ReferencedContainer = "container:OwbClient.xcodeproj">
@@ -60,7 +60,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D1D67F55171169D100460199"
+            BlueprintIdentifier = "85BBEF3F172BFE4C00568C38"
             BuildableName = "OwbClient.app"
             BlueprintName = "OwbClient"
             ReferencedContainer = "container:OwbClient.xcodeproj">
@@ -78,7 +78,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D1D67F55171169D100460199"
+            BlueprintIdentifier = "85BBEF3F172BFE4C00568C38"
             BuildableName = "OwbClient.app"
             BlueprintName = "OwbClient"
             ReferencedContainer = "container:OwbClient.xcodeproj">

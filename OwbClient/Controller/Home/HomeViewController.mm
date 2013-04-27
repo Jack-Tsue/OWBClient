@@ -28,6 +28,7 @@
 
 - (void)loadView
 {
+    NSLog(@"FUCK");
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
     [self.view setBackgroundColor:background];
