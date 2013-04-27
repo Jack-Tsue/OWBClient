@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "common.h"
+#import "OwbCommon.h"
 
 @interface MeetingCodeViewController : UITableViewController<UITextFieldDelegate>
 - (id)initWithStyle:(UITableViewStyle)style withType:(NSString *)type;

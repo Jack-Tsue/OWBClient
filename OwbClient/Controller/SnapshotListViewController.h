@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "common.h"
+#import "OwbCommon.h"
 
 @interface SnapshotListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 //- (void)setSnapshotList:(SnapshotList *)list;

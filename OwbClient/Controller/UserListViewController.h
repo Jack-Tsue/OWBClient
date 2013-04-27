@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "common.h"
+#import "OwbCommon.h"
+#import "UIScrollView+SVPullToRefresh.h"
 
 @interface UserListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 //- (void)setUserList:(UserList *)list;

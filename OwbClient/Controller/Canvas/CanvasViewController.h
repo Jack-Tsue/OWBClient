@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "common.h"
+#import "OwbCommon.h"
 #import "Canvas.h"
 #import "MenuViewController.h"
 #import "UserListViewController.h"
 #import "SnapshotListViewController.h"
+#import "/Users/xujack/OWBClient/OwbClient/OwbClientLib/Tools/OperationQueue.h"
 
 @interface CanvasViewController : UIViewController {
 @private
