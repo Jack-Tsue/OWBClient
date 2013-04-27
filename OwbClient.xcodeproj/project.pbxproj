@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		851B8F2A172A8313008FEC35 /* libprotobuf-lite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8599F606172A683800E9E42E /* libprotobuf-lite.a */; };
-		851B8F2B172A8316008FEC35 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8599F607172A683800E9E42E /* libprotobuf.a */; };
-		8588FE5D1715616A00699036 /* OwbClient-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8588FE5C1715616A00699036 /* OwbClient-Info.plist */; };
 		8599F941172A683A00E9E42E /* plugin.proto in Resources */ = {isa = PBXBuildFile; fileRef = 8599F5E5172A683800E9E42E /* plugin.proto */; };
 		8599F942172A683A00E9E42E /* descriptor.proto in Resources */ = {isa = PBXBuildFile; fileRef = 8599F5EA172A683800E9E42E /* descriptor.proto */; };
 		85A5C896171E63F200003CC3 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C892171E63F200003CC3 /* background.jpg */; };
@@ -18,98 +15,7 @@
 		85A5C899171E63F200003CC3 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C895171E63F200003CC3 /* login.png */; };
 		85A5C8A1171E84FB00003CC3 /* createHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A5C8A0171E84FB00003CC3 /* createHighlight.png */; };
 		85D8CA2B172BAC23005EACE9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D8CA29172BAC08005EACE9 /* QuartzCore.framework */; };
-		85D8CA3B172BD13A005EACE9 /* libOwbClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D8CA36172BD0BF005EACE9 /* libOwbClient.a */; };
-		85D8CA3E172BD204005EACE9 /* BoardModel.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA38172BD0D5005EACE9 /* BoardModel.h */; };
-		85D8CA3F172BD204005EACE9 /* MessageModel.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA39172BD0D5005EACE9 /* MessageModel.h */; };
-		85D8CA40172BD204005EACE9 /* ServerDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F586172A683800E9E42E /* ServerDelegate.h */; };
-		85D8CA41172BD204005EACE9 /* message.pb.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F588172A683800E9E42E /* message.pb.h */; };
-		85D8CA42172BD204005EACE9 /* common.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F58A172A683800E9E42E /* common.h */; };
-		85D8CA43172BD204005EACE9 /* gflags.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5D7172A683800E9E42E /* gflags.h */; };
-		85D8CA44172BD204005EACE9 /* gflags_completions.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5D8172A683800E9E42E /* gflags_completions.h */; };
-		85D8CA45172BD204005EACE9 /* code_generator.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5DB172A683800E9E42E /* code_generator.h */; };
-		85D8CA46172BD204005EACE9 /* command_line_interface.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5DC172A683800E9E42E /* command_line_interface.h */; };
-		85D8CA47172BD204005EACE9 /* cpp_generator.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5DE172A683800E9E42E /* cpp_generator.h */; };
-		85D8CA48172BD204005EACE9 /* importer.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5DF172A683800E9E42E /* importer.h */; };
-		85D8CA49172BD204005EACE9 /* java_generator.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5E1172A683800E9E42E /* java_generator.h */; };
-		85D8CA4A172BD204005EACE9 /* parser.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5E2172A683800E9E42E /* parser.h */; };
-		85D8CA4B172BD204005EACE9 /* plugin.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5E3172A683800E9E42E /* plugin.h */; };
-		85D8CA4C172BD204005EACE9 /* plugin.pb.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5E4172A683800E9E42E /* plugin.pb.h */; };
-		85D8CA4D172BD204005EACE9 /* plugin.proto in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5E5172A683800E9E42E /* plugin.proto */; };
-		85D8CA4E172BD204005EACE9 /* python_generator.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5E7172A683800E9E42E /* python_generator.h */; };
-		85D8CA4F172BD204005EACE9 /* descriptor.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5E8172A683800E9E42E /* descriptor.h */; };
-		85D8CA50172BD204005EACE9 /* descriptor.pb.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5E9172A683800E9E42E /* descriptor.pb.h */; };
-		85D8CA51172BD204005EACE9 /* descriptor.proto in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5EA172A683800E9E42E /* descriptor.proto */; };
-		85D8CA52172BD204005EACE9 /* descriptor_database.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5EB172A683800E9E42E /* descriptor_database.h */; };
-		85D8CA53172BD204005EACE9 /* dynamic_message.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5EC172A683800E9E42E /* dynamic_message.h */; };
-		85D8CA54172BD204005EACE9 /* extension_set.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5ED172A683800E9E42E /* extension_set.h */; };
-		85D8CA55172BD204005EACE9 /* generated_message_reflection.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5EE172A683800E9E42E /* generated_message_reflection.h */; };
-		85D8CA56172BD204005EACE9 /* generated_message_util.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5EF172A683800E9E42E /* generated_message_util.h */; };
-		85D8CA57172BD204005EACE9 /* coded_stream.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5F1172A683800E9E42E /* coded_stream.h */; };
-		85D8CA58172BD204005EACE9 /* gzip_stream.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5F2172A683800E9E42E /* gzip_stream.h */; };
-		85D8CA59172BD204005EACE9 /* printer.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5F3172A683800E9E42E /* printer.h */; };
-		85D8CA5A172BD204005EACE9 /* tokenizer.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5F4172A683800E9E42E /* tokenizer.h */; };
-		85D8CA5B172BD204005EACE9 /* zero_copy_stream.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5F5172A683800E9E42E /* zero_copy_stream.h */; };
-		85D8CA5C172BD204005EACE9 /* zero_copy_stream_impl.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5F6172A683800E9E42E /* zero_copy_stream_impl.h */; };
-		85D8CA5D172BD204005EACE9 /* zero_copy_stream_impl_lite.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5F7172A683800E9E42E /* zero_copy_stream_impl_lite.h */; };
-		85D8CA5E172BD204005EACE9 /* message.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5F8172A683800E9E42E /* message.h */; };
-		85D8CA5F172BD204005EACE9 /* message_lite.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5F9172A683800E9E42E /* message_lite.h */; };
-		85D8CA60172BD204005EACE9 /* reflection_ops.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5FA172A683800E9E42E /* reflection_ops.h */; };
-		85D8CA61172BD204005EACE9 /* repeated_field.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5FB172A683800E9E42E /* repeated_field.h */; };
-		85D8CA62172BD204005EACE9 /* service.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5FC172A683800E9E42E /* service.h */; };
-		85D8CA63172BD204005EACE9 /* common.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5FE172A683800E9E42E /* common.h */; };
-		85D8CA64172BD204005EACE9 /* once.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F5FF172A683800E9E42E /* once.h */; };
-		85D8CA65172BD204005EACE9 /* text_format.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F600172A683800E9E42E /* text_format.h */; };
-		85D8CA66172BD204005EACE9 /* unknown_field_set.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F601172A683800E9E42E /* unknown_field_set.h */; };
-		85D8CA67172BD204005EACE9 /* wire_format.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F602172A683800E9E42E /* wire_format.h */; };
-		85D8CA68172BD204005EACE9 /* wire_format_lite.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F603172A683800E9E42E /* wire_format_lite.h */; };
-		85D8CA69172BD204005EACE9 /* wire_format_lite_inl.h in Sources */ = {isa = PBXBuildFile; fileRef = 8599F604172A683800E9E42E /* wire_format_lite_inl.h */; };
-		85D8CA6A172BD204005EACE9 /* libprotobuf-lite.a in Sources */ = {isa = PBXBuildFile; fileRef = 8599F606172A683800E9E42E /* libprotobuf-lite.a */; };
-		85D8CA6B172BD204005EACE9 /* libprotobuf.a in Sources */ = {isa = PBXBuildFile; fileRef = 8599F607172A683800E9E42E /* libprotobuf.a */; };
-		85D8CA6C172BD204005EACE9 /* ColorMaker.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA2E172BB488005EACE9 /* ColorMaker.h */; };
-		85D8CA6D172BD204005EACE9 /* OperationQueue.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA3A172BD0FF005EACE9 /* OperationQueue.h */; };
-		85D8CA6E172BD204005EACE9 /* Drawer.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA2F172BB488005EACE9 /* Drawer.h */; };
-		85D8CA6F172BD204005EACE9 /* RefreshableList.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA31172BB488005EACE9 /* RefreshableList.h */; };
-		85D8CA70172BD204005EACE9 /* SnapshotList.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA32172BB488005EACE9 /* SnapshotList.h */; };
-		85D8CA71172BD204005EACE9 /* Canvas.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA33172BB49A005EACE9 /* Canvas.h */; };
-		85D8CA72172BD204005EACE9 /* OwbClient-Prefix.pch in Sources */ = {isa = PBXBuildFile; fileRef = 8588FE5E171561A700699036 /* OwbClient-Prefix.pch */; };
-		85D8CA73172BD204005EACE9 /* OwbClient-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 8588FE5C1715616A00699036 /* OwbClient-Info.plist */; };
-		85D8CA74172BD204005EACE9 /* SVPullToRefresh.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA21172BAB39005EACE9 /* SVPullToRefresh.h */; };
-		85D8CA75172BD204005EACE9 /* UIScrollView+SVInfiniteScrolling.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA22172BAB39005EACE9 /* UIScrollView+SVInfiniteScrolling.h */; };
-		85D8CA76172BD204005EACE9 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA23172BAB39005EACE9 /* UIScrollView+SVInfiniteScrolling.m */; };
-		85D8CA77172BD204005EACE9 /* UIScrollView+SVPullToRefresh.h in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA24172BAB39005EACE9 /* UIScrollView+SVPullToRefresh.h */; };
-		85D8CA78172BD204005EACE9 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D8CA25172BAB39005EACE9 /* UIScrollView+SVPullToRefresh.m */; };
-		85D8CA79172BD204005EACE9 /* CanvasViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 85C0AA171719347200915556 /* CanvasViewController.h */; };
-		85D8CA7A172BD204005EACE9 /* CanvasViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85C0AA181719347200915556 /* CanvasViewController.mm */; };
-		85D8CA7B172BD204005EACE9 /* MoveScaleImageView.h in Sources */ = {isa = PBXBuildFile; fileRef = 859728821727D06B00499349 /* MoveScaleImageView.h */; };
-		85D8CA7C172BD204005EACE9 /* MoveScaleImageView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 859728811727D06B00499349 /* MoveScaleImageView.mm */; };
-		85D8CA7D172BD204005EACE9 /* SnapshotListViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 8552F0761723DD0F00F497C9 /* SnapshotListViewController.h */; };
-		85D8CA7E172BD204005EACE9 /* SnapshotListViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8552F0771723DD0F00F497C9 /* SnapshotListViewController.mm */; };
-		85D8CA7F172BD204005EACE9 /* UserListViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 8552F0721723DB8E00F497C9 /* UserListViewController.h */; };
-		85D8CA80172BD204005EACE9 /* UserListViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8552F0731723DB8E00F497C9 /* UserListViewController.mm */; };
-		85D8CA81172BD204005EACE9 /* MenuViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 85BC19281723D433002F7AA8 /* MenuViewController.h */; };
-		85D8CA82172BD204005EACE9 /* MenuViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85ADCCE5172A6F6200A22E04 /* MenuViewController.mm */; };
-		85D8CA83172BD204005EACE9 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = D12C927017144E95005C3F37 /* AppDelegate.h */; };
-		85D8CA84172BD204005EACE9 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85ADCCE3172A6F0200A22E04 /* AppDelegate.mm */; };
-		85D8CA85172BD204005EACE9 /* HomeViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = D12C927317144E95005C3F37 /* HomeViewController.h */; };
-		85D8CA86172BD204005EACE9 /* HomeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D12C927417144E95005C3F37 /* HomeViewController.mm */; };
-		85D8CA87172BD204005EACE9 /* LoginViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = D12C927517144E95005C3F37 /* LoginViewController.h */; };
-		85D8CA88172BD204005EACE9 /* LoginViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D12C927617144E95005C3F37 /* LoginViewController.mm */; };
-		85D8CA89172BD204005EACE9 /* MeetingCodeViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 8585D3881717E6FF00FCA16C /* MeetingCodeViewController.h */; };
-		85D8CA8A172BD204005EACE9 /* MeetingCodeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8585D3891717E6FF00FCA16C /* MeetingCodeViewController.mm */; };
-		85D8CA8B172BD204005EACE9 /* MainController.h in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87417211D34006E6666 /* MainController.h */; };
-		85D8CA8C172BD204005EACE9 /* MainController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87517211D34006E6666 /* MainController.mm */; };
-		85D8CA8D172BD204005EACE9 /* HBController.h in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87817211DFF006E6666 /* HBController.h */; };
-		85D8CA8E172BD204005EACE9 /* HBController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87917211DFF006E6666 /* HBController.mm */; };
-		85D8CA8F172BD204005EACE9 /* QueueSender.h in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87E1722829C006E6666 /* QueueSender.h */; };
-		85D8CA90172BD204005EACE9 /* QueueSender.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC87F1722829C006E6666 /* QueueSender.mm */; };
-		85D8CA91172BD204005EACE9 /* background.jpg in Sources */ = {isa = PBXBuildFile; fileRef = 85A5C892171E63F200003CC3 /* background.jpg */; };
-		85D8CA92172BD204005EACE9 /* create.png in Sources */ = {isa = PBXBuildFile; fileRef = 85A5C893171E63F200003CC3 /* create.png */; };
-		85D8CA93172BD204005EACE9 /* createHighlight.png in Sources */ = {isa = PBXBuildFile; fileRef = 85A5C8A0171E84FB00003CC3 /* createHighlight.png */; };
-		85D8CA94172BD204005EACE9 /* join.png in Sources */ = {isa = PBXBuildFile; fileRef = 85A5C894171E63F200003CC3 /* join.png */; };
-		85D8CA95172BD204005EACE9 /* login.png in Sources */ = {isa = PBXBuildFile; fileRef = 85A5C895171E63F200003CC3 /* login.png */; };
-		85D8CA96172BD204005EACE9 /* OwbCommon.h in Sources */ = {isa = PBXBuildFile; fileRef = 8588FE60171561C200699036 /* OwbCommon.h */; };
-		85D8CA97172BD204005EACE9 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D12C927F17144E95005C3F37 /* main.mm */; };
-		85D8CA98172BD204005EACE9 /* OwbClient.app in Sources */ = {isa = PBXBuildFile; fileRef = D1D67F56171169D200460199 /* OwbClient.app */; };
+		85D8CA9D172BE4F7005EACE9 /* libOwbClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D8CA9C172BE4F6005EACE9 /* libOwbClient.a */; };
 		D12C928A17144E95005C3F37 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D12C927D17144E95005C3F37 /* InfoPlist.strings */; };
 		D1D67F5A171169D200460199 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1D67F59171169D200460199 /* UIKit.framework */; };
 		D1D67F5C171169D200460199 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1D67F5B171169D200460199 /* Foundation.framework */; };
@@ -123,7 +29,6 @@
 		8552F0771723DD0F00F497C9 /* SnapshotListViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnapshotListViewController.mm; sourceTree = "<group>"; };
 		8585D3881717E6FF00FCA16C /* MeetingCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingCodeViewController.h; sourceTree = "<group>"; };
 		8585D3891717E6FF00FCA16C /* MeetingCodeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MeetingCodeViewController.mm; sourceTree = "<group>"; };
-		8588FE5C1715616A00699036 /* OwbClient-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OwbClient-Info.plist"; sourceTree = "<group>"; };
 		8588FE5E171561A700699036 /* OwbClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OwbClient-Prefix.pch"; sourceTree = "<group>"; };
 		8588FE60171561C200699036 /* OwbCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwbCommon.h; sourceTree = "<group>"; };
 		859728811727D06B00499349 /* MoveScaleImageView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveScaleImageView.mm; sourceTree = "<group>"; };
@@ -170,8 +75,6 @@
 		8599F602172A683800E9E42E /* wire_format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wire_format.h; sourceTree = "<group>"; };
 		8599F603172A683800E9E42E /* wire_format_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wire_format_lite.h; sourceTree = "<group>"; };
 		8599F604172A683800E9E42E /* wire_format_lite_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wire_format_lite_inl.h; sourceTree = "<group>"; };
-		8599F606172A683800E9E42E /* libprotobuf-lite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libprotobuf-lite.a"; sourceTree = "<group>"; };
-		8599F607172A683800E9E42E /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libprotobuf.a; sourceTree = "<group>"; };
 		85A5C892171E63F200003CC3 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		85A5C893171E63F200003CC3 /* create.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create.png; sourceTree = "<group>"; };
 		85A5C894171E63F200003CC3 /* join.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = join.png; sourceTree = "<group>"; };
@@ -193,11 +96,12 @@
 		85D8CA31172BB488005EACE9 /* RefreshableList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableList.h; sourceTree = "<group>"; };
 		85D8CA32172BB488005EACE9 /* SnapshotList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotList.h; sourceTree = "<group>"; };
 		85D8CA33172BB49A005EACE9 /* Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
-		85D8CA36172BD0BF005EACE9 /* libOwbClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOwbClient.a; sourceTree = "<group>"; };
 		85D8CA38172BD0D5005EACE9 /* BoardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardModel.h; sourceTree = "<group>"; };
 		85D8CA39172BD0D5005EACE9 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		85D8CA3A172BD0FF005EACE9 /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationQueue.h; sourceTree = "<group>"; };
 		85D8CA9A172BE046005EACE9 /* UserList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserList.h; sourceTree = "<group>"; };
+		85D8CA9B172BE3F7005EACE9 /* OwbClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OwbClient-Info.plist"; sourceTree = "<group>"; };
+		85D8CA9C172BE4F6005EACE9 /* libOwbClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOwbClient.a; path = ../libOwbClient.a; sourceTree = "<group>"; };
 		85DBC87417211D34006E6666 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		85DBC87517211D34006E6666 /* MainController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainController.mm; sourceTree = "<group>"; };
 		85DBC87817211DFF006E6666 /* HBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBController.h; sourceTree = "<group>"; };
@@ -227,9 +131,7 @@
 				85D8CA2B172BAC23005EACE9 /* QuartzCore.framework in Frameworks */,
 				D1D67F5C171169D200460199 /* Foundation.framework in Frameworks */,
 				D1D67F5E171169D200460199 /* CoreGraphics.framework in Frameworks */,
-				851B8F2B172A8316008FEC35 /* libprotobuf.a in Frameworks */,
-				85D8CA3B172BD13A005EACE9 /* libOwbClient.a in Frameworks */,
-				851B8F2A172A8313008FEC35 /* libprotobuf-lite.a in Frameworks */,
+				85D8CA9D172BE4F7005EACE9 /* libOwbClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +169,7 @@
 		8599F57F172A683800E9E42E /* OwbClientLib */ = {
 			isa = PBXGroup;
 			children = (
-				85D8CA36172BD0BF005EACE9 /* libOwbClient.a */,
+				85D8CA9C172BE4F6005EACE9 /* libOwbClient.a */,
 				8599F580172A683800E9E42E /* Models */,
 				8599F583172A683800E9E42E /* NetWork */,
 				8599F587172A683800E9E42E /* ProtoBuffer */,
@@ -324,7 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				8599F5D5172A683800E9E42E /* include */,
-				8599F605172A683800E9E42E /* lib */,
 			);
 			path = protobuf;
 			sourceTree = "<group>";
@@ -439,15 +340,6 @@
 			path = stubs;
 			sourceTree = "<group>";
 		};
-		8599F605172A683800E9E42E /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				8599F606172A683800E9E42E /* libprotobuf-lite.a */,
-				8599F607172A683800E9E42E /* libprotobuf.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		8599F92B172A683A00E9E42E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,6 +447,8 @@
 				D1D67F57171169D200460199 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
+			wrapsLines = 1;
 		};
 		D1D67F57171169D200460199 /* Products */ = {
 			isa = PBXGroup;
@@ -579,9 +473,9 @@
 		D1D67F5F171169D200460199 /* OwbClient */ = {
 			isa = PBXGroup;
 			children = (
+				85D8CA9B172BE3F7005EACE9 /* OwbClient-Info.plist */,
 				8599F57F172A683800E9E42E /* OwbClientLib */,
 				8588FE5E171561A700699036 /* OwbClient-Prefix.pch */,
-				8588FE5C1715616A00699036 /* OwbClient-Info.plist */,
 				D12C927D17144E95005C3F37 /* InfoPlist.strings */,
 				D12C926F17144E95005C3F37 /* Controller */,
 				D12C927817144E95005C3F37 /* Resources */,
@@ -642,7 +536,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D12C928A17144E95005C3F37 /* InfoPlist.strings in Resources */,
-				8588FE5D1715616A00699036 /* OwbClient-Info.plist in Resources */,
 				85A5C896171E63F200003CC3 /* background.jpg in Resources */,
 				85A5C897171E63F200003CC3 /* create.png in Resources */,
 				85A5C898171E63F200003CC3 /* join.png in Resources */,
@@ -660,97 +553,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85D8CA3E172BD204005EACE9 /* BoardModel.h in Sources */,
-				85D8CA3F172BD204005EACE9 /* MessageModel.h in Sources */,
-				85D8CA40172BD204005EACE9 /* ServerDelegate.h in Sources */,
-				85D8CA41172BD204005EACE9 /* message.pb.h in Sources */,
-				85D8CA42172BD204005EACE9 /* common.h in Sources */,
-				85D8CA43172BD204005EACE9 /* gflags.h in Sources */,
-				85D8CA44172BD204005EACE9 /* gflags_completions.h in Sources */,
-				85D8CA45172BD204005EACE9 /* code_generator.h in Sources */,
-				85D8CA46172BD204005EACE9 /* command_line_interface.h in Sources */,
-				85D8CA47172BD204005EACE9 /* cpp_generator.h in Sources */,
-				85D8CA48172BD204005EACE9 /* importer.h in Sources */,
-				85D8CA49172BD204005EACE9 /* java_generator.h in Sources */,
-				85D8CA4A172BD204005EACE9 /* parser.h in Sources */,
-				85D8CA4B172BD204005EACE9 /* plugin.h in Sources */,
-				85D8CA4C172BD204005EACE9 /* plugin.pb.h in Sources */,
-				85D8CA4D172BD204005EACE9 /* plugin.proto in Sources */,
-				85D8CA4E172BD204005EACE9 /* python_generator.h in Sources */,
-				85D8CA4F172BD204005EACE9 /* descriptor.h in Sources */,
-				85D8CA50172BD204005EACE9 /* descriptor.pb.h in Sources */,
-				85D8CA51172BD204005EACE9 /* descriptor.proto in Sources */,
-				85D8CA52172BD204005EACE9 /* descriptor_database.h in Sources */,
-				85D8CA53172BD204005EACE9 /* dynamic_message.h in Sources */,
-				85D8CA54172BD204005EACE9 /* extension_set.h in Sources */,
-				85D8CA55172BD204005EACE9 /* generated_message_reflection.h in Sources */,
-				85D8CA56172BD204005EACE9 /* generated_message_util.h in Sources */,
-				85D8CA57172BD204005EACE9 /* coded_stream.h in Sources */,
-				85D8CA58172BD204005EACE9 /* gzip_stream.h in Sources */,
-				85D8CA59172BD204005EACE9 /* printer.h in Sources */,
-				85D8CA5A172BD204005EACE9 /* tokenizer.h in Sources */,
-				85D8CA5B172BD204005EACE9 /* zero_copy_stream.h in Sources */,
-				85D8CA5C172BD204005EACE9 /* zero_copy_stream_impl.h in Sources */,
-				85D8CA5D172BD204005EACE9 /* zero_copy_stream_impl_lite.h in Sources */,
-				85D8CA5E172BD204005EACE9 /* message.h in Sources */,
-				85D8CA5F172BD204005EACE9 /* message_lite.h in Sources */,
-				85D8CA60172BD204005EACE9 /* reflection_ops.h in Sources */,
-				85D8CA61172BD204005EACE9 /* repeated_field.h in Sources */,
-				85D8CA62172BD204005EACE9 /* service.h in Sources */,
-				85D8CA63172BD204005EACE9 /* common.h in Sources */,
-				85D8CA64172BD204005EACE9 /* once.h in Sources */,
-				85D8CA65172BD204005EACE9 /* text_format.h in Sources */,
-				85D8CA66172BD204005EACE9 /* unknown_field_set.h in Sources */,
-				85D8CA67172BD204005EACE9 /* wire_format.h in Sources */,
-				85D8CA68172BD204005EACE9 /* wire_format_lite.h in Sources */,
-				85D8CA69172BD204005EACE9 /* wire_format_lite_inl.h in Sources */,
-				85D8CA6A172BD204005EACE9 /* libprotobuf-lite.a in Sources */,
-				85D8CA6B172BD204005EACE9 /* libprotobuf.a in Sources */,
-				85D8CA6C172BD204005EACE9 /* ColorMaker.h in Sources */,
-				85D8CA6D172BD204005EACE9 /* OperationQueue.h in Sources */,
-				85D8CA6E172BD204005EACE9 /* Drawer.h in Sources */,
-				85D8CA6F172BD204005EACE9 /* RefreshableList.h in Sources */,
-				85D8CA70172BD204005EACE9 /* SnapshotList.h in Sources */,
-				85D8CA71172BD204005EACE9 /* Canvas.h in Sources */,
-				85D8CA72172BD204005EACE9 /* OwbClient-Prefix.pch in Sources */,
-				85D8CA73172BD204005EACE9 /* OwbClient-Info.plist in Sources */,
-				85D8CA74172BD204005EACE9 /* SVPullToRefresh.h in Sources */,
-				85D8CA75172BD204005EACE9 /* UIScrollView+SVInfiniteScrolling.h in Sources */,
-				85D8CA76172BD204005EACE9 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
-				85D8CA77172BD204005EACE9 /* UIScrollView+SVPullToRefresh.h in Sources */,
-				85D8CA78172BD204005EACE9 /* UIScrollView+SVPullToRefresh.m in Sources */,
-				85D8CA79172BD204005EACE9 /* CanvasViewController.h in Sources */,
-				85D8CA7A172BD204005EACE9 /* CanvasViewController.mm in Sources */,
-				85D8CA7B172BD204005EACE9 /* MoveScaleImageView.h in Sources */,
-				85D8CA7C172BD204005EACE9 /* MoveScaleImageView.mm in Sources */,
-				85D8CA7D172BD204005EACE9 /* SnapshotListViewController.h in Sources */,
-				85D8CA7E172BD204005EACE9 /* SnapshotListViewController.mm in Sources */,
-				85D8CA7F172BD204005EACE9 /* UserListViewController.h in Sources */,
-				85D8CA80172BD204005EACE9 /* UserListViewController.mm in Sources */,
-				85D8CA81172BD204005EACE9 /* MenuViewController.h in Sources */,
-				85D8CA82172BD204005EACE9 /* MenuViewController.mm in Sources */,
-				85D8CA83172BD204005EACE9 /* AppDelegate.h in Sources */,
-				85D8CA84172BD204005EACE9 /* AppDelegate.mm in Sources */,
-				85D8CA85172BD204005EACE9 /* HomeViewController.h in Sources */,
-				85D8CA86172BD204005EACE9 /* HomeViewController.mm in Sources */,
-				85D8CA87172BD204005EACE9 /* LoginViewController.h in Sources */,
-				85D8CA88172BD204005EACE9 /* LoginViewController.mm in Sources */,
-				85D8CA89172BD204005EACE9 /* MeetingCodeViewController.h in Sources */,
-				85D8CA8A172BD204005EACE9 /* MeetingCodeViewController.mm in Sources */,
-				85D8CA8B172BD204005EACE9 /* MainController.h in Sources */,
-				85D8CA8C172BD204005EACE9 /* MainController.mm in Sources */,
-				85D8CA8D172BD204005EACE9 /* HBController.h in Sources */,
-				85D8CA8E172BD204005EACE9 /* HBController.mm in Sources */,
-				85D8CA8F172BD204005EACE9 /* QueueSender.h in Sources */,
-				85D8CA90172BD204005EACE9 /* QueueSender.mm in Sources */,
-				85D8CA91172BD204005EACE9 /* background.jpg in Sources */,
-				85D8CA92172BD204005EACE9 /* create.png in Sources */,
-				85D8CA93172BD204005EACE9 /* createHighlight.png in Sources */,
-				85D8CA94172BD204005EACE9 /* join.png in Sources */,
-				85D8CA95172BD204005EACE9 /* login.png in Sources */,
-				85D8CA96172BD204005EACE9 /* OwbCommon.h in Sources */,
-				85D8CA97172BD204005EACE9 /* main.mm in Sources */,
-				85D8CA98172BD204005EACE9 /* OwbClient.app in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,6 +663,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/OwbClient/OwbClientLib/ThridParty/protobuf/lib\"/**",
 					"\"$(SRCROOT)/OwbClient/OwbClientLib\"/**",
+					"\"$(SRCROOT)/OwbClient\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -894,6 +697,7 @@
 					"\"$(SRCROOT)/OwbClient/OwbClientLib/ThridParty/gtest/lib\"",
 					"\"$(SRCROOT)/OwbClient/OwbClientLib/ThridParty/protobuf/lib\"/**",
 					"\"$(SRCROOT)/OwbClient/OwbClientLib\"/**",
+					"\"$(SRCROOT)/OwbClient\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv6 armv7 i386";

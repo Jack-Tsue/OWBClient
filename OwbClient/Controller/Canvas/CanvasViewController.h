@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "OwbCommon.h"
-#import "Canvas.h"
 #import "MenuViewController.h"
 #import "UserListViewController.h"
 #import "SnapshotListViewController.h"
-#import "OperationQueue.h"
 
 @interface CanvasViewController : UIViewController {
 @private
@@ -20,7 +18,5 @@
 }
 
 - (bool)switchDrawMethods;
-
-@property(nonatomic, strong) Canvas *canvas;
 
 @end
