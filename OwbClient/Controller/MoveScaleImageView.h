@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "../OwbClientLib/View/Canvas.h"
 
 #define min_offset 10 //定义手势最小移动距离为5，小于此距离的移动不处理
 
-@interface MoveScaleImageView : UIView{
+@interface MoveScaleImageView : Canvas{
 	UIImage* originImage;//原图
 	
 	UIImageView* imageView;

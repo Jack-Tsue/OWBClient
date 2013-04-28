@@ -83,14 +83,14 @@
 		85BBEF83172BFE6100568C38 /* MeetingCodeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MeetingCodeViewController.mm; sourceTree = "<group>"; };
 		85BBEF84172BFE6100568C38 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		85BBEF85172BFE6100568C38 /* MainController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainController.mm; sourceTree = "<group>"; };
-		85BBEF86172BFE6100568C38 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		85BBEF87172BFE6100568C38 /* MenuViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MenuViewController.mm; sourceTree = "<group>"; };
-		85BBEF88172BFE6100568C38 /* MoveScaleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveScaleImageView.h; sourceTree = "<group>"; };
-		85BBEF89172BFE6100568C38 /* MoveScaleImageView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveScaleImageView.mm; sourceTree = "<group>"; };
+		85BBEF86172BFE6100568C38 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = ../MenuViewController.h; sourceTree = "<group>"; };
+		85BBEF87172BFE6100568C38 /* MenuViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MenuViewController.mm; path = ../MenuViewController.mm; sourceTree = "<group>"; };
+		85BBEF88172BFE6100568C38 /* MoveScaleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoveScaleImageView.h; path = ../MoveScaleImageView.h; sourceTree = "<group>"; };
+		85BBEF89172BFE6100568C38 /* MoveScaleImageView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MoveScaleImageView.mm; path = ../MoveScaleImageView.mm; sourceTree = "<group>"; };
 		85BBEF8A172BFE6100568C38 /* QueueSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueSender.h; sourceTree = "<group>"; };
 		85BBEF8B172BFE6100568C38 /* QueueSender.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QueueSender.mm; sourceTree = "<group>"; };
-		85BBEF8C172BFE6100568C38 /* SnapshotListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapshotListViewController.h; sourceTree = "<group>"; };
-		85BBEF8D172BFE6100568C38 /* SnapshotListViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SnapshotListViewController.mm; sourceTree = "<group>"; };
+		85BBEF8C172BFE6100568C38 /* SnapshotListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SnapshotListViewController.h; path = ../SnapshotListViewController.h; sourceTree = "<group>"; };
+		85BBEF8D172BFE6100568C38 /* SnapshotListViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SnapshotListViewController.mm; path = ../SnapshotListViewController.mm; sourceTree = "<group>"; };
 		85BBEF8F172BFE6100568C38 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		85BBEF90172BFE6100568C38 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
 		85BBEF91172BFE6100568C38 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
@@ -272,14 +272,8 @@
 				85BBEF7D172BFE6100568C38 /* Home */,
 				85BBEF84172BFE6100568C38 /* MainController.h */,
 				85BBEF85172BFE6100568C38 /* MainController.mm */,
-				85BBEF86172BFE6100568C38 /* MenuViewController.h */,
-				85BBEF87172BFE6100568C38 /* MenuViewController.mm */,
-				85BBEF88172BFE6100568C38 /* MoveScaleImageView.h */,
-				85BBEF89172BFE6100568C38 /* MoveScaleImageView.mm */,
 				85BBEF8A172BFE6100568C38 /* QueueSender.h */,
 				85BBEF8B172BFE6100568C38 /* QueueSender.mm */,
-				85BBEF8C172BFE6100568C38 /* SnapshotListViewController.h */,
-				85BBEF8D172BFE6100568C38 /* SnapshotListViewController.mm */,
 				85BBEF8E172BFE6100568C38 /* SVPullToRefresh */,
 				85BBEF94172BFE6100568C38 /* UserListViewController.h */,
 				85BBEF95172BFE6100568C38 /* UserListViewController.mm */,
@@ -290,6 +284,12 @@
 		85BBEF78172BFE6100568C38 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
+				85BBEF86172BFE6100568C38 /* MenuViewController.h */,
+				85BBEF87172BFE6100568C38 /* MenuViewController.mm */,
+				85BBEF8C172BFE6100568C38 /* SnapshotListViewController.h */,
+				85BBEF8D172BFE6100568C38 /* SnapshotListViewController.mm */,
+				85BBEF88172BFE6100568C38 /* MoveScaleImageView.h */,
+				85BBEF89172BFE6100568C38 /* MoveScaleImageView.mm */,
 				85BBEF79172BFE6100568C38 /* CanvasViewController.h */,
 				85BBEF7A172BFE6100568C38 /* CanvasViewController.mm */,
 			);
@@ -762,6 +762,7 @@
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OwbClient/OwbClient-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/xujack/OWBClient/OwbClient/OwbClientLib/ThridParty/protobuf/include/**";
 				INFOPLIST_FILE = "OwbClient/OwbClient-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -782,6 +783,7 @@
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OwbClient/OwbClient-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/xujack/OWBClient/OwbClient/OwbClientLib/ThridParty/protobuf/include/**";
 				INFOPLIST_FILE = "OwbClient/OwbClient-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -848,6 +850,7 @@
 				85BBEF71172BFE4D00568C38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		85BBEF72172BFE4D00568C38 /* Build configuration list for PBXNativeTarget "OwbClientTests" */ = {
 			isa = XCConfigurationList;
@@ -856,6 +859,7 @@
 				85BBEF74172BFE4D00568C38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,6 +1,6 @@
 #  The Makefile to build client lib and it's test
 
-TARGETSDK =  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk
+TARGETSDK =  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk
 
 CXX = xcrun -sdk $(TARGETSDK) g++
 
@@ -11,7 +11,7 @@ SYSTEM_HEADER_FLAGS = -I/opt/local/include -I/usr/include -I/usr/include/c++/4.2
 SYSTEM_ROOT_FLAGS = -arch i386 -isysroot $(TARGETSDK)
 
 #  The root dir
-ROOT_DIR = /Users/tsgsz/github/OwbClientLib
+ROOT_DIR = /Users/xujack/OWBClient/OwbClient/OwbClientLib
 
 FRAMEWORK_PATH_FLAGS = -F /System/Library/Frameworks
 

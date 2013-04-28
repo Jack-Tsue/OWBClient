@@ -20,6 +20,7 @@
 @property(nonatomic, strong) NSArray *thicknessData_;
 @property(nonatomic, strong) NSArray *alphaData_;
 
+@property int opType;
 @property int colorNo_;
 @property int thicknessNo_;
 @property float alpha_;
@@ -191,26 +192,79 @@
 #pragma mark - btn handlers
 - (void)penBtnPress:(id)sender
 {
-    
+    self.opType = POINT;
 }
 
 - (void)eraserBtnPress:(id)sender
 {
-    
+    self.opType = ERASER;
 }
 
 - (void)lineBtnPress:(id)sender
 {
-    
+    self.opType = LINE;
 }
 
 - (void)rectBtnPress:(id)sender
 {
-    
+    self.opType = RECT;
 }
 
 - (void)ellipseBtnPress:(id)sender
 {
-    
+    self.opType = ELLIPSE;
+}
+
+- (OwbClientOperation *)operationInit
+{
+    switch (self.opType) {
+        case POINT:
+        {
+            DrawPoint *drawPoint = [[DrawPoint alloc] init];
+            drawPoint.color_ = self.colorNo_;
+            drawPoint.thinkness_ = self.thicknessNo_;
+            drawPoint.alpha_ = self.alpha_;
+            return drawPoint;
+        }
+            break;
+        case LINE:
+        {
+            DrawLine *drawLine = [[DrawLine alloc] init];
+            drawLine.color_ = self.colorNo_;
+            drawLine.thinkness_ = self.thicknessNo_;
+            drawLine.alpha_ = self.alpha_;
+            return drawLine;
+
+        }
+            break;
+        case RECT:
+        {
+            DrawRectange *drawRect = [[DrawRectange alloc] init];
+            drawRect.color_ = self.colorNo_;
+            drawRect.thinkness_ = self.thicknessNo_;
+            drawRect.alpha_ = self.alpha_;
+            return drawRect;
+        }
+            break;
+        case ELLIPSE:
+        {
+            DrawEllipse *drawEllipse = [[DrawEllipse alloc] init];
+            drawEllipse.color_ = self.colorNo_;
+            drawEllipse.thinkness_ = self.thicknessNo_;
+            drawEllipse.alpha_ = self.alpha_;
+            return drawEllipse;
+        }
+            break;
+        case ERASER:
+        {
+            Erase *erase = [[Erase alloc] init];
+        }
+            break;
+    }
+}
+
+- (int)operationType
+{
+    return self.opType;
 }
 @end

@@ -12,6 +12,12 @@
 #define ScreenHeight    320
 #define ScreenWidth     640
 
+#define POINT 0
+#define LINE 1
+#define RECT 2
+#define ELLIPSE 3
+#define ERASER 4
+
 #define MENU_FRAME CGRectMake(140, 726, 744, 160)
 #define MENU_OPEN_FRAME CGRectMake(140, 588, 744, 160)
 #define MENU_CLOSE_FRAME CGRectMake(140, 726, 744, 160)

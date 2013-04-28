@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "OwbCommon.h"
+#import "../OwbClientLib/Models/MessageModel.h"
 
 @interface MenuViewController : UIViewController<UIPickerViewDelegate,UIPickerViewDataSource>
+
+- (OwbClientOperation *)operationInit;
+- (int)operationType;
 
 @end

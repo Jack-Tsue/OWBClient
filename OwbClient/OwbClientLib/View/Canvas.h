@@ -32,7 +32,7 @@
 
 @end
 
-@interface Canvas : NSObject{
+@interface Canvas : UIView{
 @private
     id<DisplayerDataSource> _dataSource_;
     id<DisplayerDelegate> _displayerDelegate_;

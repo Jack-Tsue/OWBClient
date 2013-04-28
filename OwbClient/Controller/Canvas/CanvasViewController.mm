@@ -10,12 +10,14 @@
 #import "MenuViewController.h"
 #import "MenuViewController.h"
 #import "MenuViewController.h"
+#import "MoveScaleImageView.h"
 
 @interface CanvasViewController ()
 
 @property (strong, nonatomic) MenuViewController *menuVC_;
 @property (strong, nonatomic) UserListViewController *userListVC_;
 @property (strong, nonatomic) SnapshotListViewController *snapshotListVC_;
+@property (strong, nonatomic) MoveScaleImageView *canvasView_;
 
 @end
 
@@ -26,6 +28,10 @@
     self.view = [[UIView alloc] initWithFrame:CANVAS_DEFAULT_FRAME];
     [self.view setBackgroundColor:[UIColor whiteColor]];  
 
+    self.canvasView_ = [[MoveScaleImageView alloc] initWithFrame:CANVAS_OPEN_FRAME];
+    self.canvasView_.displayerDelegate_ = self;
+    self.canvasView_.drawerDelegate_ = self;
+    
     // menu
     self.menuVC_ = [[MenuViewController alloc] init];
     [self.view addSubview:self.menuVC_.view];

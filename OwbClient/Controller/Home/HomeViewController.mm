@@ -10,6 +10,8 @@
 #import "LoginViewController.h"
 #import "MeetingCodeViewController.h"
 #import "CanvasViewController.h"
+#import "../../OwbClientLib/NetWork/ServerDelegate.h"
+#import "../../OwbClientLib/Models/MessageModel.h"
 
 @interface HomeViewController()
 
@@ -28,7 +30,7 @@
 
 - (void)loadView
 {
-    NSLog(@"FUCK");
+//    ServerDelegate::GetInstance()->login([[[OwbClientUser alloc]init]toUser]);
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
     [self.view setBackgroundColor:background];

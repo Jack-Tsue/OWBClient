@@ -11,9 +11,12 @@
 #import "MenuViewController.h"
 #import "UserListViewController.h"
 #import "SnapshotListViewController.h"
+#import "../../OwbClientLib/View/Canvas.h"
+#import "../../OwbClientLib/Models/BoardModel.h"
 
-@interface CanvasViewController : UIViewController {
+@interface CanvasViewController : UIViewController<DrawerDelegate, DisplayerDelegate> {
 @private
+    BoardModel *board;
     bool isDrawFromServer;
 }
 
