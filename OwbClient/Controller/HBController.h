@@ -7,9 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OwbCommon.h"
 
-@interface HBController : NSObject
+@protocol HBDelegate <NSObject>
 
-- (int)hearHB;
+- (void)alert;
 
+@end
+
+@interface HBController : NSObject {
+@private
+    int failCount;
+    bool shouldStop;
+    OwbClientHeartSendPackage *hbSendPack;
+    id<HBDelegate> hbDelegate_;
+}
+
+@property (nonatomic, retain) id<HBDelegate> hbDelegate_;
+
++ (HBController *)SharedHBController;
+- (void)hearHBWithUserName:(NSString *)userName withMeetingCode:(NSString *)meetingCode;
+- (void)stopHear;
 @end

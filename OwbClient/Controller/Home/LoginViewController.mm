@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 
 @interface LoginViewController () 
-@property  (nonatomic,strong) NSArray *labels;
+@property (nonatomic,strong) NSArray *labels;
 @end
 @implementation LoginViewController
 
@@ -32,17 +32,11 @@
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
     self.tableView.backgroundView.backgroundColor = [UIColor clearColor];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -63,22 +57,21 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    NSInteger row = [indexPath row];
     // Configure the cell...
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-        label.tag = 1;
+        label.tag = row;
         label.highlightedTextColor = [UIColor clearColor];
         label.numberOfLines = 0;
         label.opaque = NO;
         label.backgroundColor = [UIColor clearColor];
         [cell.contentView addSubview:label];
-        
     }
     
-    UILabel *label = (UILabel*)[cell viewWithTag:1];
+    UILabel *label = (UILabel*)[cell viewWithTag:row];
     NSString *title = [self.labels objectAtIndex:indexPath.row];
     CGRect cellFrame = [cell frame];
     cellFrame.origin = CGPointMake(10, 10);
@@ -92,15 +85,30 @@
     textField.backgroundColor = [UIColor clearColor];
     textField.returnKeyType = UIReturnKeyDone;
     textField.placeholder = LOGIN_NAME_PLACEHOLDER;
+    textField.delegate = self;
+
     if (indexPath.row==1) {
         textField.secureTextEntry = YES;
         textField.placeholder = LOGIN_PWD_PLACEHOLDER;
+        [textField addTarget:self action:@selector(pswdEdited:) forControlEvents:UIControlEventEditingChanged];
+    } else {
+        [textField addTarget:self action:@selector(nameEdited:) forControlEvents:UIControlEventEditingChanged];
     }
-    textField.delegate = self;
     [cell.contentView addSubview:textField];
     return cell;
 }
 
+- (void)nameEdited:(UITextField *)textField
+{
+    NSLog(@"---%@", self.userName_);
+    self.userName_ = [textField text];
+}
+
+- (void)pswdEdited:(UITextField *)textField
+{
+    NSLog(@"+++%@", self.userPswd_);
+    self.userPswd_ = [textField text];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,13 +152,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

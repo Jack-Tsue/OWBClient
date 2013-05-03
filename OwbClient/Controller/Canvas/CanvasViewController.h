@@ -11,15 +11,13 @@
 #import "MenuViewController.h"
 #import "UserListViewController.h"
 #import "SnapshotListViewController.h"
-#import "../../OwbClientLib/View/Canvas.h"
-#import "../../OwbClientLib/Models/BoardModel.h"
+#import "OwbClientCanvas.h"
 
-@interface CanvasViewController : UIViewController<DrawerDelegate, DisplayerDelegate> {
-@private
-    BoardModel *board;
-    bool isDrawFromServer;
-}
+@interface CanvasViewController : UIViewController<HBDelegate, MBProgressHUDDelegate, DisplayerDelegate>
+
+@property (strong, nonatomic) OwbClientCanvas *canvas_;
 
 - (bool)switchDrawMethods;
+- (bool)startMeeting:(NSString *)meetingCode withUserName:(NSString *)userName;
 
 @end

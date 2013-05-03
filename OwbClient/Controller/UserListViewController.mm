@@ -17,6 +17,8 @@
 - (id)init
 {
     if (self) {
+        OwbClientUserList *userList = [[OwbClientUserList alloc] init];
+//        [[OwbClientServerDelegate sharedServerDelegate] getCurrentUserList:@""];
         self.view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default.png"]];
         self.view.frame = USER_LIST_FRAME;
         UIPanGestureRecognizer *userListGestureRecognizer = [[UIPanGestureRecognizer alloc]
@@ -128,6 +130,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 #warning info should get from user list
+         
         //test
         [cell.textLabel setBackgroundColor:[UIColor clearColor]];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0f];

@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "OwbCommon.h"
 #import "CanvasViewController.h"
+#import "MeetingCodeViewController.h"
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController<MBProgressHUDDelegate, MeetingCodeDelegate> {
+@private
+    OwbClientUser *user;
+}
 
 @end

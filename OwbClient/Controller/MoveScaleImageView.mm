@@ -11,9 +11,17 @@
 
 @implementation MoveScaleImageView
 
+- (void)display
+{
+    [super display];
+}
+
 -(id)initWithFrame:(CGRect)frame{
 	if (self=[super initWithFrame:frame]) {
 		imageView=[[UIImageView alloc]initWithFrame:frame];
+        [self setImage:[[BoardModel SharedBoard] getData]];
+        self.drawable = [[BoardModel SharedBoard] inHostMode_];
+        [self setBackgroundColor:[UIColor redColor]];
 		[self addSubview:imageView];
 		[self setUserInteractionEnabled:YES];
 		[self setMultipleTouchEnabled:YES];
@@ -21,7 +29,8 @@
 	}
 	return self;
 }
-
+-(void)dealloc{
+}
 -(void)setImage:(CGImageRef)imageRef{
 	originImage=nil;
 	originImage=[[UIImage alloc]initWithCGImage:imageRef];
@@ -29,13 +38,14 @@
 	[self moveToX:0 ToY:0];
 }
 
-- (void)setImage:(CGImageRef)imageRef withScaleTo:(CGFloat)s moveToX:(CGFloat)x ToY:(CGFloat)y
+- (CGImageRef)resetImage:(CGImageRef)imageRef
 {
     originImage=nil;
 	originImage=[[UIImage alloc]initWithCGImage:imageRef];
 	lensRect=imageView.frame;
-    [self scaleTo:s];
-    [self moveToX:x ToY:y];
+    [self scaleTo:scale];
+    [self moveToX:offsetX ToY:offsetY];
+    return imageView.image.CGImage;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -43,11 +53,18 @@
 		NSArray* twoTouches=[touches allObjects];
 		originSpace=[self spaceToPoint:[[twoTouches objectAtIndex:0] locationInView:self]
 						FromPoint:[[twoTouches objectAtIndex:1]locationInView:self]];
-	}else if ([touches count]==3){
-		UITouch *touch=[touches anyObject];
+        NSLog(@"scale start");
+        
+        // 记录移动开始
+        UITouch *touch=[[touches allObjects] objectAtIndex:1];
 		gestureStartPoint=[touch locationInView:self];
-	}else if([touches count]==1){
-        #warning draw operation begin from here
+	}else if ([touches count]==3){
+		
+	}else if([touches count]==1 && self.drawable){
+        NSLog(@"draw start");
+        UITouch *touch=[touches anyObject];
+		drawStartPoint=[touch locationInView:self];
+        wrapper.start_ = CGPointMake(offsetX+drawStartPoint.x/scale, offsetY+drawStartPoint.y/scale);
     }
 }
 
@@ -65,25 +82,47 @@
 			CGFloat s=currSpace/originSpace;//计算缩放比例
 			[self scaleTo:s];		
 			originSpace=currSpace;
-		}
+		} else {    // 两指合拢，识别为移动
+            UITouch* touch=[[touches allObjects] objectAtIndex:1];
+            CGPoint curr_point=[touch locationInView:self];
+            //分别计算x，和y方向上的移动量
+            offsetX=curr_point.x-gestureStartPoint.x;
+            offsetY=curr_point.y-gestureStartPoint.y;
+            recordX+=offsetX/scale;
+            recordY+=offsetY/scale;
+            //只要在任一方向上移动的距离超过Min_offset,判定手势有效
+            if(fabsf(offsetX)>= min_offset||fabsf(offsetY)>=min_offset){
+                [self moveToX:offsetX ToY:offsetY];
+                gestureStartPoint.x=curr_point.x;
+                gestureStartPoint.y=curr_point.y;
+            }
+        }
 	}else if([touches count]==3){
-		UITouch* touch=[touches anyObject];
-		CGPoint curr_point=[touch locationInView:self];
-		//分别计算x，和y方向上的移动量
-		offsetX=curr_point.x-gestureStartPoint.x;
-		offsetY=curr_point.y-gestureStartPoint.y;
-		//只要在任一方向上移动的距离超过Min_offset,判定手势有效
-		if(fabsf(offsetX)>= min_offset||fabsf(offsetY)>=min_offset){
-			[self moveToX:offsetX ToY:offsetY];
-			gestureStartPoint.x=curr_point.x;
-			gestureStartPoint.y=curr_point.y;
-		}
-	}else if([touches count]==1){
-        #warning draw operation end at here
+		
+	}else if([touches count]==1 && self.drawable){
+        UITouch* touch=[touches anyObject];
+		CGPoint currPoint=[touch locationInView:self];
+        wrapper.end_ = CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale);
+        wrapper.scale_ = scale;
+        if (wrapper.opType_ == POINT || wrapper.opType_ == ERASER) {
+            [[BoardModel SharedBoard] drawOperation:[wrapper wrap]];
+            [[QueueHandler SharedQueueHandler] drawOperationToServer:[wrapper wrap]];
+        } else {
+            [[BoardModel SharedBoard] drawMiddleOperation:[wrapper wrap]];
+        }
     }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    if([touches count]==1 && self.drawable){
+#warning draw operation end at here
+        UITouch* touch=[touches anyObject];
+		CGPoint currPoint=[touch locationInView:self];
+        wrapper.end_ = CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale);
+        wrapper.scale_ = scale;
+        [[BoardModel SharedBoard] drawOperation:[wrapper wrap]];
+        [[QueueHandler SharedQueueHandler] drawOperationToServer:[wrapper wrap]];
+    }
 }
 
 -(void)moveToX:(CGFloat)x ToY:(CGFloat)y{
@@ -143,7 +182,7 @@
 	scale=(scale>10)?10:scale;
 	
 	//重设imageView的frame
-	[self moveToX:0 ToY:0];
+	[self moveToX:offsetX*scale ToY:offsetX*scale];
 
 }
 -(void)resetMonitor{

@@ -9,8 +9,23 @@
 #ifndef OwbClient_pref_h
 #define OwbClient_pref_h
 
+#import "./lib/include/OwbClient/BoardModel.h"
+#import "./lib/include/OwbClient/Canvas.h"
+#import "./lib/include/OwbClient/ColorMaker.h"
+#import "./lib/include/OwbClient/common.h"
+#import "./lib/include/OwbClient/Drawer.h"
+#import "./lib/include/OwbClient/MessageModel.h"
+#import "./lib/include/OwbClient/OperationQueue.h"
+#import "./lib/include/OwbClient/OwbClientServerDelegate.h"
+#import "HBController.h"
+#import "MBProgressHUD.h"
+#import "QueueHandler.h"
+#include <exception>
+
 #define ScreenHeight    320
 #define ScreenWidth     640
+
+#define MAX_TIMES 300
 
 #define POINT 0
 #define LINE 1
@@ -18,6 +33,40 @@
 #define ELLIPSE 3
 #define ERASER 4
 
+#define ERROR_HUD(errorHint) \
+MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];\
+[[[[UIApplication sharedApplication] delegate] window] addSubview:HUD];\
+HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error.png"]];\
+HUD.mode = MBProgressHUDModeCustomView;\
+HUD.delegate = self;\
+HUD.labelText = (errorHint);\
+[HUD show:YES];\
+[HUD hide:YES afterDelay:1]
+
+#define SUCCESS_HUD(successHint) \
+MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];\
+[self.view addSubview:HUD];\
+HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"succ.png"]];\
+HUD.mode = MBProgressHUDModeCustomView;\
+HUD.delegate = self;\
+HUD.labelText = (successHint);\
+[HUD show:YES];\
+[HUD hide:YES afterDelay:1]
+
+#define TRY(a) \
+try {\
+(a);\
+} catch (std::exception e) {\
+    ERROR_HUD(@"网络错误！");\
+}
+
+#define MAX_FAIL 4
+#define SLEEP_TIME 20
+#define LOGIN_HINT @"登录中"
+#define LOGIN_FAIL @"用户名或密码错误"
+#define PASTE_SUC @"复制成功"
+#define NETWORK_ERROR @"网络错误！"
+#define LOADING @"载入中..."
 #define MENU_FRAME CGRectMake(140, 726, 744, 160)
 #define MENU_OPEN_FRAME CGRectMake(140, 588, 744, 160)
 #define MENU_CLOSE_FRAME CGRectMake(140, 726, 744, 160)
@@ -62,7 +111,7 @@
 #define MEETING_CODE_FRAME CGRectMake(20, 10, 260, 24)
 #define MEETING_CODE_BTN_FRAME CGRectMake(290, 10, 46, 24)
 
-#define CANVAS_DEFAULT_FRAME CGRectMake(0, 726, 1024, 100)
+#define CANVAS_DEFAULT_FRAME CGRectMake(0, 768, 1024, 100)
 #define CANVAS_OPEN_FRAME CGRectMake(0, 0, 1024, 768)
 
 #define DURATION 0.5f

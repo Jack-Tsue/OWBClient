@@ -7,6 +7,7 @@
 //
 
 #import "MeetingCodeViewController.h"
+#import <Foundation/Foundation.h>
 
 @interface MeetingCodeViewController ()
 @property  (nonatomic,strong) NSString *btnLabelStr_;
@@ -78,17 +79,53 @@
     [textField setBorderStyle:UITextBorderStyleNone];
     textField.returnKeyType = UIReturnKeyDone;
     textField.delegate = self;
-    if (self.btnLabelStr_ == CREATE_BTN_STR) {
-        [textField setUserInteractionEnabled:NO];
-    }
-    [cell.contentView addSubview:textField];
     
     UIButton *codeBtn = [[UIButton alloc] initWithFrame:MEETING_CODE_BTN_FRAME];
     [codeBtn setTitle:self.btnLabelStr_ forState:UIControlStateNormal];
     [codeBtn setBackgroundColor:[UIColor blackColor]];
+    
+    if ([self.btnLabelStr_ isEqual:CREATE_BTN_STR]) {
+        [textField setUserInteractionEnabled:NO];
+        [codeBtn addTarget:self action:@selector(createBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        textField.placeholder = self.meetingCode_;
+    } else {
+        [textField addTarget:self action:@selector(textFieldWithText:) forControlEvents:UIControlEventEditingChanged];
+        [codeBtn addTarget:self action:@selector(joinBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    
+   
+    [cell.contentView addSubview:textField];
     [cell.contentView addSubview:codeBtn];
     
     return cell;
+}
+
+- (void)createBtnPress:(id)sender
+{
+    [UIPasteboard generalPasteboard].string = self.meetingCode_;
+    SUCCESS_HUD(PASTE_SUC);
+}
+
+- (void)joinBtnPress:(id)sender
+{
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+    bool isJoined = false;
+    TRY(isJoined = [[OwbClientServerDelegate sharedServerDelegate] joinMeeting:user_.userName_ WithMeetingId:self.meetingCode_]);
+    if (isJoined) {
+//        [self.meetingCodeDelegate_ showCanvas];
+    }
+    [self.meetingCodeDelegate_ showCanvas:self.meetingCode_ ];
+}
+
+- (void)setUser:(OwbClientUser *)u
+{
+    user_ = u;
+}
+
+- (void)textFieldWithText:(UITextField *)textField
+{
+    self.meetingCode_ = [textField text];
 }
 
 #pragma mark - Table view delegate

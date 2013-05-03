@@ -9,6 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "OwbCommon.h"
 
-@interface MeetingCodeViewController : UITableViewController<UITextFieldDelegate>
+@protocol MeetingCodeDelegate
+-(void)showCanvas:(NSString *)meetingCode;
+@end
+
+@interface MeetingCodeViewController : UITableViewController<UITextFieldDelegate, MBProgressHUDDelegate>{
+@private
+    OwbClientUser *user_;
+}
+
+@property(nonatomic, strong) NSString *meetingCode_;
+@property id<MeetingCodeDelegate> meetingCodeDelegate_;
+
+- (void)setUser:(OwbClientUser *)u;
 - (id)initWithStyle:(UITableViewStyle)style withType:(NSString *)type;
 @end

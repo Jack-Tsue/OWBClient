@@ -11,4 +11,6 @@
 
 @interface LoginViewController : UITableViewController<UITextFieldDelegate>
 
+@property (nonatomic, strong) NSString *userName_, *userPswd_;
+
 @end

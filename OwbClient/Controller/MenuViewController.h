@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "OwbCommon.h"
-#import "../OwbClientLib/Models/MessageModel.h"
+#import "OperationWrapper.h"
 
 @interface MenuViewController : UIViewController<UIPickerViewDelegate,UIPickerViewDataSource>
 
-- (OwbClientOperation *)operationInit;
-- (int)operationType;
+- (OperationWrapper *)wrapperInit:(OperationWrapper *)opWrapper;
 
 @end
