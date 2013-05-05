@@ -7,4 +7,21 @@
 #Copyright [2013] <Copyright tsgsz>  [legal/copyright]
 #########################################################################
 
-lipo -create libOwbClientl* -output libOwbClient.a
+iphoneOslibPath=/Users/tsgsz/Library/Developer/Xcode/DerivedData/OwbClientlibXcode-amotmuxkwdabxqflljifnmdxmxts/Build/Products/Debug-iphoneos
+ihphoneSimlibPath=/Users/tsgsz/Library/Developer/Xcode/DerivedData/OwbClientlibXcode-amotmuxkwdabxqflljifnmdxmxts/Build/Products/Debug-iphonesimulator
+
+
+
+ipOlib=$iphoneOslibPath/libOwbClientlibXcode.a
+ipSlib=$ihphoneSimlibPath/libOwbClientlibXcode.a
+
+includePath=/Users/tsgsz/Library/Developer/Xcode/DerivedData/OwbClientlibXcode-amotmuxkwdabxqflljifnmdxmxts/Build/Products/Debug-iphonesimulator/include
+
+rm -rf ./libOwbClient.a ./include/OwbClient
+mkdir ./include/OwbClient
+
+lipo -create $ipOlib $ipSlib -output libOwbClient.a
+
+cp -r $includePath/OwbClientlibXcode/* ./include/OwbClient/
+
+scp -r ./* xujack@192.168.1.113:/Users/xujack/OWBClient/OwbClient/lib

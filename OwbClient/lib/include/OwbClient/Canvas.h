@@ -10,7 +10,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <UIKit/UIKit.h>
 
-@class OperationQueue;
+@class OwbClientOperationQueue;
 
 @protocol DisplayerDataSource <NSObject>
 
@@ -22,7 +22,7 @@
 
 @protocol DisplayerDelegate <NSObject>
 
-- (CGImageRef)displayerWillRefresh:(id<DisplayerDataSource>) dataSouce_;
+- (void)displayerWillRefresh:(id<DisplayerDataSource>) dataSouce_;
 - (void)scaleDisplayer:(float)scale;
 - (void)moveDisplayerX:(int) x withY:(int)y;
 
@@ -30,7 +30,7 @@
 
 @protocol DrawerDelegate <NSObject>
 
-- (void)attachQueue:(OperationQueue *)queue;
+- (void)attachQueue:(OwbClientOperationQueue *)queue;
 //- (void)writeToQueue:(OwbClientOperation *)operation;
 
 @end
@@ -40,9 +40,11 @@
     id<DisplayerDataSource> _dataSource_;
     id<DisplayerDelegate> _displayerDelegate_;
     id<DrawerDelegate> _drawerDelegate_;
+    BOOL _isDrawable_;
 }
 - (void)display;
 @property (nonatomic, retain) id<DisplayerDataSource> dataSource_;
 @property (nonatomic, retain) id<DisplayerDelegate> displayerDelegate_;
 @property (nonatomic, retain) id<DrawerDelegate> drawerDelegate_;
+@property (assign) BOOL isDrawable_;
 @end

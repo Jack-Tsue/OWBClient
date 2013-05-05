@@ -16,7 +16,18 @@ static QueueHandler * instance;
     }
     return instance;
 }
-- (void)attachQueue:(OperationQueue *)opQueue
+- (void)dealloc
+{
+    [super dealloc];
+    if (nil!=meetingCode_) {
+        [meetingCode_ release];
+    }
+    if (nil!=opQueue_) {
+        [opQueue_ release];
+    }
+}
+
+- (void)attachQueue:(OwbClientOperationQueue *)opQueue
 {
     opQueue_ = opQueue;
 }
@@ -60,6 +71,7 @@ static QueueHandler * instance;
 
 - (void)drawOperationToServer:(OwbClientOperation *)op
 {
+    NSLog(@"opqueue isempty: %d", opQueue_.isEmpty);
     [opQueue_ enqueue:op];
     [self triggerWriteToServer];
 }
@@ -69,25 +81,27 @@ static QueueHandler * instance;
     if(isWriting_) {
         [opQueue_ lock];
         if(![opQueue_ isEmpty]) {
-            [self performSelectorInBackground:@selector(writeToServer) withObject:nil];
+//            [self performSelectorInBackground:@selector(writeToServer) withObject:nil];
         }
         [opQueue_ unLock];
     } else {
         isWriting_ = YES;
-        [self performSelectorInBackground:@selector(writeToServer) withObject:nil];
+//        [self performSelectorInBackground:@selector(writeToServer) withObject:nil];
     }
 }
 
 - (void)writeToServer
 {
+    NSLog(@"========FUCK========");
     while (![opQueue_ isEmpty]) {
-        OwbClientOperation *op = [opQueue_ dequeue];
-        try {
-            [[OwbClientServerDelegate sharedServerDelegate] sendOperation:op];
-        } catch (std::exception e) {
-            NSLog(@"in QueueHandler.mm: send operation failed.");
+        operation_ = [opQueue_ dequeue];
+        NSLog(@"op type:%d", [operation_ operationType_]);
+        if(![[OwbClientServerDelegate sharedServerDelegate] sendOperation:operation_]) {
+            [[OwbClientServerDelegate sharedServerDelegate] resumeUpdater:meetingCode_];
         }
+        NSLog(@"OP: %d, %d, %d", operation_.operationType_, operation_.serialNumber_, operation_.thinkness_);
     }
+    NSLog(@"========shot========");
     isWriting_ = NO;
 }
 @end

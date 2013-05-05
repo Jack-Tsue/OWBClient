@@ -9,8 +9,15 @@
 #import <QuartzCore/QuartzCore.h>
 #import "OwbCommon.h"
 
+@protocol LoginDelegate <NSObject>
+
+- (void)login;
+
+@end
+
 @interface LoginViewController : UITableViewController<UITextFieldDelegate>
 
 @property (nonatomic, strong) NSString *userName_, *userPswd_;
+@property (nonatomic, retain) id<LoginDelegate> loginDelegate_;
 
 @end

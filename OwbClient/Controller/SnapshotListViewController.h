@@ -10,5 +10,6 @@
 #import "OwbCommon.h"
 
 @interface SnapshotListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@property(nonatomic, strong) UIButton *snapshotCurrentBtn_;
 //- (void)setSnapshotList:(SnapshotList *)list;
 @end

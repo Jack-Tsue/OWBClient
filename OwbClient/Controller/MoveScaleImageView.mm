@@ -14,28 +14,47 @@
 - (void)display
 {
     [super display];
+    [self setNeedsDisplay];
 }
 
 -(id)initWithFrame:(CGRect)frame{
 	if (self=[super initWithFrame:frame]) {
 		imageView=[[UIImageView alloc]initWithFrame:frame];
+        NSLog(@"Board Data: %@", [[BoardModel SharedBoard] getData]);
+        [self setClearsContextBeforeDrawing:YES];
+        self.isDrawable_ = [[BoardModel SharedBoard] inHostMode_];
+        imageView.backgroundColor = [UIColor clearColor];
         [self setImage:[[BoardModel SharedBoard] getData]];
-        self.drawable = [[BoardModel SharedBoard] inHostMode_];
-        [self setBackgroundColor:[UIColor redColor]];
+//        UIImage *background = [UIImage imageWithCGImage: [[BoardModel SharedBoard] getData]];
+//        imageView.image = background;
 		[self addSubview:imageView];
+//        [self sendSubviewToBack:imageView];
 		[self setUserInteractionEnabled:YES];
 		[self setMultipleTouchEnabled:YES];
 		scale=1;
 	}
 	return self;
 }
--(void)dealloc{
+
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    CGContextRef tmpContextRef= UIGraphicsGetCurrentContext();
+    NSLog(@"tmp context: %@; image ref: %@", tmpContextRef, imageRef_);
+    CGContextDrawImage(tmpContextRef, rect, imageRef_);
 }
 -(void)setImage:(CGImageRef)imageRef{
-	originImage=nil;
-	originImage=[[UIImage alloc]initWithCGImage:imageRef];
-	lensRect=imageView.frame;
-	[self moveToX:0 ToY:0];
+    CGImageRelease(imageRef_);
+    NSLog(@"image ref: %@", imageRef);
+    imageRef_ = imageRef;
+//	originImage=nil;
+//	originImage=[[UIImage alloc]initWithCGImage:imageRef];
+//	lensRect=imageView.frame;
+//	[self moveToX:0 ToY:0];
+//    UIGraphicsBeginImageContext
+    
+//    imageView.image = [[UIImage alloc]initWithCGImage:imageRef];
+ //   imageView.image = [UIImage imageWithCGImage:imageRef];
+    
 }
 
 - (CGImageRef)resetImage:(CGImageRef)imageRef
@@ -54,17 +73,17 @@
 		originSpace=[self spaceToPoint:[[twoTouches objectAtIndex:0] locationInView:self]
 						FromPoint:[[twoTouches objectAtIndex:1]locationInView:self]];
         NSLog(@"scale start");
-        
+        NSLog(@"is drawable: %d", self.isDrawable_);
         // 记录移动开始
         UITouch *touch=[[touches allObjects] objectAtIndex:1];
 		gestureStartPoint=[touch locationInView:self];
 	}else if ([touches count]==3){
 		
-	}else if([touches count]==1 && self.drawable){
+	}else if([touches count]==1 && self.isDrawable_){
         NSLog(@"draw start");
         UITouch *touch=[touches anyObject];
 		drawStartPoint=[touch locationInView:self];
-        wrapper.start_ = CGPointMake(offsetX+drawStartPoint.x/scale, offsetY+drawStartPoint.y/scale);
+        [[OperationWrapper SharedOperationWrapper] setStart_:CGPointMake(offsetX+drawStartPoint.x/scale, offsetY+drawStartPoint.y/scale)];
     }
 }
 
@@ -99,29 +118,48 @@
         }
 	}else if([touches count]==3){
 		
-	}else if([touches count]==1 && self.drawable){
+	}else if([touches count]==1 && self.isDrawable_){
         UITouch* touch=[touches anyObject];
 		CGPoint currPoint=[touch locationInView:self];
-        wrapper.end_ = CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale);
-        wrapper.scale_ = scale;
-        if (wrapper.opType_ == POINT || wrapper.opType_ == ERASER) {
-            [[BoardModel SharedBoard] drawOperation:[wrapper wrap]];
-            [[QueueHandler SharedQueueHandler] drawOperationToServer:[wrapper wrap]];
+        [[OperationWrapper SharedOperationWrapper] setEnd_:CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale)];
+        [[OperationWrapper SharedOperationWrapper] setScale_:scale];
+        if ([[OperationWrapper SharedOperationWrapper] opType_] == POINT || [[OperationWrapper SharedOperationWrapper] opType_] == ERASER) {
+            [[OperationWrapper SharedOperationWrapper] setScale_:scale];
+            OwbClientOperation *tmpOp = [[OperationWrapper SharedOperationWrapper] wrap];
+            NSLog(@"******** point tmp op: %@", tmpOp);
+            NSLog(@"tmp op thickness: %d", tmpOp.thinkness_);
+            [[BoardModel SharedBoard] drawOperation:tmpOp];
+//            [[QueueHandler SharedQueueHandler] drawOperationToServer:[[OperationWrapper SharedOperationWrapper] wrap]];
         } else {
-            [[BoardModel SharedBoard] drawMiddleOperation:[wrapper wrap]];
+            NSLog(@"------- middle shared operation type: %d, thinckness: %d", [[OperationWrapper SharedOperationWrapper] opType_], [[OperationWrapper SharedOperationWrapper] thickness_]);
+            [[BoardModel SharedBoard] drawMiddleOperation:[[OperationWrapper SharedOperationWrapper] wrapMid]];
         }
     }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    if([touches count]==1 && self.drawable){
-#warning draw operation end at here
+    if([touches count]==1 && self.isDrawable_){
         UITouch* touch=[touches anyObject];
 		CGPoint currPoint=[touch locationInView:self];
-        wrapper.end_ = CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale);
-        wrapper.scale_ = scale;
-        [[BoardModel SharedBoard] drawOperation:[wrapper wrap]];
-        [[QueueHandler SharedQueueHandler] drawOperationToServer:[wrapper wrap]];
+        if ([[OperationWrapper SharedOperationWrapper] opType_] == POINT || [[OperationWrapper SharedOperationWrapper] opType_] == ERASER) {
+        } else if([[OperationWrapper SharedOperationWrapper] opType_] == RECT){
+            if(offsetX>0) {
+                [[OperationWrapper SharedOperationWrapper] setEnd_:CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale)];
+            } else {
+                [[OperationWrapper SharedOperationWrapper] setEnd_:[[OperationWrapper SharedOperationWrapper] start_]];
+                [[OperationWrapper SharedOperationWrapper] setStart_:CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale)];
+            }
+            [[OperationWrapper SharedOperationWrapper] setScale_:scale];
+            NSLog(@"end shared operation type: %d, thinckness: %d", [[OperationWrapper SharedOperationWrapper] opType_], [[OperationWrapper SharedOperationWrapper] thickness_]);
+            [[BoardModel SharedBoard] drawOperation:[[OperationWrapper SharedOperationWrapper] wrap]];
+            //        [[QueueHandler SharedQueueHandler] drawOperationToServer:[[OperationWrapper SharedOperationWrapper] wrap]];
+        }else {
+            [[OperationWrapper SharedOperationWrapper] setEnd_:CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale)];
+            [[OperationWrapper SharedOperationWrapper] setScale_:scale];
+            NSLog(@"end shared operation type: %d, thinckness: %d", [[OperationWrapper SharedOperationWrapper] opType_], [[OperationWrapper SharedOperationWrapper] thickness_]);
+            [[BoardModel SharedBoard] drawOperation:[[OperationWrapper SharedOperationWrapper] wrap]];
+            //        [[QueueHandler SharedQueueHandler] drawOperationToServer:[[OperationWrapper SharedOperationWrapper] wrap]];
+        }
     }
 }
 

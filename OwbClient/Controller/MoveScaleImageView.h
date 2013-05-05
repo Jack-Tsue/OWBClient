@@ -25,9 +25,9 @@
 	CGFloat scale;//缩放比例
 	CGRect lensRect;//设置镜头的大小
     
-    OperationWrapper *wrapper;
+    CGImageRef imageRef_;
 }
-@property bool drawable;
+
 - (void)display;
 - (void)setImage:(CGImageRef)imageRef;
 - (CGImageRef)resetImage:(CGImageRef)imageRef;

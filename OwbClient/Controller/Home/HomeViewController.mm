@@ -32,7 +32,9 @@ BOOL isFailed = NO;
 
     [[OwbClientServerDelegate sharedServerDelegate] bindMonitorIp:[defaults stringForKey:@"MIP"] AndPort:[defaults integerForKey:@"MP"]];
     [[OwbClientServerDelegate sharedServerDelegate] bindProviderIp:[defaults stringForKey:@"PIP"] AndPort:[defaults integerForKey:@"PP"]];
-        
+    
+    NSLog(@"ip and port: \n%@ %@ %@ %@", [defaults objectForKey:@"MIP"], [defaults objectForKey:@"MP"], [defaults objectForKey:@"PIP"], [defaults objectForKey:@"PP"]);
+    
     user = [[OwbClientUser alloc] init];
     //    ServerDelegate::GetInstance()->login([[[OwbClientUser alloc]init]toUser]);
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
@@ -41,6 +43,7 @@ BOOL isFailed = NO;
     
     // login view
     self.loginViewController_ = [[LoginViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    self.loginViewController_.loginDelegate_ = self;
     [self.view addSubview:self.loginViewController_.view];
     [self.loginViewController_.view setHidden:YES];
     
@@ -70,7 +73,8 @@ BOOL isFailed = NO;
     [self.view addSubview:self.loginBtn];
     [self.view addSubview:self.createBtn];
     [self.view addSubview:self.joinBtn];
-    
+    self.createBtn.userInteractionEnabled = NO;
+    self.joinBtn.userInteractionEnabled = NO;
     // canvas
     self.canvasView_ =[[CanvasViewController alloc] init];
     [self.view addSubview:self.canvasView_.view];
@@ -108,23 +112,32 @@ BOOL isFailed = NO;
             
         }];
     } else {
-#warning need test!
-        [user setUserName_:self.loginViewController_.userName_];
-        [user setPassWord_:self.loginViewController_.userPswd_];
-        int isLogin = 0;
-        try {
-            NSLog(@"%@  %@  %@  %@", self.loginViewController_.userName_, self.loginViewController_.userPswd_, [user userName_], [user passWord_]);
-            isLogin=[[OwbClientServerDelegate sharedServerDelegate] login:user];
-        } catch (std::exception) {
-            isLogin=2;
-        }
-        if (1==isLogin) {
-            [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
-        } else if(0==isLogin){
-            ERROR_HUD(LOGIN_FAIL);
-        } else {
-            ERROR_HUD(NETWORK_ERROR);
-        }
+        [self login];
+    }
+}
+
+- (void)login
+{
+    [user setUserName_:self.loginViewController_.userName_];
+    [user setPassWord_:self.loginViewController_.userPswd_];
+    int isLogin = 0;
+    try {
+        NSLog(@"%@  %@  %@  %@", self.loginViewController_.userName_, self.loginViewController_.userPswd_, [user userName_], [user passWord_]);
+        isLogin=[[OwbClientServerDelegate sharedServerDelegate] login:user];
+    } catch (std::exception) {
+        isLogin=2;
+    }
+    if (1==isLogin) {
+        self.createBtn.userInteractionEnabled = YES;
+        self.joinBtn.userInteractionEnabled = YES;
+        self.loginViewController_.view.hidden = YES;
+        [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
+        [self.joinMeetingCodeView_ setUser:user];
+        SUCCESS_HUD(@"登录成功！");
+    } else if(0==isLogin){
+        ERROR_HUD(LOGIN_FAIL);
+    } else {
+        ERROR_HUD(NETWORK_ERROR);
     }
 }
 
@@ -138,6 +151,7 @@ BOOL isFailed = NO;
         [self.createMeetingCodeView_.view setAlpha:1];
     } completion:^(BOOL finished) {
         TRY(self.createMeetingCodeView_.meetingCode_ = [[OwbClientServerDelegate sharedServerDelegate] createMeeting:user.userName_]);
+        [self.createMeetingCodeView_.tableView reloadData];
     }];
 }
 

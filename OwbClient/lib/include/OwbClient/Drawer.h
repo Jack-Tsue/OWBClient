@@ -12,12 +12,13 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 @class OwbClientOperation;
-@class OperationQueue;
+@class OwbClientOperationQueue;
 
 @protocol OwbClientDrawer <NSObject>
 @required
 - (void)draw:(OwbClientOperation *)operation InCanvas:(CGContextRef)canvas;
-- (void)sliceOpertion:(OwbClientOperation *)operation IntoQueue:(OperationQueue*) queue;
+- (void)sliceOpertion:(OwbClientOperation *)operation IntoQueue:(OwbClientOperationQueue*) queue;
++ (id<OwbClientDrawer>) sharedOwbClientDrawer;
 @end
 
 @interface LineDrawer : NSObject <OwbClientDrawer>

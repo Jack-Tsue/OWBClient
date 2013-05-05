@@ -19,14 +19,14 @@
     if (self) {
         OwbClientUserList *userList = [[OwbClientUserList alloc] init];
 //        [[OwbClientServerDelegate sharedServerDelegate] getCurrentUserList:@""];
-        self.view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default.png"]];
+        self.view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"userList.png"]];
         self.view.frame = USER_LIST_FRAME;
         UIPanGestureRecognizer *userListGestureRecognizer = [[UIPanGestureRecognizer alloc]
                                                              initWithTarget:self  
                                                              action:@selector(handleUserListPan:)];
         [self.view setUserInteractionEnabled:YES];
         [self.view addGestureRecognizer:userListGestureRecognizer];
-        
+        self.userTable_.backgroundColor = [UIColor clearColor];
         self.userTable_ = [[UITableView alloc] initWithFrame:USER_TABLE_FRAME style:UITableViewStyleGrouped];
         self.userTable_.backgroundColor = [UIColor clearColor];
         self.userTable_.delegate = self;
@@ -135,7 +135,6 @@
         [cell.textLabel setBackgroundColor:[UIColor clearColor]];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0f];
         cell.textLabel.text = @"Jack";
-        cell.detailTextLabel.text=@"申";
     }
     return cell;
 }
@@ -157,7 +156,7 @@
     UILabel *HeaderLabel = [[UILabel alloc] initWithFrame:TABLE_HEADER_FRAME];
     HeaderLabel.backgroundColor = [UIColor clearColor];
     HeaderLabel.font = [UIFont boldSystemFontOfSize:TABLE_HEADER_FONT_SIZE];
-    HeaderLabel.textColor = [UIColor blackColor];
+    HeaderLabel.textColor = [UIColor whiteColor];
     HeaderLabel.text = USER_HEADER_LABEL;
     [headerView addSubview:HeaderLabel];    
     return headerView;

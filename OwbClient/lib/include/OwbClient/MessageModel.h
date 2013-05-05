@@ -44,12 +44,13 @@ class UserList;
 class DocumentList;
 
 @class OwbClientOperation;
-@class OperationQueue;
+@class OwbClientOperationQueue;
 
 @protocol OwbClientDrawer <NSObject>
 @required
 - (void)draw:(OwbClientOperation *)operation InCanvas:(CGContextRef)canvas;
-- (void)sliceOpertion:(OwbClientOperation *)operation IntoQueue:(OperationQueue*) queue;
+- (void)sliceOpertion:(OwbClientOperation *)operation IntoQueue:(OwbClientOperationQueue*) queue;
++ (id<OwbClientDrawer>) sharedOwbClientDrawer;
 @end
 
 # pragma mark - DocumentModel
@@ -177,15 +178,15 @@ class DocumentList;
     float _alpha_;
     bool _fill_;
     CGPoint _center_;
-    int _a_;
-    int _b_;
+    float _a_;
+    float _b_;
 }
 @property (nonatomic, assign) int color_;
 @property (nonatomic, assign) float alpha_;
 @property (nonatomic, assign) bool fill_;
 @property (nonatomic, assign) CGPoint center_;
-@property (nonatomic, assign) int a_;
-@property (nonatomic, assign) int b_;
+@property (nonatomic, assign) float a_;
+@property (nonatomic, assign) float b_;
 @end
 
 @interface DrawRectange : OwbClientOperation {

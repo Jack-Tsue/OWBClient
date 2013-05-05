@@ -70,7 +70,6 @@
             [defaultsToRegister setObject:[prefSpecification objectForKey:@"DefaultValue"] forKey:key];
         }
     }
-    NSLog(@"%@", defaultsToRegister);
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
     //[defaultsToRegister release];
 }

@@ -21,22 +21,22 @@
 @class Canvas;
 @class OwbClientDocument;
 @class OwbClientOperation;
-@class OperationQueue;
+@class OwbClientOperationQueue;
 
 @interface BoardModel : NSObject <DisplayerDataSource> {
 @private
     CGContextRef context_;
     CGImageRef latestSnapshot_;
     Canvas* displayer_;
-    OperationQueue* operationQueue_;
+    OwbClientOperationQueue* operationQueue_;
     bool isReading_;
     bool isDrawing_;
-    OperationQueue* realOperationQueue_;
+    OwbClientOperationQueue* realOperationQueue_;
     bool _inHostMode_;
 }
 + (BoardModel *) SharedBoard;
 - (void) attachCanvas:(Canvas* ) canvas;
-- (void) attachOpeartionQueue:(OperationQueue *) operationQueue;
+- (void) attachOpeartionQueue:(OwbClientOperationQueue *) operationQueue;
 - (void) loadDocument:(OwbClientDocument *) doucument;
 - (void) trigerReadOperationQueue;
 - (void) drawMiddleOperation:(OwbClientOperation*) operation;

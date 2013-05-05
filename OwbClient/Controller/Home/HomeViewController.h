@@ -11,7 +11,7 @@
 #import "CanvasViewController.h"
 #import "MeetingCodeViewController.h"
 
-@interface HomeViewController : UIViewController<MBProgressHUDDelegate, MeetingCodeDelegate> {
+@interface HomeViewController : UIViewController<LoginDelegate, MBProgressHUDDelegate, MeetingCodeDelegate> {
 @private
     OwbClientUser *user;
 }

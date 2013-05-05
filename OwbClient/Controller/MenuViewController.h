@@ -12,6 +12,4 @@
 
 @interface MenuViewController : UIViewController<UIPickerViewDelegate,UIPickerViewDataSource>
 
-- (OperationWrapper *)wrapperInit:(OperationWrapper *)opWrapper;
-
 @end

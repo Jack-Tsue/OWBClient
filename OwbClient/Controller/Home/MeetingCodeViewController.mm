@@ -81,20 +81,20 @@
     textField.delegate = self;
     
     UIButton *codeBtn = [[UIButton alloc] initWithFrame:MEETING_CODE_BTN_FRAME];
-    [codeBtn setTitle:self.btnLabelStr_ forState:UIControlStateNormal];
-    [codeBtn setBackgroundColor:[UIColor blackColor]];
+    [codeBtn setBackgroundColor:[UIColor clearColor]];
     
     if ([self.btnLabelStr_ isEqual:CREATE_BTN_STR]) {
+        [codeBtn setBackgroundImage:[UIImage imageNamed:@"copyBtn.png"] forState:UIControlStateNormal];
         [textField setUserInteractionEnabled:NO];
         [codeBtn addTarget:self action:@selector(createBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         textField.placeholder = self.meetingCode_;
     } else {
+        [codeBtn setBackgroundImage:[UIImage imageNamed:@"joinBtn.png"] forState:UIControlStateNormal];
         [textField addTarget:self action:@selector(textFieldWithText:) forControlEvents:UIControlEventEditingChanged];
         [codeBtn addTarget:self action:@selector(joinBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         
     }
     
-   
     [cell.contentView addSubview:textField];
     [cell.contentView addSubview:codeBtn];
     
@@ -109,13 +109,26 @@
 
 - (void)joinBtnPress:(id)sender
 {
-    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
-    bool isJoined = false;
-    TRY(isJoined = [[OwbClientServerDelegate sharedServerDelegate] joinMeeting:user_.userName_ WithMeetingId:self.meetingCode_]);
-    if (isJoined) {
-//        [self.meetingCodeDelegate_ showCanvas];
+    if (nil==self.meetingCode_) {
+        ERROR_HUD(@"请输入会议密钥！");
+    } else {
+        [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+        OwbClientJoinMeetingReturn *joinReturn;
+        NSLog(@"username: %@ \n meetingID:%@", user_.userName_, self.meetingCode_);
+        TRY(joinReturn = [[OwbClientServerDelegate sharedServerDelegate] joinMeeting:user_.userName_ WithMeetingId:self.meetingCode_]);
+        if (OwbSUCCESS==joinReturn.joinState_) {
+            [self.meetingCodeDelegate_ showCanvas:self.meetingCode_ ];
+            NSLog(@"updater ip: %@, port:%d", joinReturn.serverIp_, joinReturn.port_);
+            [[OwbClientServerDelegate sharedServerDelegate] bindUpdaterIp:joinReturn.serverIp_ AndPort:joinReturn.port_];
+        } else if(OwbFAIL == joinReturn.joinState_) {
+            
+        } else if(OwbNOTAVAILABLE == joinReturn.joinState_) {
+            
+        } else if(OwbDEAD == joinReturn.joinState_) {
+            
+        }
+               
     }
-    [self.meetingCodeDelegate_ showCanvas:self.meetingCode_ ];
 }
 
 - (void)setUser:(OwbClientUser *)u
@@ -131,6 +144,7 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 }
 
 

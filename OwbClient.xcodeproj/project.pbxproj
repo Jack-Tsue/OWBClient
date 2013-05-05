@@ -8,7 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		8572853B1733A7CE00FBC82B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8572853A1733A7CD00FBC82B /* Settings.bundle */; };
-		858C39E5172FB80B0021D0C0 /* QueueHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 858C39E4172FB80B0021D0C0 /* QueueHandler.mm */; };
+		857285461733CA7D00FBC82B /* copyBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 857285441733CA7D00FBC82B /* copyBtn.png */; };
+		857285471733CA7D00FBC82B /* joinBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 857285451733CA7D00FBC82B /* joinBtn.png */; };
+		8572854A1733E0D300FBC82B /* userList.png in Resources */ = {isa = PBXBuildFile; fileRef = 857285481733E0D200FBC82B /* userList.png */; };
+		8572854B1733E0D300FBC82B /* snapShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 857285491733E0D200FBC82B /* snapShot.png */; };
+		8572854D1733E0E400FBC82B /* menuBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8572854C1733E0E400FBC82B /* menuBar.png */; };
+		858C39E5172FB80B0021D0C0 /* QueueHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 858C39E4172FB80B0021D0C0 /* QueueHandler.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85BBEF45172BFE4C00568C38 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85BBEF44172BFE4C00568C38 /* UIKit.framework */; };
 		85BBEF47172BFE4C00568C38 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85BBEF46172BFE4C00568C38 /* Foundation.framework */; };
 		85BBEF49172BFE4C00568C38 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85BBEF48172BFE4C00568C38 /* CoreGraphics.framework */; };
@@ -67,8 +72,13 @@
 		8572853F1733ABCC00FBC82B /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		857285401733ABCC00FBC82B /* Drawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drawer.h; sourceTree = "<group>"; };
 		857285411733ABCC00FBC82B /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
-		857285421733ABCC00FBC82B /* OperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationQueue.h; sourceTree = "<group>"; };
 		857285431733ABCC00FBC82B /* OwbClientServerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwbClientServerDelegate.h; sourceTree = "<group>"; };
+		857285441733CA7D00FBC82B /* copyBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copyBtn.png; sourceTree = "<group>"; };
+		857285451733CA7D00FBC82B /* joinBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joinBtn.png; sourceTree = "<group>"; };
+		857285481733E0D200FBC82B /* userList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userList.png; sourceTree = "<group>"; };
+		857285491733E0D200FBC82B /* snapShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snapShot.png; sourceTree = "<group>"; };
+		8572854C1733E0E400FBC82B /* menuBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBar.png; sourceTree = "<group>"; };
+		8572854E1734155900FBC82B /* OwbClientOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwbClientOperationQueue.h; sourceTree = "<group>"; };
 		858C39E3172FB80A0021D0C0 /* QueueHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueHandler.h; sourceTree = "<group>"; };
 		858C39E4172FB80B0021D0C0 /* QueueHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QueueHandler.mm; sourceTree = "<group>"; };
 		85BBEF40172BFE4C00568C38 /* OwbClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OwbClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,8 +293,13 @@
 				85BBEFA5172BFE7D00568C38 /* background.jpg */,
 				85BBEFA6172BFE7D00568C38 /* create.png */,
 				85C44318172E87FD002145AF /* createHighlight.png */,
+				857285441733CA7D00FBC82B /* copyBtn.png */,
+				857285451733CA7D00FBC82B /* joinBtn.png */,
 				85BBEFA8172BFE7D00568C38 /* join.png */,
 				85BBEFA9172BFE7D00568C38 /* login.png */,
+				857285481733E0D200FBC82B /* userList.png */,
+				857285491733E0D200FBC82B /* snapShot.png */,
+				8572854C1733E0E400FBC82B /* menuBar.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -318,13 +333,13 @@
 		85C442FB172E686D002145AF /* OwbClient */ = {
 			isa = PBXGroup;
 			children = (
+				8572854E1734155900FBC82B /* OwbClientOperationQueue.h */,
 				8572853C1733ABCC00FBC82B /* BoardModel.h */,
 				8572853D1733ABCC00FBC82B /* Canvas.h */,
 				8572853E1733ABCC00FBC82B /* ColorMaker.h */,
 				8572853F1733ABCC00FBC82B /* common.h */,
 				857285401733ABCC00FBC82B /* Drawer.h */,
 				857285411733ABCC00FBC82B /* MessageModel.h */,
-				857285421733ABCC00FBC82B /* OperationQueue.h */,
 				857285431733ABCC00FBC82B /* OwbClientServerDelegate.h */,
 			);
 			path = OwbClient;
@@ -414,6 +429,11 @@
 				85C44311172E839F002145AF /* snapList.png in Resources */,
 				85C44319172E87FE002145AF /* createHighlight.png in Resources */,
 				8572853B1733A7CE00FBC82B /* Settings.bundle in Resources */,
+				857285461733CA7D00FBC82B /* copyBtn.png in Resources */,
+				857285471733CA7D00FBC82B /* joinBtn.png in Resources */,
+				8572854A1733E0D300FBC82B /* userList.png in Resources */,
+				8572854B1733E0D300FBC82B /* snapShot.png in Resources */,
+				8572854D1733E0E400FBC82B /* menuBar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

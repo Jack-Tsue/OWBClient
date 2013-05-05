@@ -11,7 +11,6 @@
 @interface SnapshotListViewController ()
 @property CGImageRef currentSnapshot_;
 @property(nonatomic, strong) UITableView *snapshotHistoryTable_;
-@property(nonatomic, strong) UIButton *snapshotCurrentBtn_;
 @property(nonatomic, strong) UIButton *saveSnapshotBtn_;
 @end
 
@@ -20,14 +19,14 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self) {
-        self.view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default.png"]];
+        self.view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"snapShot.png"]];
         self.view.frame = SNAP_LIST_FRAME;
         UIPanGestureRecognizer *snapListGestureRecognizer = [[UIPanGestureRecognizer alloc]
                                                              initWithTarget:self  
                                                              action:@selector(handleSnapListPan:)];
         [self.view setUserInteractionEnabled:YES];
         [self.view addGestureRecognizer:snapListGestureRecognizer];
-        
+        self.snapshotHistoryTable_.backgroundColor = [UIColor clearColor];
         self.snapshotCurrentBtn_ = [[UIButton alloc] initWithFrame:SNAP_CUR_BTN_FRAME];
         [self.snapshotCurrentBtn_ setBackgroundColor:[UIColor grayColor]];
         [self.snapshotCurrentBtn_ addTarget:self action:@selector(currentSnapBtnPress:) forControlEvents:UIControlEventTouchUpInside];
@@ -150,7 +149,7 @@
     UILabel *HeaderLabel = [[UILabel alloc] initWithFrame:TABLE_HEADER_FRAME];
     HeaderLabel.backgroundColor = [UIColor clearColor];
     HeaderLabel.font = [UIFont boldSystemFontOfSize:TABLE_HEADER_FONT_SIZE];
-    HeaderLabel.textColor = [UIColor blackColor];
+    HeaderLabel.textColor = [UIColor whiteColor];
     HeaderLabel.text = SNAP_HEADER_LABEL;
     [headerView addSubview:HeaderLabel];    
     return headerView;

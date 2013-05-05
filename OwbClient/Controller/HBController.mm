@@ -58,6 +58,7 @@ static HBController *instance = nil;
         [[QueueHandler SharedQueueHandler] startQueueGetDataBackgroundWithMeetingID:hbSendPack.meetingId_];
     } else if(![[BoardModel SharedBoard] inHostMode_] && OwbHOST==identity) {
         [[BoardModel SharedBoard] setInHostMode_:YES];
+        NSLog(@"is host: %d", [[BoardModel SharedBoard] inHostMode_]);
         [[QueueHandler SharedQueueHandler] stopQueueGetDataBackground];
     }
 }

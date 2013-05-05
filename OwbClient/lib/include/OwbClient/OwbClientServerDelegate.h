@@ -21,6 +21,7 @@
 @interface OwbClientServerDelegate : NSObject
 //  for data_updater_server
 - (BOOL)sendOperation:(OwbClientOperation*) operation;
+- (BOOL)setDocument:(int) docNumber;
 //  for monitor_server
 - (BOOL)login:(OwbClientUser *)user;
 - (NSString *)createMeeting:(NSString *)userName;

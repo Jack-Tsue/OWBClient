@@ -10,7 +10,8 @@
 #import "OwbCommon.h"
 
 @interface QueueHandler : NSObject <DrawerDelegate, MBProgressHUDDelegate>{
-    OperationQueue *opQueue_;
+    OwbClientOperationQueue *opQueue_;
+    OwbClientOperation *operation_;
     NSString *meetingCode_;
     bool shouldStop_, isWriting_;
 }

@@ -32,7 +32,10 @@
 - (id)init
 {
     if (self) {
-        [self.view setBackgroundColor:[UIColor lightGrayColor]];
+        [self.view setBackgroundColor:[UIColor clearColor]];
+        UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menuBar.png"]];
+        [self.view addSubview:background];
+        [self.view sendSubviewToBack:background];
         self.view.frame = MENU_FRAME;
         UIPanGestureRecognizer *menuGestureRecognizer = [[UIPanGestureRecognizer alloc]
                                                          initWithTarget:self  
@@ -181,11 +184,15 @@
 {
     if (component==0) {
         self.colorNo_ = row;
+        [[OperationWrapper SharedOperationWrapper] setColor_:row];
         [self.colorThicknessAlphaPicker_ reloadAllComponents];
     } else if (component==1) {
         self.thicknessNo_ = row;
+        [[OperationWrapper SharedOperationWrapper] setThickness_:row+1];
     } else {
         self.alpha_ = 1-0.1*row;
+        NSLog(@"picker alpha: %f", self.alpha_);
+        [[OperationWrapper SharedOperationWrapper] setAlpha_:self.alpha_];
     }
 }
 
@@ -193,34 +200,31 @@
 - (void)penBtnPress:(id)sender
 {
     self.opType_ = POINT;
+    NSLog(@"op Type: %d", self.opType_);
+    [[OperationWrapper SharedOperationWrapper] setOpType_:POINT];
 }
 
 - (void)eraserBtnPress:(id)sender
 {
     self.opType_ = ERASER;
+    [[OperationWrapper SharedOperationWrapper] setOpType_:ERASER];
 }
 
 - (void)lineBtnPress:(id)sender
 {
     self.opType_ = LINE;
+    [[OperationWrapper SharedOperationWrapper] setOpType_:LINE];
 }
 
 - (void)rectBtnPress:(id)sender
 {
     self.opType_ = RECT;
+    [[OperationWrapper SharedOperationWrapper] setOpType_:RECT];
 }
 
 - (void)ellipseBtnPress:(id)sender
 {
     self.opType_ = ELLIPSE;
+    [[OperationWrapper SharedOperationWrapper] setOpType_:ELLIPSE];
 }
-
-- (OperationWrapper *)wrapperInit:(OperationWrapper *)opWrapper
-{
-    opWrapper.thickness_ = self.thicknessNo_;
-    opWrapper.color_ = self.colorNo_;
-    opWrapper.alpha_ = self.alpha_;
-    opWrapper.opType_ = self.opType_;
-}
-
 @end

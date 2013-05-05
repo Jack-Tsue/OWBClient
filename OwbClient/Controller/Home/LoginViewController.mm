@@ -9,7 +9,9 @@
 #import "LoginViewController.h"
 
 @interface LoginViewController () 
-@property (nonatomic,strong) NSArray *labels;
+@property (nonatomic, strong) NSArray *labels;
+@property (nonatomic, strong) UITextField *nameText_;
+@property (nonatomic, strong) UITextField *pwdText_;
 @end
 @implementation LoginViewController
 
@@ -80,33 +82,36 @@
     label.frame = rect;
     [label sizeToFit];
     
-    UITextField *textField=[[UITextField alloc]initWithFrame:LOGIN_INPUT_FRAME];
-    textField.borderStyle = UITextBorderStyleNone;
-    textField.backgroundColor = [UIColor clearColor];
-    textField.returnKeyType = UIReturnKeyDone;
-    textField.placeholder = LOGIN_NAME_PLACEHOLDER;
-    textField.delegate = self;
-
     if (indexPath.row==1) {
-        textField.secureTextEntry = YES;
-        textField.placeholder = LOGIN_PWD_PLACEHOLDER;
-        [textField addTarget:self action:@selector(pswdEdited:) forControlEvents:UIControlEventEditingChanged];
+        self.pwdText_=[[UITextField alloc]initWithFrame:LOGIN_INPUT_FRAME];
+        self.pwdText_.borderStyle = UITextBorderStyleNone;
+        self.pwdText_.backgroundColor = [UIColor clearColor];
+        self.pwdText_.returnKeyType = UIReturnKeyJoin;
+        self.pwdText_.placeholder = LOGIN_PWD_PLACEHOLDER;
+        self.pwdText_.delegate = self;
+        self.pwdText_.secureTextEntry = YES;
+        [self.pwdText_ addTarget:self action:@selector(pswdEdited:) forControlEvents:UIControlEventEditingChanged];
+        [cell.contentView addSubview:self.pwdText_];
     } else {
-        [textField addTarget:self action:@selector(nameEdited:) forControlEvents:UIControlEventEditingChanged];
+        self.nameText_=[[UITextField alloc]initWithFrame:LOGIN_INPUT_FRAME];
+        self.nameText_.borderStyle = UITextBorderStyleNone;
+        self.nameText_.backgroundColor = [UIColor clearColor];
+        self.nameText_.returnKeyType = UIReturnKeyNext;
+        self.nameText_.placeholder = LOGIN_NAME_PLACEHOLDER;
+        self.nameText_.delegate = self;
+        [self.nameText_ addTarget:self action:@selector(nameEdited:) forControlEvents:UIControlEventEditingChanged];
+        [cell.contentView addSubview:self.nameText_];
     }
-    [cell.contentView addSubview:textField];
     return cell;
 }
 
 - (void)nameEdited:(UITextField *)textField
 {
-    NSLog(@"---%@", self.userName_);
     self.userName_ = [textField text];
 }
 
 - (void)pswdEdited:(UITextField *)textField
 {
-    NSLog(@"+++%@", self.userPswd_);
     self.userPswd_ = [textField text];
 }
 /*
@@ -160,9 +165,13 @@
 }
 
 #pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    if (theTextField == self.pwdText_) {
+        [self.loginDelegate_ login];
+        [theTextField resignFirstResponder];
+    } else if (theTextField == self.nameText_) {
+        [self.pwdText_ becomeFirstResponder];
+    }
     return YES;
 }
 
