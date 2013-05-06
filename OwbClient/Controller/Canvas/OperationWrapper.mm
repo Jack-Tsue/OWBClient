@@ -7,7 +7,9 @@
 //
 
 #import "OperationWrapper.h"
-#define realPosition(a) CGPointMake((a.x+self.offX_)*self.scale_, (a.y+self.offY_)*self.scale_)
+#define initPosition(a) CGPointMake((a.x+self.offX_)*self.scale_, (a.y+self.offY_)*self.scale_)
+
+#define realPosition(a) initPosition(initPosition(a))
 
 #define screenStart CGPointMake((self.start_.x-self.offX_)*self.scale_, (self.start_.y-self.offY_)*self.scale_)
 #define screenEnd CGPointMake((self.end_.x-self.offX_)*self.scale_, (self.end_.y-self.offY_)*self.scale_)
@@ -43,7 +45,7 @@ Erase *midErase;
         {
             DrawPoint *drawPoint = [[DrawPoint alloc] init];
             drawPoint.color_ = self.color_;
-            drawPoint.thinkness_ = self.thickness_/self.scale_;
+            drawPoint.thinkness_ = self.thickness_*self.scale_;
             drawPoint.alpha_ = self.alpha_;
             drawPoint.position_ = realPosition(self.end_);
             drawPoint.isStart_ = self.isStart_;
@@ -56,7 +58,7 @@ Erase *midErase;
         {
             DrawLine *drawLine = [[DrawLine alloc] init];
             drawLine.color_ = self.color_;
-            drawLine.thinkness_ = self.thickness_/self.scale_;
+            drawLine.thinkness_ = self.thickness_*self.scale_;
             drawLine.alpha_ = self.alpha_;
             drawLine.startPoint_ = realPosition(self.start_);
             drawLine.endPoint_ = realPosition(self.end_);
@@ -69,10 +71,10 @@ Erase *midErase;
         {
             DrawRectange *drawRect = [[DrawRectange alloc] init];
             drawRect.color_ = self.color_;
-            drawRect.thinkness_ = self.thickness_/self.scale_;
+            drawRect.thinkness_ = self.thickness_*self.scale_;
             drawRect.alpha_ = self.alpha_;
-            drawRect.topLeftCorner_ = (self.start_);
-            drawRect.bottomRightCorner_ = (self.end_);
+            drawRect.topLeftCorner_ = realPosition(self.start_);
+            drawRect.bottomRightCorner_ = realPosition(self.end_);
             NSLog(@"====== rect topLeft: (%f, %f); bottomRight: (%f, %f) =========", drawRect.topLeftCorner_.x, drawRect.topLeftCorner_.y, drawRect.bottomRightCorner_.x, drawRect.bottomRightCorner_.y);
             return drawRect;
         }
@@ -81,7 +83,7 @@ Erase *midErase;
         {
             DrawEllipse *drawEllipse = [[DrawEllipse alloc] init];
             drawEllipse.color_ = self.color_;
-            drawEllipse.thinkness_ = self.thickness_/self.scale_;
+            drawEllipse.thinkness_ = self.thickness_*self.scale_;
             drawEllipse.alpha_ = self.alpha_;
             drawEllipse.center_ = realPosition(CGPointMake((self.start_.x+self.end_.x)/2, (self.start_.y+self.end_.y)/2));
             drawEllipse.a_ = fabs(realPosition(self.start_).x-realPosition(self.end_).x)/2;
@@ -93,7 +95,7 @@ Erase *midErase;
         case ERASER:
         {
             Erase *erase = [[Erase alloc] init];
-            erase.thinkness_ = 12*self.thickness_/self.scale_;
+            erase.thinkness_ = 12*self.thickness_*self.scale_;
             erase.position_ = realPosition(self.end_);
             erase.isStart_ = self.isStart_;
             self.isStart_ = NO;
