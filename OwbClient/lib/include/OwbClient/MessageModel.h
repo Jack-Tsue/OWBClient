@@ -33,6 +33,12 @@ enum OwbJoinState {
   OwbDEAD = 4
 };
 
+enum OwbOperationAvaliable {
+    OwbNOT_AVALIABLE = 1,
+    OwbLOAD_DOCUMENT = 2,
+    OwbAVALIBLE = 3
+};
+
 class Document;
 class User;
 class Operation;
@@ -112,11 +118,11 @@ class DocumentList;
 
 # pragma mark - OperationListModel
 @interface OwbClientOperationList : NSObject {
-    bool _operationAvaliable_;
+    enum OwbOperationAvaliable _operationAvaliable_;
     NSArray* _operationList_;
 }
 - (id)initFromOperationList:(const Operations *)operations;
-@property (nonatomic, readonly, assign)  bool operationAvaliable_;
+@property (nonatomic, readonly, assign)  enum OwbOperationAvaliable operationAvaliable_;
 @property (nonatomic, readonly, retain) NSArray* operationList_;
 @end
 
@@ -207,16 +213,21 @@ class DocumentList;
     int _color_;
     float _alpha_;
     CGPoint _position_;
+    bool _isStart_;
 }
 @property (nonatomic, assign) int color_;
 @property (nonatomic, assign) float alpha_;
 @property (nonatomic, assign) CGPoint position_;
+@property (nonatomic, assign) bool isStart_;
 @end
 
 @interface Erase : OwbClientOperation {
     CGPoint _position_;
+    bool _isStart_;
 }
 @property (nonatomic, assign) CGPoint position_;
+@property (nonatomic, assign) bool isStart_;
+
 @end
 
 #endif  // KINGSLANDING_ONLINEWHITEBOARD_CLIENT_MODELS_MESSAGEMODEL_H_

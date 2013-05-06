@@ -22,7 +22,7 @@
         // Custom initialization
         [self.tableView setBackgroundColor:[UIColor clearColor]];
         self.tableView.scrollEnabled = NO;
-        self.labels = @[@"账户",@"密码"];
+        self.labels = @[@"帐号",@"密码"];
     }
     return self;
 }
@@ -78,6 +78,7 @@
     CGRect cellFrame = [cell frame];
     cellFrame.origin = CGPointMake(10, 10);
     label.text = title;
+    [label setFont:[UIFont fontWithName:@"Helvetica" size:18.0]];
     CGRect rect = CGRectInset(cellFrame,2,2);
     label.frame = rect;
     [label sizeToFit];

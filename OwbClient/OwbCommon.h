@@ -17,6 +17,7 @@
 #import "./lib/include/OwbClient/MessageModel.h"
 #import "./lib/include/OwbClient/OwbClientOperationQueue.h"
 #import "./lib/include/OwbClient/OwbClientServerDelegate.h"
+#import "MenuViewController.h"
 #import "HBController.h"
 #import "MBProgressHUD.h"
 #import "QueueHandler.h"
@@ -25,6 +26,9 @@
 
 #define ScreenHeight    320
 #define ScreenWidth     640
+
+#define CanvasHeight 768
+#define CanvasWidth 1024
 
 #define MAX_TIMES 300
 
@@ -68,6 +72,7 @@ try {\
 #define PASTE_SUC @"复制成功"
 #define NETWORK_ERROR @"网络错误！"
 #define LOADING @"载入中..."
+#define CANNOT_NULL @"用户名或密码不能为空"
 #define MENU_FRAME CGRectMake(140, 726, 744, 160)
 #define MENU_OPEN_FRAME CGRectMake(140, 588, 744, 160)
 #define MENU_CLOSE_FRAME CGRectMake(140, 726, 744, 160)
@@ -77,6 +82,7 @@ try {\
 #define LINE_BTN_FRAME CGRectMake(120, 30, 50, 50)
 #define RECT_BTN_FRAME CGRectMake(120, 100, 50, 50)
 #define ELLIPSE_BTN_FRAME CGRectMake(200, 30, 50, 50)
+#define MOVE_BTN_FRAME CGRectMake(200, 100, 50, 50)
 #define PICKER_FRAME CGRectMake(360.0, 30.0, 360.0, 70.0)
 #define PICKER_TMP_VIEW_FRAME CGRectMake(0, 0, 100, 36)
 #define PICKER_TMP_THICKNESS_FRAME CGRectMake(0, 0, 80, 3*(row+1))

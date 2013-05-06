@@ -114,11 +114,11 @@
     } else {
         [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
         OwbClientJoinMeetingReturn *joinReturn;
-        NSLog(@"username: %@ \n meetingID:%@", user_.userName_, self.meetingCode_);
+//        NSLog(@"username: %@ \n meetingID:%@", user_.userName_, self.meetingCode_);
         TRY(joinReturn = [[OwbClientServerDelegate sharedServerDelegate] joinMeeting:user_.userName_ WithMeetingId:self.meetingCode_]);
         if (OwbSUCCESS==joinReturn.joinState_) {
             [self.meetingCodeDelegate_ showCanvas:self.meetingCode_ ];
-            NSLog(@"updater ip: %@, port:%d", joinReturn.serverIp_, joinReturn.port_);
+//            NSLog(@"updater ip: %@, port:%d", joinReturn.serverIp_, joinReturn.port_);
             [[OwbClientServerDelegate sharedServerDelegate] bindUpdaterIp:joinReturn.serverIp_ AndPort:joinReturn.port_];
         } else if(OwbFAIL == joinReturn.joinState_) {
             

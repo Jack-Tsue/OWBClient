@@ -15,7 +15,6 @@
 @interface CanvasViewController ()
 @property bool isHost;
 @property (strong, nonatomic) OwbClientOperationQueue *opQ_;
-@property (strong, nonatomic) MenuViewController *menuVC_;
 @property (strong, nonatomic) UserListViewController *userListVC_;
 @property (strong, nonatomic) SnapshotListViewController *snapshotListVC_;
 @property (strong, nonatomic) MoveScaleImageView *scaleView;
@@ -43,7 +42,8 @@
     
     // menu
     self.menuVC_ = [[MenuViewController alloc] init];
-    
+    self.menuVC_.moveDelegate_ = self;
+
     // user list
     self.userListVC_ = [[UserListViewController alloc] init];
     
@@ -74,6 +74,16 @@
 }
 
 #pragma mark - delegate
+- (void)setMovable {
+    if ([[BoardModel SharedBoard] inHostMode_]&&self.scaleView.isDrawable_) {
+        self.scaleView.isDrawable_ = NO;
+        SUCCESS_HUD(@"现在可以拖动了");
+    } else if ([[BoardModel SharedBoard] inHostMode_]&&!self.scaleView.isDrawable_) {
+        self.scaleView.isDrawable_ = YES;
+        SUCCESS_HUD(@"现在可以画画了");
+    }
+}
+
 - (void)alert
 {
     ERROR_HUD(NETWORK_ERROR);
@@ -81,9 +91,11 @@
 
 - (void)displayerWillRefresh:(id<DisplayerDataSource>) dataSouce_
 {
-    NSLog(@"start to refresh canvas.");
-    [self.snapshotListVC_.snapshotCurrentBtn_ setBackgroundImage:[UIImage imageWithCGImage:[[BoardModel SharedBoard] getData]] forState:UIControlStateNormal];
-    [self.scaleView setImage:[[BoardModel SharedBoard] getData]];
+    CGImageRef image = [[BoardModel SharedBoard] getData];
+//    NSLog(@"start to refresh canvas.");
+    [self.snapshotListVC_.snapshotCurrentBtn_ setBackgroundImage:[UIImage imageWithCGImage:image] forState:UIControlStateNormal];
+    [self.scaleView setImage:image];
+    CGImageRelease(image);
 //    NSString *aPath=[NSString stringWithFormat:@"/Users/xujack/%@.jpg",@"test"];
 //    NSData *imgData = UIImageJPEGRepresentation([UIImage imageWithCGImage:[[BoardModel SharedBoard] getData]],0);
 //    [imgData writeToFile:aPath atomically:YES];
@@ -96,7 +108,6 @@
 
 - (void)moveDisplayerX:(int) x withY:(int)y
 {
-    [self.canvas_.scaleImageView moveToX:x ToY:y];
 }
 
 - (bool)startMeeting:(NSString *)meetingCode withUserName:(NSString *)userName
@@ -133,4 +144,5 @@
     }
     return _return;
 }
+
 @end

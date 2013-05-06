@@ -31,9 +31,19 @@
 @end
 
 @interface PointDrawer : NSObject <OwbClientDrawer>
+{
+    CGPoint point1_;
+    CGPoint point2_;
+    CGPoint startPoint_;
+}
 @end
 
 @interface Eraser : NSObject <OwbClientDrawer>
+{
+    CGPoint point1_;
+    CGPoint point2_;
+    CGPoint startPoint_;
+}
 @end
 
 #endif  // KINGSLANDING_ONLINEWHITEBOARD_CLIENT_TOOLS_DRAWER_H_

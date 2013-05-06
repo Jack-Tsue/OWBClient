@@ -27,6 +27,7 @@
 @private
     CGContextRef context_;
     CGImageRef latestSnapshot_;
+    CGImageRef currentContext_;
     Canvas* displayer_;
     OwbClientOperationQueue* operationQueue_;
     bool isReading_;

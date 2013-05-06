@@ -14,8 +14,7 @@
 @property(nonatomic, strong) UIButton *lineBtn_;
 @property(nonatomic, strong) UIButton *rectBtn_;
 @property(nonatomic, strong) UIButton *ellipseBtn_;
-@property(nonatomic, strong) UIPickerView *colorThicknessAlphaPicker_;
-
+@property(nonatomic, strong) UIButton *moveBtn_;
 @property(nonatomic, strong) NSArray *colorData_;
 @property(nonatomic, strong) NSArray *thicknessData_;
 @property(nonatomic, strong) NSArray *alphaData_;
@@ -44,30 +43,34 @@
         [self.view addGestureRecognizer:menuGestureRecognizer];
         
         self.penBtn_ = [[UIButton alloc] initWithFrame:PEN_BTN_FRAME];
-        [self.penBtn_ setBackgroundColor:[UIColor redColor]];
+        [self.penBtn_ setBackgroundImage:[UIImage imageNamed:@"pen.png"] forState:UIControlStateNormal];
         [self.view addSubview:self.penBtn_];
         [self.penBtn_ addTarget:self action:@selector(penBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         
         self.eraserBtn_ = [[UIButton alloc] initWithFrame:ERASER_BTN_FRAME];
-        [self.eraserBtn_ setBackgroundColor:[UIColor redColor]];
+        [self.eraserBtn_ setBackgroundImage:[UIImage imageNamed:@"eraser.png"] forState:UIControlStateNormal];
         [self.view addSubview:self.eraserBtn_];
         [self.eraserBtn_ addTarget:self action:@selector(eraserBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         
         self.lineBtn_ = [[UIButton alloc] initWithFrame:LINE_BTN_FRAME];
-        [self.lineBtn_ setBackgroundColor:[UIColor redColor]];
+        [self.lineBtn_ setBackgroundImage:[UIImage imageNamed:@"line.png"] forState:UIControlStateNormal];
         [self.view addSubview:self.lineBtn_];
         [self.lineBtn_ addTarget:self action:@selector(lineBtnPress:) forControlEvents:UIControlEventTouchUpInside];
 
         self.rectBtn_ = [[UIButton alloc] initWithFrame:RECT_BTN_FRAME];
-        [self.rectBtn_ setBackgroundColor:[UIColor redColor]];
+        [self.rectBtn_ setBackgroundImage:[UIImage imageNamed:@"rect.png"] forState:UIControlStateNormal];
         [self.view addSubview:self.rectBtn_];
         [self.rectBtn_ addTarget:self action:@selector(rectBtnPress:) forControlEvents:UIControlEventTouchUpInside];
 
         self.ellipseBtn_ = [[UIButton alloc] initWithFrame:ELLIPSE_BTN_FRAME];
-        [self.ellipseBtn_ setBackgroundColor:[UIColor redColor]];
+        [self.ellipseBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
         [self.view addSubview:self.ellipseBtn_];
         [self.ellipseBtn_ addTarget:self action:@selector(ellipseBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         
+        self.moveBtn_ = [[UIButton alloc] initWithFrame:MOVE_BTN_FRAME];
+        [self.moveBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
+        [self.view addSubview:self.moveBtn_];
+        [self.moveBtn_ addTarget:self action:@selector(moveBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         
         self.colorData_ = [[NSArray alloc] initWithObjects:[UIColor blackColor], [UIColor redColor], [UIColor blueColor], [UIColor yellowColor], [UIColor greenColor], nil];
         
@@ -77,7 +80,8 @@
         [self.colorThicknessAlphaPicker_ setBackgroundColor:[UIColor clearColor]];
         [self.colorThicknessAlphaPicker_ setOpaque:NO];
         [self.view addSubview:self.colorThicknessAlphaPicker_];
-        
+        [self.colorThicknessAlphaPicker_ selectRow:4 inComponent:1 animated:YES];
+        self.thicknessNo_ = 5;
     }
     return self;
 }
@@ -191,7 +195,7 @@
         [[OperationWrapper SharedOperationWrapper] setThickness_:row+1];
     } else {
         self.alpha_ = 1-0.1*row;
-        NSLog(@"picker alpha: %f", self.alpha_);
+//        NSLog(@"picker alpha: %f", self.alpha_);
         [[OperationWrapper SharedOperationWrapper] setAlpha_:self.alpha_];
     }
 }
@@ -200,7 +204,7 @@
 - (void)penBtnPress:(id)sender
 {
     self.opType_ = POINT;
-    NSLog(@"op Type: %d", self.opType_);
+//    NSLog(@"op Type: %d", self.opType_);
     [[OperationWrapper SharedOperationWrapper] setOpType_:POINT];
 }
 
@@ -226,5 +230,10 @@
 {
     self.opType_ = ELLIPSE;
     [[OperationWrapper SharedOperationWrapper] setOpType_:ELLIPSE];
+}
+
+- (void)moveBtnPress:(id)sender
+{
+    [self.moveDelegate_ setMovable];
 }
 @end

@@ -10,6 +10,13 @@
 #import "OwbCommon.h"
 #import "OperationWrapper.h"
 
-@interface MenuViewController : UIViewController<UIPickerViewDelegate,UIPickerViewDataSource>
+@protocol MoveDelegate <NSObject>
 
+- (void)setMovable;
+
+@end
+
+@interface MenuViewController : UIViewController<UIPickerViewDelegate,UIPickerViewDataSource>
+@property(nonatomic, strong) UIPickerView *colorThicknessAlphaPicker_;
+@property (nonatomic, retain) id<MoveDelegate> moveDelegate_;
 @end

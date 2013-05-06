@@ -13,9 +13,10 @@
 #import "SnapshotListViewController.h"
 #import "OwbClientCanvas.h"
 
-@interface CanvasViewController : UIViewController<HBDelegate, MBProgressHUDDelegate, DisplayerDelegate>
+@interface CanvasViewController : UIViewController<MoveDelegate, HBDelegate, MBProgressHUDDelegate, DisplayerDelegate>
 
 @property (strong, nonatomic) OwbClientCanvas *canvas_;
+@property (strong, nonatomic) MenuViewController *menuVC_;
 
 - (bool)switchDrawMethods;
 - (bool)startMeeting:(NSString *)meetingCode withUserName:(NSString *)userName;

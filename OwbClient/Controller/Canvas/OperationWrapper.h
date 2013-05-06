@@ -20,8 +20,10 @@
 @property CGPoint start_;
 @property CGPoint end_;
 @property float scale_;
+@property int offX_, offY_;
+@property BOOL isStart_;
 
 + (OperationWrapper *)SharedOperationWrapper;
 - (OwbClientOperation *)wrap;
-- (OwbClientOperation *)wrapMid;
+- (OwbClientOperation *)wrapMiddle;
 @end

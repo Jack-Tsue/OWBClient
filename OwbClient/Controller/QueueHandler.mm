@@ -50,16 +50,20 @@ static QueueHandler * instance;
         } catch (std::exception e) {
             NSLog(@"in QueueHandler.mm: get server data failed.");
         }
-        if(isSucToGetData) {
+        if(OwbAVALIBLE == isSucToGetData) {
             [[BoardModel SharedBoard] trigerReadOperationQueue];
-        } else {
+        } else if(OwbNOT_AVALIABLE == isSucToGetData) {
             OwbClientDocument *tmpDoc;
             try {
                 tmpDoc = [[OwbClientServerDelegate sharedServerDelegate] getLatestDocument:meetingCode_];
+                [opQueue_ setLatestSerialNumber_:tmpDoc.serialNumber_];
             } catch (std::exception e) {
                 NSLog(@"in QueueHandler.mm: get latest doc failed.");
             }
             [[BoardModel SharedBoard] loadDocument:tmpDoc];
+        }else if(OwbLOAD_DOCUMENT == isSucToGetData){
+            [opQueue_ setLatestSerialNumber_:(opQueue_.latestSerialNumber_+1)];
+#warning get document
         }
     }
 }

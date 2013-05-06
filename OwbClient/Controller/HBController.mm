@@ -24,7 +24,7 @@ static HBController *instance = nil;
         [hbSendPack setMeetingId_:meetingCode];
         [hbSendPack setUserName_:userName];
     } catch (std::exception e) {
-        NSLog(@"in HBController.mm: fail to start hear.");
+//        NSLog(@"in HBController.mm: fail to start hear.");
     }
     
     [self performSelectorInBackground:@selector(heartBeat) withObject:nil];
@@ -58,7 +58,7 @@ static HBController *instance = nil;
         [[QueueHandler SharedQueueHandler] startQueueGetDataBackgroundWithMeetingID:hbSendPack.meetingId_];
     } else if(![[BoardModel SharedBoard] inHostMode_] && OwbHOST==identity) {
         [[BoardModel SharedBoard] setInHostMode_:YES];
-        NSLog(@"is host: %d", [[BoardModel SharedBoard] inHostMode_]);
+//        NSLog(@"is host: %d", [[BoardModel SharedBoard] inHostMode_]);
         [[QueueHandler SharedQueueHandler] stopQueueGetDataBackground];
     }
 }
