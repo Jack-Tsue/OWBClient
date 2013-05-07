@@ -11,16 +11,16 @@
 
 #define setOffsetX if ((offsetX+tmpX*scale)<0) { \
                          offsetX=0; \
-                     } else if((offsetX+tmpX*scale)>1024*2) { \
-                         offsetX=1024*2; \
+                     } else if((offsetX+tmpX*scale+CanvasWidth*scale)>CanvasWidth*3) { \
+                         return; \
                      } else { \
                          offsetX += tmpX*scale; \
                      }
 
 #define setOffsetY if ((offsetY+tmpY*scale)<0) { \
                          offsetY=0; \
-                     } else if((offsetY+tmpY*scale)>1024*2) { \
-                         offsetY=1024*2; \
+                     } else if((offsetY+tmpY*scale+CanvasHeight*scale)>CanvasHeight*3) { \
+                         return; \
                      } else { \
                          offsetY += tmpY*scale; \
                      }
