@@ -168,7 +168,11 @@
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     if (theTextField == self.pwdText_) {
-        [self.loginDelegate_ login];
+        if (nil==self.userName_||nil==self.userPswd_) {
+            ERROR_HUD(CANNOT_NULL);
+        } else {
+            [self.loginDelegate_ login];
+        }
         [theTextField resignFirstResponder];
     } else if (theTextField == self.nameText_) {
         [self.pwdText_ becomeFirstResponder];

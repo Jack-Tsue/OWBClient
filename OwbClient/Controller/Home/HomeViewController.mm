@@ -120,10 +120,6 @@ BOOL isFailed = NO;
 {
     [user setUserName_:self.loginViewController_.userName_];
     [user setPassWord_:self.loginViewController_.userPswd_];
-    if (nil==[user userName_]||nil==[user passWord_]) {
-        ERROR_HUD(CANNOT_NULL);
-        return;
-    }
     int isLogin = 0;
     try {
         NSLog(@"%@  %@  %@  %@", self.loginViewController_.userName_, self.loginViewController_.userPswd_, [user userName_], [user passWord_]);

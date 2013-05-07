@@ -15,7 +15,7 @@
 
 @end
 
-@interface LoginViewController : UITableViewController<UITextFieldDelegate>
+@interface LoginViewController : UITableViewController<UITextFieldDelegate, MBProgressHUDDelegate>
 
 @property (nonatomic, strong) NSString *userName_, *userPswd_;
 @property (nonatomic, retain) id<LoginDelegate> loginDelegate_;
