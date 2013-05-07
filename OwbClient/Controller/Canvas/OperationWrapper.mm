@@ -9,10 +9,10 @@
 #import "OperationWrapper.h"
 #define initPosition(a) CGPointMake((a.x+self.offX_)*self.scale_, (a.y+self.offY_)*self.scale_)
 
-#define realPosition(a) initPosition(initPosition(a))
+#define realPosition(a) CGPointMake(a.x*self.scale_+self.offX_, a.y*self.scale_+self.offY_)
 
-#define screenStart CGPointMake((self.start_.x-self.offX_)*self.scale_, (self.start_.y-self.offY_)*self.scale_)
-#define screenEnd CGPointMake((self.end_.x-self.offX_)*self.scale_, (self.end_.y-self.offY_)*self.scale_)
+#define screenStart self.start_//CGPointMake((self.start_.x-self.offX_)*self.scale_, (self.start_.y-self.offY_)*self.scale_)
+#define screenEnd self.end_//CGPointMake((self.end_.x-self.offX_)*self.scale_, (self.end_.y-self.offY_)*self.scale_)
 
 static OperationWrapper *instance = nil;
 DrawPoint *midDrawPoint;

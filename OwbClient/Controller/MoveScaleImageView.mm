@@ -35,18 +35,20 @@
 
 -(id)initWithFrame:(CGRect)frame{
 	if (self=[super initWithFrame:frame]) {
-        offsetX=0;
-        offsetY=0;
 //        NSLog(@"Board Data: %@", [[BoardModel SharedBoard] getData]);
         [self setClearsContextBeforeDrawing:YES];
         self.isDrawable_ = [[BoardModel SharedBoard] inHostMode_];
-        [self setImage:[[BoardModel SharedBoard] getData]];
+        CGImageRef tmpRef = [[BoardModel SharedBoard] getData];
+        [self setImage:tmpRef];
+        CGImageRelease(tmpRef);
 //        UIImage *background = [UIImage imageWithCGImage: [[BoardModel SharedBoard] getData]];
 //        imageView.image = background;
 //        [self sendSubviewToBack:imageView];
 		[self setUserInteractionEnabled:YES];
 		[self setMultipleTouchEnabled:YES];
 		scale=1;
+        offsetX=0;
+        offsetY=0;
 	}
 	return self;
 }
@@ -64,11 +66,11 @@
 }
 
 -(void)setImage:(CGImageRef)imageRef{
-    CGImageRef tmpBoard = [[BoardModel SharedBoard] getData];
-    CGImageRef tmpShot = [self getScreenShot:tmpBoard];
+//    CGImageRef tmpBoard = [[BoardModel SharedBoard] getData];
+    CGImageRef tmpShot = [self getScreenShot:imageRef];
     displayImage_ = [self setToFitScreen:tmpShot];
     CGImageRelease(tmpShot);
-    CGImageRelease(tmpBoard);
+//    CGImageRelease(tmpBoard);
 }
 
 - (CGImageRef)getScreenShot:(CGImageRef)boardShot
@@ -100,7 +102,7 @@
 //        NSLog(@"draw start");
         UITouch *touch=[touches anyObject];
 		drawStartPoint=[touch locationInView:self];
-        [[OperationWrapper SharedOperationWrapper] setStart_:CGPointMake(offsetX+drawStartPoint.x/scale, offsetY+drawStartPoint.y/scale)];
+        [[OperationWrapper SharedOperationWrapper] setStart_:drawStartPoint];
         if ([[OperationWrapper SharedOperationWrapper] opType_] == POINT || [[OperationWrapper SharedOperationWrapper] opType_] == ERASER) {
             [[OperationWrapper SharedOperationWrapper] setIsStart_:YES];
         } else {
@@ -135,10 +137,9 @@
 	}else if([touches count]==1 && self.isDrawable_){
         UITouch* touch=[touches anyObject];
 		CGPoint currPoint=[touch locationInView:self];
-        [[OperationWrapper SharedOperationWrapper] setEnd_:CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale)];
+        [[OperationWrapper SharedOperationWrapper] setEnd_:currPoint];
         [[OperationWrapper SharedOperationWrapper] setScale_:scale];
         if ([[OperationWrapper SharedOperationWrapper] opType_] == POINT || [[OperationWrapper SharedOperationWrapper] opType_] == ERASER) {
-            [[OperationWrapper SharedOperationWrapper] setScale_:scale];
             OwbClientOperation *tmpOp = [[OperationWrapper SharedOperationWrapper] wrap];
 //            NSLog(@"******** point tmp op: %@", tmpOp);
 //            NSLog(@"tmp op thickness: %d", tmpOp.thinkness_);
@@ -181,10 +182,10 @@
         if ([[OperationWrapper SharedOperationWrapper] opType_] == POINT || [[OperationWrapper SharedOperationWrapper] opType_] == ERASER) {
         } else if([[OperationWrapper SharedOperationWrapper] opType_] == RECT){
             if(offsetX>0) {
-                [[OperationWrapper SharedOperationWrapper] setEnd_:CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale)];
+                [[OperationWrapper SharedOperationWrapper] setEnd_:currPoint];
             } else {
                 [[OperationWrapper SharedOperationWrapper] setEnd_:[[OperationWrapper SharedOperationWrapper] start_]];
-                [[OperationWrapper SharedOperationWrapper] setStart_:CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale)];
+                [[OperationWrapper SharedOperationWrapper] setStart_:currPoint];
             }
             [[OperationWrapper SharedOperationWrapper] setScale_:scale];
 //            NSLog(@"end shared operation type: %d, thinckness: %d", [[OperationWrapper SharedOperationWrapper] opType_], [[OperationWrapper SharedOperationWrapper] thickness_]);
@@ -193,7 +194,7 @@
             [[BoardModel SharedBoard] drawOperation:[[OperationWrapper SharedOperationWrapper] wrap]];
             //        [[QueueHandler SharedQueueHandler] drawOperationToServer:[[OperationWrapper SharedOperationWrapper] wrap]];
         }else {
-            [[OperationWrapper SharedOperationWrapper] setEnd_:CGPointMake(offsetX+currPoint.x/scale, offsetY+currPoint.y/scale)];
+            [[OperationWrapper SharedOperationWrapper] setEnd_:currPoint];
             [[OperationWrapper SharedOperationWrapper] setScale_:scale];
 //            NSLog(@"end shared operation type: %d, thinckness: %d", [[OperationWrapper SharedOperationWrapper] opType_], [[OperationWrapper SharedOperationWrapper] thickness_]);
             for (int i=0;i<TEST_TIMES;i++) {
@@ -207,8 +208,14 @@
 -(void)scaleTo:(CGFloat)x{
 	scale*=x;
 	//缩放限制：>＝0.1，<=10
+    if(((offsetX+tmpX*scale+CanvasWidth*scale)>CanvasWidth*3)||((offsetY+tmpY*scale+CanvasHeight*scale)>CanvasHeight*3)) {
+        offsetX=0;
+        offsetY=0;
+    }
 	scale=(scale<1)?1:scale;
 	scale=(scale>3)?3:scale;
+    int tmp = scale*2;
+    scale = tmp/2;
     [self display];
 }
 
