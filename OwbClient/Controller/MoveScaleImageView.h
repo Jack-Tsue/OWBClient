@@ -22,12 +22,16 @@
 	CGFloat scale;//缩放比例
 	CGRect lensRect;//设置镜头的大小
     
-    CGImageRef imageRef_;
+//    CGImageRef imageRef_;
     BOOL isInMiddle_;
     OwbClientOperation* middle_op_;
     UIImage* displayImage_;
+    int boardIndex_;
+    float lastBoardScale;
 }
-
+- (void)scale;
+- (int)getBoardIndex;
+- (void)setScale:(int)s;
 - (void)display;
 - (void)setImage:(CGImageRef)imageRef;
 - (void)scaleTo:(CGFloat)x;

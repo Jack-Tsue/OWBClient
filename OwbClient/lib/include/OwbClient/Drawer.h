@@ -18,7 +18,11 @@
 @required
 - (void)draw:(OwbClientOperation *)operation InCanvas:(CGContextRef)canvas;
 - (void)sliceOpertion:(OwbClientOperation *)operation IntoQueue:(OwbClientOperationQueue*) queue;
+
 + (id<OwbClientDrawer>) sharedOwbClientDrawer;
+
+@optional
+- (void)setIndex:(int) index;
 @end
 
 @interface LineDrawer : NSObject <OwbClientDrawer>
@@ -32,17 +36,19 @@
 
 @interface PointDrawer : NSObject <OwbClientDrawer>
 {
-    CGPoint point1_;
-    CGPoint point2_;
-    CGPoint startPoint_;
+    CGPoint* point1_;
+    CGPoint* point2_;
+    CGPoint* startPoint_;
+    int index_;
 }
 @end
 
 @interface Eraser : NSObject <OwbClientDrawer>
 {
-    CGPoint point1_;
-    CGPoint point2_;
-    CGPoint startPoint_;
+    CGPoint* point1_;
+    CGPoint* point2_;
+    CGPoint* startPoint_;
+    int index_;
 }
 @end
 

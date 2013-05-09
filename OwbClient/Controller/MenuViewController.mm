@@ -15,6 +15,9 @@
 @property(nonatomic, strong) UIButton *rectBtn_;
 @property(nonatomic, strong) UIButton *ellipseBtn_;
 @property(nonatomic, strong) UIButton *moveBtn_;
+@property(nonatomic, strong) UIButton *biggerBtn_;
+@property(nonatomic, strong) UIButton *smallerBtn_;
+
 @property(nonatomic, strong) NSArray *colorData_;
 @property(nonatomic, strong) NSArray *thicknessData_;
 @property(nonatomic, strong) NSArray *alphaData_;
@@ -72,6 +75,16 @@
         [self.view addSubview:self.moveBtn_];
         [self.moveBtn_ addTarget:self action:@selector(moveBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         
+        self.biggerBtn_ = [[UIButton alloc] initWithFrame:IncreaseScale_BTN_FRAME];
+        [self.biggerBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
+        [self.view addSubview:self.biggerBtn_];
+        [self.biggerBtn_ addTarget:self action:@selector(biggerBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.smallerBtn_ = [[UIButton alloc] initWithFrame:DecreaseScale_BTN_FRAME];
+        [self.smallerBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
+        [self.view addSubview:self.smallerBtn_];
+        [self.smallerBtn_ addTarget:self action:@selector(smallerBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        
         self.colorData_ = [[NSArray alloc] initWithObjects:[UIColor blackColor], [UIColor redColor], [UIColor blueColor], [UIColor yellowColor], [UIColor greenColor], nil];
         
         self.colorThicknessAlphaPicker_ = [[UIPickerView alloc] initWithFrame:PICKER_FRAME];
@@ -79,9 +92,9 @@
         self.colorThicknessAlphaPicker_.delegate = self;
         [self.colorThicknessAlphaPicker_ setBackgroundColor:[UIColor clearColor]];
         [self.colorThicknessAlphaPicker_ setOpaque:NO];
+        [self.colorThicknessAlphaPicker_ selectRow:3 inComponent:0 animated:YES];
+        self.thicknessNo_ = 4;
         [self.view addSubview:self.colorThicknessAlphaPicker_];
-        [self.colorThicknessAlphaPicker_ selectRow:4 inComponent:1 animated:YES];
-        self.thicknessNo_ = 5;
     }
     return self;
 }
@@ -159,9 +172,9 @@
 }
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (component==0) {
+    if (component==1) {
         return [self.colorData_ count];
-    } else if (component==1) {
+    } else if (component==0) {
         return 10;
     } else {
         return 10;
@@ -172,9 +185,9 @@
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UIView *tmpView = [[UIView alloc]initWithFrame:PICKER_TMP_VIEW_FRAME];
-    if (component==0) {
+    if (component==1) {
         [tmpView setBackgroundColor:[self.colorData_ objectAtIndex:row]];
-    } else if (component==1) {
+    } else if (component==0) {
         [tmpView setFrame:PICKER_TMP_THICKNESS_FRAME];
         [tmpView setBackgroundColor:[self.colorData_ objectAtIndex:self.colorNo_]];
     } else {
@@ -186,11 +199,11 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    if (component==0) {
+    if (component==1) {
         self.colorNo_ = row;
         [[OperationWrapper SharedOperationWrapper] setColor_:row];
         [self.colorThicknessAlphaPicker_ reloadAllComponents];
-    } else if (component==1) {
+    } else if (component==0) {
         self.thicknessNo_ = row;
         [[OperationWrapper SharedOperationWrapper] setThickness_:row+1];
     } else {
@@ -206,34 +219,49 @@
     self.opType_ = POINT;
 //    NSLog(@"op Type: %d", self.opType_);
     [[OperationWrapper SharedOperationWrapper] setOpType_:POINT];
+    [self.moveScaleDelegate_ setStartDraw];
 }
 
 - (void)eraserBtnPress:(id)sender
 {
     self.opType_ = ERASER;
     [[OperationWrapper SharedOperationWrapper] setOpType_:ERASER];
+    [self.moveScaleDelegate_ setStartDraw];
 }
 
 - (void)lineBtnPress:(id)sender
 {
     self.opType_ = LINE;
     [[OperationWrapper SharedOperationWrapper] setOpType_:LINE];
+    [self.moveScaleDelegate_ setStartDraw];
 }
 
 - (void)rectBtnPress:(id)sender
 {
     self.opType_ = RECT;
     [[OperationWrapper SharedOperationWrapper] setOpType_:RECT];
+    [self.moveScaleDelegate_ setStartDraw];
 }
 
 - (void)ellipseBtnPress:(id)sender
 {
     self.opType_ = ELLIPSE;
     [[OperationWrapper SharedOperationWrapper] setOpType_:ELLIPSE];
+    [self.moveScaleDelegate_ setStartDraw];
 }
 
 - (void)moveBtnPress:(id)sender
 {
-    [self.moveDelegate_ setMovable];
+    [self.moveScaleDelegate_ setMovable];
+}
+
+- (void)biggerBtnPress:(id)sender
+{
+    [self.moveScaleDelegate_ scaleBigger];
+}
+
+- (void)smallerBtnPress:(id)sender
+{
+    [self.moveScaleDelegate_ scaleSmaller];
 }
 @end

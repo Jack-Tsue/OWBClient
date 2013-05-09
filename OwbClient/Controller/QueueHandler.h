@@ -20,4 +20,5 @@
 - (void)startQueueGetDataBackgroundWithMeetingID:(NSString *)meetingID;
 - (void)stopQueueGetDataBackground;
 - (void)drawOperationToServer:(OwbClientOperation *)op;
+- (void)setMeetingCode:(NSString *)code;
 @end

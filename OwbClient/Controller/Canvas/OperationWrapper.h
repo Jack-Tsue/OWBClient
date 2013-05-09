@@ -20,10 +20,11 @@
 @property CGPoint start_;
 @property CGPoint end_;
 @property float scale_;
-@property int offX_, offY_;
-@property BOOL isStart_;
+@property float offX_, offY_;
+@property bool is_start_;
 
 + (OperationWrapper *)SharedOperationWrapper;
 - (OwbClientOperation *)wrap;
 - (OwbClientOperation *)wrapMiddle;
+- (OwbClientOperation *)unwrap:(OwbClientOperation*) op;
 @end

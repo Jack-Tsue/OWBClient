@@ -11,11 +11,12 @@
 #import <UIKit/UIKit.h>
 
 @class OwbClientOperationQueue;
+@class OwbClientOperation;
 
 @protocol DisplayerDataSource <NSObject>
 
-- (CGImageRef)getData;
-- (CGImageRef)getLatestSnapshot;
+- (CGImageRef)getData:(int) num;
+- (CGImageRef)getLatestSnapshot:(int) num;
 - (void)saveSnapshot;
 
 @end
@@ -43,6 +44,7 @@
     BOOL _isDrawable_;
 }
 - (void)display;
+- (void)drawOp:(OwbClientOperation*) op;
 @property (nonatomic, retain) id<DisplayerDataSource> dataSource_;
 @property (nonatomic, retain) id<DisplayerDelegate> displayerDelegate_;
 @property (nonatomic, retain) id<DrawerDelegate> drawerDelegate_;

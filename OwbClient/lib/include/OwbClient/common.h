@@ -13,10 +13,10 @@
 
 #define LINE_SLICE_UNIT 3
 
-#define SCALE   3
+#define BOARD_NUM   5
 
-#define BOARD_HEIGHT  768*SCALE
-#define BOARD_WIDTH   1024*SCALE
+#define BOARD_HEIGHT  768
+#define BOARD_WIDTH   1024
 #define BOARD_BITS_PER_COMPONENT 8
 #define BOARD_BYTES_PER_PER_ROW 0
 

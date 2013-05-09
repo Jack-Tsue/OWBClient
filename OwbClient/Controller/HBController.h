@@ -21,6 +21,7 @@
     bool shouldStop;
     OwbClientHeartSendPackage *hbSendPack;
     id<HBDelegate> hbDelegate_;
+    bool isNotFirst;
 }
 
 @property (nonatomic, retain) id<HBDelegate> hbDelegate_;

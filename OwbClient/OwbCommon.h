@@ -30,7 +30,7 @@
 #define CanvasHeight 768
 #define CanvasWidth 1024
 
-#define MAX_TIMES 300
+#define MAX_TIMES 4
 
 #define POINT OwbOperationDataType_POINT
 #define LINE OwbOperationDataType_LINE
@@ -39,8 +39,8 @@
 #define ERASER OwbOperationDataType_ERASER
 
 #define ERROR_HUD(errorHint) \
-MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];\
-[[[[UIApplication sharedApplication] delegate] window] addSubview:HUD];\
+UIWindow *window = [[[UIApplication sharedApplication] windows] lastObject]; \
+MBProgressHUD *HUD = [MBProgressHUD showHUDAddedTo:window animated:YES]; \
 HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error.png"]];\
 HUD.mode = MBProgressHUDModeCustomView;\
 HUD.delegate = self;\
@@ -49,14 +49,14 @@ HUD.labelText = (errorHint);\
 [HUD hide:YES afterDelay:1]
 
 #define SUCCESS_HUD(successHint) \
-MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];\
+MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:[[[UIApplication sharedApplication] delegate] window]];\
 [self.view addSubview:HUD];\
 HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"succ.png"]];\
 HUD.mode = MBProgressHUDModeCustomView;\
 HUD.delegate = self;\
 HUD.labelText = (successHint);\
 [HUD show:YES];\
-[HUD hide:YES afterDelay:1]
+[HUD hide:YES afterDelay:0.6]
 
 #define TRY(a) \
 try {\
@@ -67,12 +67,15 @@ try {\
 
 #define MAX_FAIL 4
 #define SLEEP_TIME 5
+#define SLEEP_SHORT_TIME 1
 #define LOGIN_HINT @"登录中"
 #define LOGIN_FAIL @"用户名或密码错误"
 #define PASTE_SUC @"复制成功"
 #define NETWORK_ERROR @"网络错误！"
 #define LOADING @"载入中..."
 #define CANNOT_NULL @"用户名或密码不能为空"
+#define MIN_HINT @"已然缩到最小"
+#define MAX_HINT @"已然放到最大"
 #define MENU_FRAME CGRectMake(140, 726, 744, 160)
 #define MENU_OPEN_FRAME CGRectMake(140, 588, 744, 160)
 #define MENU_CLOSE_FRAME CGRectMake(140, 726, 744, 160)
@@ -83,6 +86,9 @@ try {\
 #define RECT_BTN_FRAME CGRectMake(120, 100, 50, 50)
 #define ELLIPSE_BTN_FRAME CGRectMake(200, 30, 50, 50)
 #define MOVE_BTN_FRAME CGRectMake(200, 100, 50, 50)
+#define IncreaseScale_BTN_FRAME CGRectMake(280, 30, 50, 50)
+#define DecreaseScale_BTN_FRAME CGRectMake(280, 100, 50, 50)
+
 #define PICKER_FRAME CGRectMake(360.0, 30.0, 360.0, 70.0)
 #define PICKER_TMP_VIEW_FRAME CGRectMake(0, 0, 100, 36)
 #define PICKER_TMP_THICKNESS_FRAME CGRectMake(0, 0, 80, 3*(row+1))

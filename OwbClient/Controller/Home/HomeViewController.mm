@@ -33,7 +33,7 @@ BOOL isFailed = NO;
     [[OwbClientServerDelegate sharedServerDelegate] bindMonitorIp:[defaults stringForKey:@"MIP"] AndPort:[defaults integerForKey:@"MP"]];
     [[OwbClientServerDelegate sharedServerDelegate] bindProviderIp:[defaults stringForKey:@"PIP"] AndPort:[defaults integerForKey:@"PP"]];
     
-    NSLog(@"ip and port: \n%@ %@ %@ %@", [defaults objectForKey:@"MIP"], [defaults objectForKey:@"MP"], [defaults objectForKey:@"PIP"], [defaults objectForKey:@"PP"]);
+//    NSLog(@"ip and port: \n%@ %@ %@ %@", [defaults objectForKey:@"MIP"], [defaults objectForKey:@"MP"], [defaults objectForKey:@"PIP"], [defaults objectForKey:@"PP"]);
     
     user = [[OwbClientUser alloc] init];
     //    ServerDelegate::GetInstance()->login([[[OwbClientUser alloc]init]toUser]);
@@ -122,7 +122,7 @@ BOOL isFailed = NO;
     [user setPassWord_:self.loginViewController_.userPswd_];
     int isLogin = 0;
     try {
-        NSLog(@"%@  %@  %@  %@", self.loginViewController_.userName_, self.loginViewController_.userPswd_, [user userName_], [user passWord_]);
+//        NSLog(@"%@  %@  %@  %@", self.loginViewController_.userName_, self.loginViewController_.userPswd_, [user userName_], [user passWord_]);
         isLogin=[[OwbClientServerDelegate sharedServerDelegate] login:user];
     } catch (std::exception) {
         isLogin=2;
@@ -181,7 +181,7 @@ BOOL isFailed = NO;
 	
 	[HUD showWhileExecuting:@selector(tryToStartMeeting) onTarget:self withObject:nil animated:YES];
     if(isFailed) {
-        ERROR_HUD(NETWORK_ERROR);
+        
     }
 }
 
@@ -194,6 +194,7 @@ BOOL isFailed = NO;
         }];
     } else {
         isFailed = YES;
+        ERROR_HUD(NETWORK_ERROR);
     }
 }
 @end

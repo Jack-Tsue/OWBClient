@@ -56,7 +56,11 @@ class DocumentList;
 @required
 - (void)draw:(OwbClientOperation *)operation InCanvas:(CGContextRef)canvas;
 - (void)sliceOpertion:(OwbClientOperation *)operation IntoQueue:(OwbClientOperationQueue*) queue;
+
 + (id<OwbClientDrawer>) sharedOwbClientDrawer;
+
+@optional
+- (void)setIndex:(int) index;
 @end
 
 # pragma mark - DocumentModel
@@ -160,6 +164,7 @@ class DocumentList;
 }
 - (id)initFromOperation:(const Operation *)operation;
 - (Operation)toOperation;
+- (OwbClientOperation*)duplicate;
 
 @property (nonatomic, assign) int serialNumber_;
 @property (nonatomic, assign) enum OwbOperationDataType operationType_;

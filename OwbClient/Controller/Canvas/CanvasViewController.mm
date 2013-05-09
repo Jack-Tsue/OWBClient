@@ -42,7 +42,7 @@
     
     // menu
     self.menuVC_ = [[MenuViewController alloc] init];
-    self.menuVC_.moveDelegate_ = self;
+    self.menuVC_.moveScaleDelegate_ = self;
 
     // user list
     self.userListVC_ = [[UserListViewController alloc] init];
@@ -77,10 +77,39 @@
 - (void)setMovable {
     if ([[BoardModel SharedBoard] inHostMode_]&&self.scaleView.isDrawable_) {
         self.scaleView.isDrawable_ = NO;
-        SUCCESS_HUD(@"现在可以拖动了");
+        SUCCESS_HUD(@"可以缩放拖拽了");
     } else if ([[BoardModel SharedBoard] inHostMode_]&&!self.scaleView.isDrawable_) {
         self.scaleView.isDrawable_ = YES;
         SUCCESS_HUD(@"现在可以画画了");
+    }
+}
+
+- (void)setStartDraw {
+    if ([[BoardModel SharedBoard] inHostMode_]&&!self.scaleView.isDrawable_) {
+        self.scaleView.isDrawable_ = YES;
+        SUCCESS_HUD(@"现在可以画画了");
+    }
+}
+
+- (void)scaleSmaller {
+    int tmpBoardIndex = [self.scaleView getBoardIndex];
+//    NSLog(@"0 scale: %f", tmpScale);
+    if (0==tmpBoardIndex) {
+        ERROR_HUD(MIN_HINT);
+    } else {
+        [self.scaleView setScale:(tmpBoardIndex-1)];
+    }
+}
+
+- (void)scaleBigger {
+    int tmpBoardIndex = [self.scaleView getBoardIndex];
+//    NSLog(@"0 scale: %f", tmpScale);
+    
+    if (4==tmpBoardIndex) {
+        ERROR_HUD(MAX_HINT);
+    } else {
+        [self.scaleView setScale:(tmpBoardIndex+1)];
+//        NSLog(@"02 scale: %f", tmpScale);
     }
 }
 
@@ -91,14 +120,18 @@
 
 - (void)displayerWillRefresh:(id<DisplayerDataSource>) dataSouce_
 {
-    CGImageRef image = [[BoardModel SharedBoard] getData];
+    
+    CGImageRef image = [[BoardModel SharedBoard] getData:self.boardIndex];
 //    NSLog(@"start to refresh canvas.");
     [self.snapshotListVC_.snapshotCurrentBtn_ setBackgroundImage:[UIImage imageWithCGImage:image] forState:UIControlStateNormal];
     [self.scaleView setImage:image];
-    CGImageRelease(image);
+
 //    NSString *aPath=[NSString stringWithFormat:@"/Users/xujack/%@.jpg",@"test"];
-//    NSData *imgData = UIImageJPEGRepresentation([UIImage imageWithCGImage:[[BoardModel SharedBoard] getData]],0);
+//    NSData *imgData = UIImageJPEGRepresentation([UIImage imageWithCGImage:image],0);
 //    [imgData writeToFile:aPath atomically:YES];
+    
+    CGImageRelease(image);
+
 }
 
 - (void)scaleDisplayer:(float)scale
@@ -114,7 +147,7 @@
 {
     [[BoardModel SharedBoard]attachCanvas:self.scaleView];
      self.opQ_ = [[OwbClientOperationQueue alloc] init];
-    
+    [[QueueHandler SharedQueueHandler] setMeetingCode:meetingCode];
     [[QueueHandler SharedQueueHandler] attachQueue:self.opQ_];
     [[BoardModel SharedBoard] attachOpeartionQueue:self.opQ_];
     [HBController SharedHBController].hbDelegate_ = self;
@@ -130,8 +163,9 @@
 {
     BOOL _return = NO;
     try {
-//        OwbClientDocument *latestSnapshot = [[OwbClientServerDelegate sharedServerDelegate] getLatestDocument:meetingCode];
-//        [[BoardModel SharedBoard] loadDocument:latestSnapshot];
+        OwbClientDocument *latestSnapshot = [[OwbClientServerDelegate sharedServerDelegate] getLatestDocument:meetingCode];
+        NSLog(@"latest snapshot: %d", latestSnapshot.serialNumber_);
+        [[BoardModel SharedBoard] loadDocument:latestSnapshot];
         [self.view addSubview:self.scaleView];
         [self.view sendSubviewToBack:self.scaleView];
         _return = YES;

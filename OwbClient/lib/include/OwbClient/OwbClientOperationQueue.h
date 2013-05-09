@@ -15,8 +15,8 @@
 @interface OwbClientOperationQueue : NSObject {
 @private
     NSMutableArray *operations_;
-    NSLock *enqueueLocker_;
-    NSLock *dequeueLocker_;
+    NSRecursiveLock *enqueueLocker_;
+    NSRecursiveLock *dequeueLocker_;
     bool _writable_;
     NSString* _meetingId_;
     int _latestSerialNumber_;
@@ -25,7 +25,7 @@
 - (void)enqueue:(OwbClientOperation *)operation;
 - (OwbClientOperation *)dequeue;
 - (bool)isEmpty;
-- (bool)getServerData;
+- (int)getServerData;
 - (void)lock;
 - (void)unLock;
 - (void)clear;

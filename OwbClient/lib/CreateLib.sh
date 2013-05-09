@@ -24,4 +24,4 @@ lipo -create $ipOlib $ipSlib -output libOwbClient.a
 
 cp -r $includePath/OwbClientlibXcode/* ./include/OwbClient/
 
-scp -r ./* xujack@192.168.1.113:/Users/xujack/OWBClient/OwbClient/lib
+scp -r ./* xujack@192.168.1.114:/Users/xujack/OWBClient/OwbClient/lib

@@ -30,6 +30,7 @@ static QueueHandler * instance;
 - (void)attachQueue:(OwbClientOperationQueue *)opQueue
 {
     opQueue_ = opQueue;
+    [opQueue_ setMeetingId_:meetingCode_];
 }
 
 - (void)startQueueGetDataBackgroundWithMeetingID:(NSString *)meetingID
@@ -41,12 +42,14 @@ static QueueHandler * instance;
 - (void)getDataFromServer
 {
     while (true) {
+        sleep(SLEEP_SHORT_TIME);
+        NSLog(@"HBHandler - getDataFromServer - start");
         if(shouldStop_) {
             break;
         }
-        bool isSucToGetData;
+        OwbOperationAvaliable isSucToGetData;
         try {
-            isSucToGetData = [opQueue_ getServerData];
+            isSucToGetData = (OwbOperationAvaliable)[opQueue_ getServerData];
         } catch (std::exception e) {
             NSLog(@"in QueueHandler.mm: get server data failed.");
         }
@@ -63,6 +66,13 @@ static QueueHandler * instance;
             [[BoardModel SharedBoard] loadDocument:tmpDoc];
         }else if(OwbLOAD_DOCUMENT == isSucToGetData){
             [opQueue_ setLatestSerialNumber_:(opQueue_.latestSerialNumber_+1)];
+            OwbClientDocument *tmpDoc;
+            try {
+                tmpDoc = [[OwbClientServerDelegate sharedServerDelegate] getLatestDocument:meetingCode_];
+            } catch (std::exception e) {
+                NSLog(@"in QueueHandler.mm: get latest doc failed.");
+            }
+            [[BoardModel SharedBoard] loadDocument:tmpDoc];
 #warning get document
         }
     }
@@ -83,29 +93,43 @@ static QueueHandler * instance;
 - (void)triggerWriteToServer
 {
     if(isWriting_) {
-        [opQueue_ lock];
+        /*while (![opQueue_ trylock]) {
+            NSLog(@"opQueue locked");
+        };
         if(![opQueue_ isEmpty]) {
-//            [self performSelectorInBackground:@selector(writeToServer) withObject:nil];
+            [self performSelectorInBackground:@selector(writeToServer) withObject:nil];
         }
-        [opQueue_ unLock];
+        [opQueue_ unLock];*/
     } else {
         isWriting_ = YES;
-//        [self performSelectorInBackground:@selector(writeToServer) withObject:nil];
+        [self performSelectorInBackground:@selector(writeToServer) withObject:nil];
     }
 }
 
 - (void)writeToServer
 {
     NSLog(@"========FUCK========");
-    while (![opQueue_ isEmpty]) {
+    while (true) {
+        [opQueue_ lock];
+        if ([opQueue_ isEmpty]) {
+            isWriting_ = NO;
+            [opQueue_ unLock];
+            return;
+        }
+        [opQueue_ unLock];
         operation_ = [opQueue_ dequeue];
         NSLog(@"op type:%d", [operation_ operationType_]);
-        if(![[OwbClientServerDelegate sharedServerDelegate] sendOperation:operation_]) {
-            [[OwbClientServerDelegate sharedServerDelegate] resumeUpdater:meetingCode_];
+        while(![[OwbClientServerDelegate sharedServerDelegate] sendOperation:operation_]) {
+            NSLog(@"meeting Id:%@" ,meetingCode_);
+            TRY([[OwbClientServerDelegate sharedServerDelegate] resumeUpdater:meetingCode_]);
+            NSLog(@"***嘿嘿***");
         }
         NSLog(@"OP: %d, %d, %d", operation_.operationType_, operation_.serialNumber_, operation_.thinkness_);
     }
-    NSLog(@"========shot========");
-    isWriting_ = NO;
+    NSLog(@"========Shot========");
+}
+- (void)setMeetingCode:(NSString *)code
+{
+    meetingCode_ = code;
 }
 @end

@@ -12,8 +12,8 @@
 
 @protocol DisplayerDataSource <NSObject>
 
-- (CGImageRef)getData;
-- (CGImageRef)getLatestSnapshot;
+- (CGImageRef)getData:(int) num;
+- (CGImageRef)getLatestSnapshot:(int) num;
 - (void)saveSnapshot;
 
 @end
@@ -25,22 +25,22 @@
 
 @interface BoardModel : NSObject <DisplayerDataSource> {
 @private
-    CGContextRef context_;
-    CGImageRef latestSnapshot_;
-    CGImageRef currentContext_;
+    CGContextRef* context_;
+    CGImageRef* latestSnapshot_;
     Canvas* displayer_;
     OwbClientOperationQueue* operationQueue_;
     bool isReading_;
     bool isDrawing_;
     OwbClientOperationQueue* realOperationQueue_;
     bool _inHostMode_;
+    NSRecursiveLock * locker;
 }
 + (BoardModel *) SharedBoard;
 - (void) attachCanvas:(Canvas* ) canvas;
 - (void) attachOpeartionQueue:(OwbClientOperationQueue *) operationQueue;
 - (void) loadDocument:(OwbClientDocument *) doucument;
 - (void) trigerReadOperationQueue;
-- (void) drawMiddleOperation:(OwbClientOperation*) operation;
+//- (void) drawMiddleOperation:(OwbClientOperation*) operation;
 - (void) drawOperation:(OwbClientOperation *)operation;
 @property (assign) bool inHostMode_;
 @end
