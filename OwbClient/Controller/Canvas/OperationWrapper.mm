@@ -30,6 +30,7 @@ Erase *midErase;
         instance.thickness_ = 4;
         instance.color_ = 0;
         instance.scale_ = 1;
+        instance.isFilled = NO;
         midDrawPoint = [[DrawPoint alloc] init];
         midDrawLine = [[DrawLine alloc] init];
         midDrawRect = [[DrawRectange alloc] init];
@@ -81,6 +82,7 @@ Erase *midErase;
             drawRect.alpha_ = self.alpha_;
             drawRect.topLeftCorner_ = realPosition(self.start_);
             drawRect.bottomRightCorner_ = realPosition(self.end_);
+            [drawRect setFill_:self.isFilled];
             return drawRect;
         }
             break;
@@ -94,6 +96,7 @@ Erase *midErase;
             drawEllipse.a_ = fabs(realPosition(self.start_).x-realPosition(self.end_).x)/2;
             drawEllipse.b_ = fabs(realPosition(self.start_).y-realPosition(self.end_).y)/2;
 //            NSLog(@"{{{{{ center: %f, %f; a: %f, b: %f ; left top: (%f, %f)}}}}}", drawEllipse.center_.x, drawEllipse.center_.y, drawEllipse.a_, drawEllipse.b_, (self.start_.x+self.end_.x), (self.start_.y+self.end_.y));
+            [drawEllipse setFill_:self.isFilled];
             return drawEllipse;
         }
             break;
@@ -149,6 +152,7 @@ Erase *midErase;
             drawRect.bottomRightCorner_ = screenEnd;
 //            NSLog(@"==M== scale: %f; x: %f; y: %f", self.scale_, self.offX_, self.offY_);
 //            NSLog(@"====== rect topLeft: (%f, %f); bottomRight: (%f, %f) =========", drawRect.topLeftCorner_.x, drawRect.topLeftCorner_.y, drawRect.bottomRightCorner_.x, drawRect.bottomRightCorner_.y);
+            [drawRect setFill_:self.isFilled];
             return drawRect;
         }
             break;
@@ -162,6 +166,7 @@ Erase *midErase;
             drawEllipse.a_ = fabs((screenStart).x-(screenEnd).x)/2;
             drawEllipse.b_ = fabs((screenStart).y-(screenEnd).y)/2;
 //            NSLog(@"{{{{{ center: %f, %f; a: %f, b: %f ; left top: (%f, %f)}}}}}", drawEllipse.center_.x, drawEllipse.center_.y, drawEllipse.a_, drawEllipse.b_, (self.start_.x+self.end_.x), (self.start_.y+self.end_.y));
+            [drawEllipse setFill_:self.isFilled];
             return drawEllipse;
         }
             break;
@@ -219,6 +224,7 @@ Erase *midErase;
             drawRect.topLeftCorner_ = unrealPosition(((DrawRectange *)wrappedOp).topLeftCorner_);
             drawRect.bottomRightCorner_ = unrealPosition(((DrawRectange *)wrappedOp).bottomRightCorner_);
 //            NSLog(@"~~~~scale: %f", self.scale_);
+            [drawRect setFill_:self.isFilled];
             return drawRect;
         }
             break;
@@ -231,7 +237,8 @@ Erase *midErase;
             drawEllipse.center_ = unrealPosition(((DrawEllipse *)wrappedOp).center_);
             drawEllipse.a_ = fabs(((DrawEllipse *)wrappedOp).a_/self.scale_);
             drawEllipse.b_ = fabs(((DrawEllipse *)wrappedOp).b_/self.scale_);
-//            NSLog(@"}}}}} center: %f, %f; a: %f, b: %f ; left top: (%f, %f){{{{{", drawEllipse.center_.x, drawEllipse.center_.y, drawEllipse.a_, drawEllipse.b_, (self.start_.x+self.end_.x), (self.start_.y+self.end_.y));            return drawEllipse;
+//            NSLog(@"}}}}} center: %f, %f; a: %f, b: %f ; left top: (%f, %f){{{{{", drawEllipse.center_.x, drawEllipse.center_.y, drawEllipse.a_, drawEllipse.b_, (self.start_.x+self.end_.x), (self.start_.y+self.end_.y));
+            [drawEllipse setFill_:self.isFilled];
             return drawEllipse;
         }
             break;

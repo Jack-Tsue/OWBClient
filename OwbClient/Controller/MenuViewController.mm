@@ -14,6 +14,8 @@
 @property(nonatomic, strong) UIButton *lineBtn_;
 @property(nonatomic, strong) UIButton *rectBtn_;
 @property(nonatomic, strong) UIButton *ellipseBtn_;
+@property(nonatomic, strong) UIButton *rectFillBtn_;
+@property(nonatomic, strong) UIButton *ellipseFillBtn_;
 @property(nonatomic, strong) UIButton *moveBtn_;
 @property(nonatomic, strong) UIButton *biggerBtn_;
 @property(nonatomic, strong) UIButton *smallerBtn_;
@@ -69,6 +71,16 @@
         [self.ellipseBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
         [self.view addSubview:self.ellipseBtn_];
         [self.ellipseBtn_ addTarget:self action:@selector(ellipseBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.rectFillBtn_ = [[UIButton alloc] initWithFrame:RECTFILL_BTN_FRAME];
+        [self.rectFillBtn_ setBackgroundImage:[UIImage imageNamed:@"rect.png"] forState:UIControlStateNormal];
+        [self.view addSubview:self.rectFillBtn_];
+        [self.rectFillBtn_ addTarget:self action:@selector(rectFillBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.ellipseFillBtn_ = [[UIButton alloc] initWithFrame:ELLIPSEFILL_BTN_FRAME];
+        [self.ellipseFillBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
+        [self.view addSubview:self.ellipseFillBtn_];
+        [self.ellipseFillBtn_ addTarget:self action:@selector(ellipseFillBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         
         self.moveBtn_ = [[UIButton alloc] initWithFrame:MOVE_BTN_FRAME];
         [self.moveBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
@@ -247,6 +259,22 @@
 {
     self.opType_ = ELLIPSE;
     [[OperationWrapper SharedOperationWrapper] setOpType_:ELLIPSE];
+    [self.moveScaleDelegate_ setStartDraw];
+}
+
+- (void)rectFillBtnPress:(id)sender
+{
+    self.opType_ = RECT;
+    [[OperationWrapper SharedOperationWrapper] setOpType_:RECT];
+    [[OperationWrapper SharedOperationWrapper] setIsFilled:YES];
+    [self.moveScaleDelegate_ setStartDraw];
+}
+
+- (void)ellipseFillBtnPress:(id)sender
+{
+    self.opType_ = ELLIPSE;
+    [[OperationWrapper SharedOperationWrapper] setOpType_:ELLIPSE];
+    [[OperationWrapper SharedOperationWrapper] setIsFilled:YES];
     [self.moveScaleDelegate_ setStartDraw];
 }
 

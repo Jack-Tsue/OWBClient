@@ -44,6 +44,7 @@ static HBController *instance = nil;
                 if (failCount++>MAX_FAIL) {
                     shouldStop=YES;
                     [hbDelegate_ alert];
+                    
                 }
             }
         }

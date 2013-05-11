@@ -168,6 +168,7 @@
         [[BoardModel SharedBoard] loadDocumentSync:latestSnapshot];
         [self.view addSubview:self.scaleView];
         [self.view sendSubviewToBack:self.scaleView];
+        [self.scaleView display];
         _return = YES;
     } catch (std::exception e) {
         if (times>=MAX_TIMES) {

@@ -23,6 +23,7 @@
 @property float offX_, offY_;
 @property bool is_start_;
 @property int* rid;
+@property bool isFilled;
 
 + (OperationWrapper *)SharedOperationWrapper;
 - (OwbClientOperation *)wrap;

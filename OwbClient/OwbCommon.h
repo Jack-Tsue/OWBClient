@@ -67,7 +67,7 @@ try {\
 
 #define MAX_FAIL 4
 #define SLEEP_TIME 5
-#define SLEEP_SHORT_TIME 1
+#define SLEEP_SHORT_TIME 0.25
 #define LOGIN_HINT @"登录中"
 #define LOGIN_FAIL @"用户名或密码错误"
 #define PASTE_SUC @"复制成功"
@@ -85,13 +85,15 @@ try {\
 #define LINE_BTN_FRAME CGRectMake(120, 30, 50, 50)
 #define RECT_BTN_FRAME CGRectMake(120, 100, 50, 50)
 #define ELLIPSE_BTN_FRAME CGRectMake(200, 30, 50, 50)
-#define MOVE_BTN_FRAME CGRectMake(200, 100, 50, 50)
-#define IncreaseScale_BTN_FRAME CGRectMake(280, 30, 50, 50)
-#define DecreaseScale_BTN_FRAME CGRectMake(280, 100, 50, 50)
+#define RECTFILL_BTN_FRAME CGRectMake(200, 100, 50, 50)
+#define ELLIPSEFILL_BTN_FRAME CGRectMake(280, 30, 50, 50)
+#define MOVE_BTN_FRAME CGRectMake(280, 100, 50, 50)
+#define IncreaseScale_BTN_FRAME CGRectMake(350, 30, 50, 50)
+#define DecreaseScale_BTN_FRAME CGRectMake(350, 100, 50, 50)
 
-#define PICKER_FRAME CGRectMake(360.0, 30.0, 360.0, 70.0)
-#define PICKER_TMP_VIEW_FRAME CGRectMake(0, 0, 100, 36)
-#define PICKER_TMP_THICKNESS_FRAME CGRectMake(0, 0, 80, 3*(row+1))
+#define PICKER_FRAME CGRectMake(420.0, 30.0, 300.0, 70.0)
+#define PICKER_TMP_VIEW_FRAME CGRectMake(0, 0, 80, 36)
+#define PICKER_TMP_THICKNESS_FRAME CGRectMake(0, 0, 70, 3*(row+1))
 #define PICKER_TMP_ALPHA_SETTER [tmpView setAlpha:1-0.1*row]
 
 #define TABLE_HEADER_FRAME CGRectMake(20, 5, 140, 30)
