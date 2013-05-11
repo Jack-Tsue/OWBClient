@@ -14,15 +14,19 @@
 @class OwbClientOperation;
 @class OwbClientOperationQueue;
 
+@class PointResource;
+@class EraserResource;
+
 @protocol OwbClientDrawer <NSObject>
 @required
-- (void)draw:(OwbClientOperation *)operation InCanvas:(CGContextRef)canvas;
+- (void)draw:(OwbClientOperation *)operation InCanvas:(CGContextRef)canvas WithResourceId:(int) rid;
 - (void)sliceOpertion:(OwbClientOperation *)operation IntoQueue:(OwbClientOperationQueue*) queue;
-
 + (id<OwbClientDrawer>) sharedOwbClientDrawer;
 
 @optional
-- (void)setIndex:(int) index;
+- (int)registerDataSource;
+- (bool)unregisterDataSource:(int) rid;
+
 @end
 
 @interface LineDrawer : NSObject <OwbClientDrawer>
@@ -36,19 +40,13 @@
 
 @interface PointDrawer : NSObject <OwbClientDrawer>
 {
-    CGPoint* point1_;
-    CGPoint* point2_;
-    CGPoint* startPoint_;
-    int index_;
+    PointResource* resource;
 }
 @end
 
 @interface Eraser : NSObject <OwbClientDrawer>
 {
-    CGPoint* point1_;
-    CGPoint* point2_;
-    CGPoint* startPoint_;
-    int index_;
+    EraserResource* resource;
 }
 @end
 

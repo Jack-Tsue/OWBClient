@@ -707,7 +707,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[self setNeedsDisplay];
 	}
 	
-	UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+	UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
 	CGFloat radians = 0;
 	if (UIInterfaceOrientationIsLandscape(orientation)) {
 		if (orientation == UIInterfaceOrientationLandscapeLeft) { radians = -(CGFloat)M_PI_2; } 

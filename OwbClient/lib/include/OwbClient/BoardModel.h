@@ -25,22 +25,27 @@
 
 @interface BoardModel : NSObject <DisplayerDataSource> {
 @private
-    CGContextRef* context_;
-    CGImageRef* latestSnapshot_;
-    Canvas* displayer_;
-    OwbClientOperationQueue* operationQueue_;
-    bool isReading_;
-    bool isDrawing_;
-    OwbClientOperationQueue* realOperationQueue_;
-    bool _inHostMode_;
+    __block CGContextRef* context_;
+    __block CGImageRef* latestSnapshot_;
+    __block Canvas* displayer_;
+    __block OwbClientOperationQueue* operationQueue_;
+    __block bool isReading_;
+    __block bool isDrawing_;
+    __block OwbClientOperationQueue* realOperationQueue_;
+    __block bool _inHostMode_;
+    __block int** contextRid_;
+#if use_nslock
     NSRecursiveLock * locker;
+#else
+    dispatch_queue_t boardOpQueue;
+#endif
 }
 + (BoardModel *) SharedBoard;
 - (void) attachCanvas:(Canvas* ) canvas;
 - (void) attachOpeartionQueue:(OwbClientOperationQueue *) operationQueue;
-- (void) loadDocument:(OwbClientDocument *) doucument;
+- (void) loadDocumentAsync:(OwbClientDocument *) document;
+- (void) loadDocumentSync:(OwbClientDocument *)document;
 - (void) trigerReadOperationQueue;
-//- (void) drawMiddleOperation:(OwbClientOperation*) operation;
 - (void) drawOperation:(OwbClientOperation *)operation;
 @property (assign) bool inHostMode_;
 @end

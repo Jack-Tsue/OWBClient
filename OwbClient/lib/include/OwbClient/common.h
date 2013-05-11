@@ -26,4 +26,8 @@
 
 #define CUBIC 0
 
+#define use_nslock 0
+
+#define MAX_RESOURCE_NUM 32
+
 #endif  // KINGSLANDING_ONLINEWHITEBOARD_CLIENT_SUPPORTFILES_COMMON_H_

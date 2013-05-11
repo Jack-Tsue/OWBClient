@@ -93,7 +93,7 @@
 
 - (void)scaleSmaller {
     int tmpBoardIndex = [self.scaleView getBoardIndex];
-//    NSLog(@"0 scale: %f", tmpScale);
+//    NSLog(@"0: %d", tmpBoardIndex);
     if (0==tmpBoardIndex) {
         ERROR_HUD(MIN_HINT);
     } else {
@@ -103,8 +103,7 @@
 
 - (void)scaleBigger {
     int tmpBoardIndex = [self.scaleView getBoardIndex];
-//    NSLog(@"0 scale: %f", tmpScale);
-    
+//    NSLog(@"0: %d", tmpBoardIndex);
     if (4==tmpBoardIndex) {
         ERROR_HUD(MAX_HINT);
     } else {
@@ -164,8 +163,9 @@
     BOOL _return = NO;
     try {
         OwbClientDocument *latestSnapshot = [[OwbClientServerDelegate sharedServerDelegate] getLatestDocument:meetingCode];
-        NSLog(@"latest snapshot: %d", latestSnapshot.serialNumber_);
-        [[BoardModel SharedBoard] loadDocument:latestSnapshot];
+//        NSLog(@"latest snapshot: %d", latestSnapshot.serialNumber_);
+        [[QueueHandler SharedQueueHandler]setLatestSeriaNumber:latestSnapshot.serialNumber_];
+        [[BoardModel SharedBoard] loadDocumentSync:latestSnapshot];
         [self.view addSubview:self.scaleView];
         [self.view sendSubviewToBack:self.scaleView];
         _return = YES;

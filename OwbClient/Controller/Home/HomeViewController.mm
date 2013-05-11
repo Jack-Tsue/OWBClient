@@ -122,7 +122,6 @@ BOOL isFailed = NO;
     [user setPassWord_:self.loginViewController_.userPswd_];
     int isLogin = 0;
     try {
-//        NSLog(@"%@  %@  %@  %@", self.loginViewController_.userName_, self.loginViewController_.userPswd_, [user userName_], [user passWord_]);
         isLogin=[[OwbClientServerDelegate sharedServerDelegate] login:user];
     } catch (std::exception) {
         isLogin=2;

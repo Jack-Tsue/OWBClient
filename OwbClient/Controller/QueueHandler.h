@@ -21,4 +21,5 @@
 - (void)stopQueueGetDataBackground;
 - (void)drawOperationToServer:(OwbClientOperation *)op;
 - (void)setMeetingCode:(NSString *)code;
+- (void)setLatestSeriaNumber:(int) num;
 @end

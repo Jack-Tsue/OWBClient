@@ -65,7 +65,7 @@
 //        imageView.image = background;
 //        [self sendSubviewToBack:imageView];
 		[self setUserInteractionEnabled:YES];
-		[self setMultipleTouchEnabled:YES];
+		[self setMultipleTouchEnabled:NO];
 		scale=1;
         boardIndex_=4;
         offsetX=0.0;
@@ -83,7 +83,8 @@
     }
     if (isInMiddle_) {
         isInMiddle_ = NO;
-        [[middle_op_ drawer_]draw:middle_op_ InCanvas:UIGraphicsGetCurrentContext()];
+        int rid = [OperationWrapper SharedOperationWrapper].rid[middle_op_.operationType_];
+        [[middle_op_ drawer_]draw:middle_op_ InCanvas:UIGraphicsGetCurrentContext() WithResourceId:rid];
         middle_op_ = nil;
     }
 }
@@ -172,6 +173,7 @@
 //            NSLog(@"tmp op thickness: %d", tmpOp.thinkness_);
 //            NSLog(@"Move start");
 //            [[BoardModel SharedBoard] drawOperation:tmpOp];
+//            NSLog(@"@ end----scale: %f", [[OperationWrapper SharedOperationWrapper] scale_]);
             [[QueueHandler SharedQueueHandler] drawOperationToServer:tmpOp];
             [self drawOp:tmpOp];
         } else {
@@ -200,6 +202,7 @@
 //        }
         [[OperationWrapper SharedOperationWrapper] setOffX_:offsetX];
         [[OperationWrapper SharedOperationWrapper] setOffY_:offsetY];
+//        NSLog(@"move scale offset: %f, %f", offsetX, offsetY);
         [self display];
     }
 }
@@ -233,7 +236,6 @@
             
             OwbClientOperation *tmpOp = [[OperationWrapper SharedOperationWrapper] wrap];
             [[QueueHandler SharedQueueHandler] drawOperationToServer:tmpOp];
-
             [self drawOp:tmpOp];
 //                [[BoardModel SharedBoard] drawOperation:[[OperationWrapper SharedOperationWrapper] wrap]];
         }
@@ -268,6 +270,8 @@
     
     scaleOffsetX;
     scaleOffsetY;
+    [[OperationWrapper SharedOperationWrapper] setOffX_:offsetX];
+    [[OperationWrapper SharedOperationWrapper] setOffY_:offsetY];
 //    NSLog(@"------- offX: %f; offY: %f --------", offsetX, offsetY);
     [self display];
 }
@@ -281,15 +285,15 @@
 - (void)drawOp:(OwbClientOperation *)operation
 {
     [super drawOp:operation];
-    NSLog(@"draw op");
+
+//    NSLog(@"draw op");
+//    [[OperationWrapper SharedOperationWrapper] setScale_:boardScale];
     middle_op_ = [[OperationWrapper SharedOperationWrapper] unwrap:operation];
     [self setNeedsDisplay];
     UIGraphicsBeginImageContext(CGSizeMake(CanvasWidth, CanvasHeight));
     [displayImage_ drawAtPoint:CGPointZero];
-    if (POINT == middle_op_.operationType_ || ERASER == middle_op_.operationType_) {
-        [middle_op_.drawer_ setIndex:5];
-    }
-    [[middle_op_ drawer_]draw:middle_op_ InCanvas:UIGraphicsGetCurrentContext()];
+    int rid = [OperationWrapper SharedOperationWrapper].rid[operation.operationType_];
+    [[middle_op_ drawer_]draw:middle_op_ InCanvas:UIGraphicsGetCurrentContext() WithResourceId:rid];
     displayImage_ = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [[BoardModel SharedBoard] drawOperation:operation];
@@ -299,8 +303,9 @@
 - (void)setScale:(int)s{
     lastBoardScale = boardScale;
     boardIndex_ = s;
-//    scale=s;
-    
+    //    scale=s;
+    [[OperationWrapper SharedOperationWrapper] setScale_:boardScale];
+
     [self scale];
 }
 @end

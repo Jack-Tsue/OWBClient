@@ -29,11 +29,15 @@ Erase *midErase;
         instance.alpha_ = 1.0;
         instance.thickness_ = 4;
         instance.color_ = 0;
+        instance.scale_ = 1;
         midDrawPoint = [[DrawPoint alloc] init];
         midDrawLine = [[DrawLine alloc] init];
         midDrawRect = [[DrawRectange alloc] init];
         midDrawEllipse = [[DrawEllipse alloc] init];
         midErase = [[Erase alloc] init];
+        instance.rid = new int[5];
+        instance.rid[POINT] = [midDrawPoint.drawer_ registerDataSource];
+        instance.rid[ERASER] = [midErase.drawer_ registerDataSource];
     }
     return instance;
 }
@@ -49,8 +53,10 @@ Erase *midErase;
             drawPoint.alpha_ = self.alpha_;
             drawPoint.position_ = realPosition(self.end_);
             [drawPoint setIsStart_:self.is_start_];
+//            NSLog(@"-------------%d---------------",drawPoint.isStart_);
+//            NSLog(@"wrap op thinkness %d",drawPoint.thinkness_);
+
             self.is_start_ = NO;
-            [drawPoint.drawer_ setIndex:5];
             return drawPoint;
         }
             break;
@@ -75,7 +81,6 @@ Erase *midErase;
             drawRect.alpha_ = self.alpha_;
             drawRect.topLeftCorner_ = realPosition(self.start_);
             drawRect.bottomRightCorner_ = realPosition(self.end_);
-//            NSLog(@"~~~~scale: %f", self.scale_);       
             return drawRect;
         }
             break;
@@ -99,7 +104,6 @@ Erase *midErase;
             erase.position_ = realPosition(self.end_);
             erase.isStart_ = self.is_start_;
             self.is_start_ = NO;
-            [erase.drawer_ setIndex:5];
             return erase;
         }
             break;
@@ -181,12 +185,15 @@ Erase *midErase;
         {
             DrawPoint *drawPoint = [[DrawPoint alloc] init];
             drawPoint.color_ = ((DrawPoint *)wrappedOp).color_;
+//            NSLog(@"unwrap----scale: %f", [[OperationWrapper SharedOperationWrapper] scale_]);
             drawPoint.thinkness_ = ((DrawPoint *)wrappedOp).thinkness_/self.scale_;
+//            NSLog(@"new op thinkness %d",drawPoint.thinkness_);
             drawPoint.alpha_ = ((DrawPoint *)wrappedOp).alpha_;
             drawPoint.position_ = unrealPosition(((DrawPoint *)wrappedOp).position_);
             drawPoint.isStart_ = ((DrawPoint *)wrappedOp).isStart_;
+//            NSLog(@"+++++++++++++++++%d++++++++++++++++++",drawPoint.isStart_);
+//            NSLog(@"un wrap op thinkness %d",drawPoint.thinkness_);
 //            NSLog(@"****** point is start: %d *******", drawPoint.isStart_);
-            [drawPoint.drawer_ setIndex:5];
             return drawPoint;
         }
             break;
@@ -234,7 +241,6 @@ Erase *midErase;
             erase.thinkness_ = ((Erase *)wrappedOp).thinkness_/self.scale_;
             erase.position_ = unrealPosition(((Erase *)wrappedOp).position_);
             erase.isStart_ = ((Erase *)wrappedOp).isStart_;
-            [erase.drawer_ setIndex:5];
             return erase;
         }
             break;

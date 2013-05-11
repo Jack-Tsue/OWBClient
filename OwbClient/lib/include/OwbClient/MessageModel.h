@@ -36,7 +36,8 @@ enum OwbJoinState {
 enum OwbOperationAvaliable {
     OwbNOT_AVALIABLE = 1,
     OwbLOAD_DOCUMENT = 2,
-    OwbAVALIBLE = 3
+    OwbAVALIBLE = 3,
+    OwbNOT_UPDATE = 4
 };
 
 class Document;
@@ -54,13 +55,14 @@ class DocumentList;
 
 @protocol OwbClientDrawer <NSObject>
 @required
-- (void)draw:(OwbClientOperation *)operation InCanvas:(CGContextRef)canvas;
+- (void)draw:(OwbClientOperation *)operation InCanvas:(CGContextRef)canvas WithResourceId:(int) rid;
 - (void)sliceOpertion:(OwbClientOperation *)operation IntoQueue:(OwbClientOperationQueue*) queue;
-
 + (id<OwbClientDrawer>) sharedOwbClientDrawer;
 
 @optional
-- (void)setIndex:(int) index;
+- (int)registerDataSource;
+- (bool)unregisterDataSource:(int) rid;
+
 @end
 
 # pragma mark - DocumentModel
