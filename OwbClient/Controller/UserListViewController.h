@@ -10,6 +10,19 @@
 #import "OwbCommon.h"
 #import "UIScrollView+SVPullToRefresh.h"
 
-@interface UserListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
-//- (void)setUserList:(UserList *)list;
+@protocol SetDrawableDelegate <NSObject>
+
+- (void)closeDraw;
+
+@end
+
+
+@interface UserListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate> {
+@private
+    OwbClientUserList *ul_;
+    NSString *mCode_;
+}
+@property (nonatomic, retain) id<SetDrawableDelegate> setDrawableDelegate_;
+- (void)setUserList:(OwbClientUserList *)list;
+- (void)setMeetingID:(NSString *)meetingCode;
 @end

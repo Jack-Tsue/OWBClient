@@ -224,7 +224,7 @@ Erase *midErase;
             drawRect.topLeftCorner_ = unrealPosition(((DrawRectange *)wrappedOp).topLeftCorner_);
             drawRect.bottomRightCorner_ = unrealPosition(((DrawRectange *)wrappedOp).bottomRightCorner_);
 //            NSLog(@"~~~~scale: %f", self.scale_);
-            [drawRect setFill_:self.isFilled];
+            [drawRect setFill_:((DrawRectange *)wrappedOp).fill_];
             return drawRect;
         }
             break;
@@ -238,7 +238,7 @@ Erase *midErase;
             drawEllipse.a_ = fabs(((DrawEllipse *)wrappedOp).a_/self.scale_);
             drawEllipse.b_ = fabs(((DrawEllipse *)wrappedOp).b_/self.scale_);
 //            NSLog(@"}}}}} center: %f, %f; a: %f, b: %f ; left top: (%f, %f){{{{{", drawEllipse.center_.x, drawEllipse.center_.y, drawEllipse.a_, drawEllipse.b_, (self.start_.x+self.end_.x), (self.start_.y+self.end_.y));
-            [drawEllipse setFill_:self.isFilled];
+            [drawEllipse setFill_:((DrawEllipse *)wrappedOp).fill_];
             return drawEllipse;
         }
             break;

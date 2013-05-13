@@ -60,15 +60,18 @@ BOOL isFailed = NO;
     
     // buttons
     self.loginBtn = [[UIButton alloc] initWithFrame:LOGIN_BTN_FRAME];
-    [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"login.png"] forState:UIControlStateNormal];
+    [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"login1.png"] forState:UIControlStateNormal];
+    [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"loginPress.png"] forState:UIControlStateHighlighted];
     [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     self.createBtn = [[UIButton alloc] initWithFrame:CREATE_BTN_FRAME];
     [self.createBtn setBackgroundImage:[UIImage imageNamed:@"create.png"] forState:UIControlStateNormal];
-    [self.createBtn setBackgroundImage:[UIImage imageNamed:@"createHighlight.png"] forState:UIControlStateHighlighted];
+    [self.createBtn setBackgroundImage:[UIImage imageNamed:@"createPress.png"] forState:UIControlStateHighlighted];
     [self.createBtn addTarget:self action:@selector(createBtnPress:) forControlEvents:UIControlEventTouchUpInside];
 //    self.createBtn 
     self.joinBtn = [[UIButton alloc] initWithFrame:JOIN_BTN_FRAME];
     [self.joinBtn setBackgroundImage:[UIImage imageNamed:@"join.png"] forState:UIControlStateNormal];
+    [self.joinBtn setBackgroundImage:[UIImage imageNamed:@"joinPress.png"] forState:UIControlStateHighlighted];
+
     [self.joinBtn addTarget:self action:@selector(joinBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.loginBtn];
     [self.view addSubview:self.createBtn];
@@ -131,6 +134,8 @@ BOOL isFailed = NO;
         self.joinBtn.userInteractionEnabled = YES;
         self.loginViewController_.view.hidden = YES;
         [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
+        [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"logoutPress.png"] forState:UIControlStateNormal];
+
         [self.joinMeetingCodeView_ setUser:user];
         SUCCESS_HUD(@"登录成功！");
     } else if(0==isLogin){
@@ -190,6 +195,7 @@ BOOL isFailed = NO;
         [UIView animateWithDuration:DURATION delay:0.0f options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseOut animations:^{
             self.canvasView_.view.frame = CANVAS_OPEN_FRAME;
         } completion:^(BOOL finished) {
+            [self.canvasView_ displayerWillRefresh:[BoardModel SharedBoard]];
         }];
     } else {
         isFailed = YES;

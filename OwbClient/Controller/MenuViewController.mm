@@ -16,9 +16,6 @@
 @property(nonatomic, strong) UIButton *ellipseBtn_;
 @property(nonatomic, strong) UIButton *rectFillBtn_;
 @property(nonatomic, strong) UIButton *ellipseFillBtn_;
-@property(nonatomic, strong) UIButton *moveBtn_;
-@property(nonatomic, strong) UIButton *biggerBtn_;
-@property(nonatomic, strong) UIButton *smallerBtn_;
 
 @property(nonatomic, strong) NSArray *colorData_;
 @property(nonatomic, strong) NSArray *thicknessData_;
@@ -37,7 +34,7 @@
 {
     if (self) {
         [self.view setBackgroundColor:[UIColor clearColor]];
-        UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menuBar.png"]];
+        UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu.png"]];
         [self.view addSubview:background];
         [self.view sendSubviewToBack:background];
         self.view.frame = MENU_FRAME;
@@ -73,30 +70,16 @@
         [self.ellipseBtn_ addTarget:self action:@selector(ellipseBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         
         self.rectFillBtn_ = [[UIButton alloc] initWithFrame:RECTFILL_BTN_FRAME];
-        [self.rectFillBtn_ setBackgroundImage:[UIImage imageNamed:@"rect.png"] forState:UIControlStateNormal];
+        [self.rectFillBtn_ setBackgroundImage:[UIImage imageNamed:@"rectFill.png"] forState:UIControlStateNormal];
         [self.view addSubview:self.rectFillBtn_];
         [self.rectFillBtn_ addTarget:self action:@selector(rectFillBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         
         self.ellipseFillBtn_ = [[UIButton alloc] initWithFrame:ELLIPSEFILL_BTN_FRAME];
-        [self.ellipseFillBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
+        [self.ellipseFillBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipseFill.png"] forState:UIControlStateNormal];
         [self.view addSubview:self.ellipseFillBtn_];
         [self.ellipseFillBtn_ addTarget:self action:@selector(ellipseFillBtnPress:) forControlEvents:UIControlEventTouchUpInside];
         
-        self.moveBtn_ = [[UIButton alloc] initWithFrame:MOVE_BTN_FRAME];
-        [self.moveBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
-        [self.view addSubview:self.moveBtn_];
-        [self.moveBtn_ addTarget:self action:@selector(moveBtnPress:) forControlEvents:UIControlEventTouchUpInside];
-        
-        self.biggerBtn_ = [[UIButton alloc] initWithFrame:IncreaseScale_BTN_FRAME];
-        [self.biggerBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
-        [self.view addSubview:self.biggerBtn_];
-        [self.biggerBtn_ addTarget:self action:@selector(biggerBtnPress:) forControlEvents:UIControlEventTouchUpInside];
-        
-        self.smallerBtn_ = [[UIButton alloc] initWithFrame:DecreaseScale_BTN_FRAME];
-        [self.smallerBtn_ setBackgroundImage:[UIImage imageNamed:@"ellipse.png"] forState:UIControlStateNormal];
-        [self.view addSubview:self.smallerBtn_];
-        [self.smallerBtn_ addTarget:self action:@selector(smallerBtnPress:) forControlEvents:UIControlEventTouchUpInside];
-        
+                
         self.colorData_ = [[NSArray alloc] initWithObjects:[UIColor blackColor], [UIColor redColor], [UIColor blueColor], [UIColor yellowColor], [UIColor greenColor], nil];
         
         self.colorThicknessAlphaPicker_ = [[UIPickerView alloc] initWithFrame:PICKER_FRAME];
@@ -276,20 +259,5 @@
     [[OperationWrapper SharedOperationWrapper] setOpType_:ELLIPSE];
     [[OperationWrapper SharedOperationWrapper] setIsFilled:YES];
     [self.moveScaleDelegate_ setStartDraw];
-}
-
-- (void)moveBtnPress:(id)sender
-{
-    [self.moveScaleDelegate_ setMovable];
-}
-
-- (void)biggerBtnPress:(id)sender
-{
-    [self.moveScaleDelegate_ scaleBigger];
-}
-
-- (void)smallerBtnPress:(id)sender
-{
-    [self.moveScaleDelegate_ scaleSmaller];
 }
 @end

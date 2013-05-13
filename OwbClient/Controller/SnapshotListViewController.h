@@ -8,8 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "OwbCommon.h"
+@protocol RefreshSnapshotDelegate <NSObject>
 
-@interface SnapshotListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+- (void)refreshCurrentSnapshotBtn;
+- (void)setCanvasImage:(CGImageRef)imageRef;
+
+@end
+
+
+
+@interface SnapshotListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate> {
+@private
+    OwbClientDocumentList *dl_;
+    NSString *mCode_;
+    int currentRow_;
+}
 @property(nonatomic, strong) UIButton *snapshotCurrentBtn_;
-//- (void)setSnapshotList:(SnapshotList *)list;
+@property (nonatomic, retain) id<RefreshSnapshotDelegate> refreshSnapshotDelegate_;
+
+- (void)setMeetingID:(NSString *)meetingCode;
 @end

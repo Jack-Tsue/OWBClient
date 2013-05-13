@@ -32,6 +32,9 @@
 
 #define MAX_TIMES 4
 
+#define TRANS_FAIL 0
+#define TRANS_SUC 1
+#define TRANS_UNSURE 2
 #define POINT OwbOperationDataType_POINT
 #define LINE OwbOperationDataType_LINE
 #define RECT OwbOperationDataType_RECTANGE
@@ -66,7 +69,7 @@ try {\
 }
 
 #define MAX_FAIL 4
-#define SLEEP_TIME 5
+#define SLEEP_TIME 1
 #define SLEEP_SHORT_TIME 0.25
 #define LOGIN_HINT @"登录中"
 #define LOGIN_FAIL @"用户名或密码错误"
@@ -76,9 +79,12 @@ try {\
 #define CANNOT_NULL @"用户名或密码不能为空"
 #define MIN_HINT @"已然缩到最小"
 #define MAX_HINT @"已然放到最大"
-#define MENU_FRAME CGRectMake(140, 726, 744, 160)
-#define MENU_OPEN_FRAME CGRectMake(140, 588, 744, 160)
-#define MENU_CLOSE_FRAME CGRectMake(140, 726, 744, 160)
+#define HOST_HINT @"现在你是主持人了！"
+#define WATCHER_HINT @"现在你不是主持人了！"
+
+#define MENU_FRAME CGRectMake(150, 726, 744, 160)
+#define MENU_OPEN_FRAME CGRectMake(150, 588, 744, 160)
+#define MENU_CLOSE_FRAME CGRectMake(150, 726, 744, 160)
 
 #define PEN_BTN_FRAME CGRectMake(30, 30, 50, 50)
 #define ERASER_BTN_FRAME CGRectMake(30, 100, 50, 50)
@@ -87,11 +93,11 @@ try {\
 #define ELLIPSE_BTN_FRAME CGRectMake(200, 30, 50, 50)
 #define RECTFILL_BTN_FRAME CGRectMake(200, 100, 50, 50)
 #define ELLIPSEFILL_BTN_FRAME CGRectMake(280, 30, 50, 50)
-#define MOVE_BTN_FRAME CGRectMake(280, 100, 50, 50)
-#define IncreaseScale_BTN_FRAME CGRectMake(350, 30, 50, 50)
-#define DecreaseScale_BTN_FRAME CGRectMake(350, 100, 50, 50)
+#define MOVE_BTN_FRAME CGRectMake(930, 710, 30, 30)
+#define IncreaseScale_BTN_FRAME CGRectMake(960, 710, 30, 30)
+#define DecreaseScale_BTN_FRAME CGRectMake(990, 710, 30, 30)
 
-#define PICKER_FRAME CGRectMake(420.0, 30.0, 300.0, 70.0)
+#define PICKER_FRAME CGRectMake(380.0, 30.0, 300.0, 70.0)
 #define PICKER_TMP_VIEW_FRAME CGRectMake(0, 0, 80, 36)
 #define PICKER_TMP_THICKNESS_FRAME CGRectMake(0, 0, 70, 3*(row+1))
 #define PICKER_TMP_ALPHA_SETTER [tmpView setAlpha:1-0.1*row]

@@ -13,7 +13,7 @@
 #import "SnapshotListViewController.h"
 #import "OwbClientCanvas.h"
 
-@interface CanvasViewController : UIViewController<MoveScaleDelegate, HBDelegate, MBProgressHUDDelegate, DisplayerDelegate>
+@interface CanvasViewController : UIViewController<MoveScaleDelegate, HBDelegate, MBProgressHUDDelegate, DisplayerDelegate, SetDrawableDelegate, RefreshSnapshotDelegate>
 
 @property int boardIndex;
 @property (strong, nonatomic) OwbClientCanvas *canvas_;

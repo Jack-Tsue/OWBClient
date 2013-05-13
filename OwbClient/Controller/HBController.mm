@@ -19,6 +19,7 @@ static HBController *instance = nil;
 
 - (void)hearHBWithUserName:(NSString *)userName withMeetingCode:(NSString *)meetingCode
 {
+    meetingCode_ = meetingCode;
     hbSendPack = [[OwbClientHeartSendPackage alloc] init];
     try {
         [hbSendPack setMeetingId_:meetingCode];
@@ -58,21 +59,52 @@ static HBController *instance = nil;
         [[QueueHandler SharedQueueHandler] startQueueGetDataBackgroundWithMeetingID:hbSendPack.meetingId_];
         isNotFirst=YES;
     }
-//    NSLog(@"is host?: %d", identity);
+    NSLog(@"is host?: %d", identity);
+    NSLog(@"Board inHost: %d", [[BoardModel SharedBoard] inHostMode_]);
     if([[BoardModel SharedBoard] inHostMode_] && OwbHOST!=identity) {
-        [[BoardModel SharedBoard] setInHostMode_:NO];
-        [[QueueHandler SharedQueueHandler] startQueueGetDataBackgroundWithMeetingID:hbSendPack.meetingId_];
-//        NSLog(@"1 is host: %d", [[BoardModel SharedBoard] inHostMode_]);
+        [self sendTillOver];
+        NSLog(@"1 is host: %d", [[BoardModel SharedBoard] inHostMode_]);
 
     } else if(![[BoardModel SharedBoard] inHostMode_] && OwbHOST==identity) {
-        [[BoardModel SharedBoard] setInHostMode_:YES];
-//        NSLog(@"2 is host: %d", [[BoardModel SharedBoard] inHostMode_]);
+        NSLog(@"2 is host: %d", [[BoardModel SharedBoard] inHostMode_]);
         [[QueueHandler SharedQueueHandler] stopQueueGetDataBackground];
+        [self getLatestDoc];
+//        [self.hbDelegate_ hint:HOST_HINT];
+        [[BoardModel SharedBoard] setInHostMode_:YES];
     }
 }
 
 - (void)stopHear
 {
     shouldStop = YES;
+}
+
+- (NSString *)getMeetingCode
+{
+    return meetingCode_;
+}
+
+- (bool)sendTillOver
+{
+    if ([[QueueHandler SharedQueueHandler]sendIsOver]) {
+//        [self.hbDelegate_ hint:HOST_HINT];
+        [[BoardModel SharedBoard] setInHostMode_:NO];
+        [self getLatestDoc];
+        [[QueueHandler SharedQueueHandler] startQueueGetDataBackgroundWithMeetingID:hbSendPack.meetingId_];
+        return true;
+    }
+    return false;
+}
+
+- (void)getLatestDoc
+{
+    try {
+        OwbClientDocument *latestSnapshot = [[OwbClientServerDelegate sharedServerDelegate] getLatestDocument:meetingCode_];
+        [[QueueHandler SharedQueueHandler]setLatestSeriaNumber:latestSnapshot.serialNumber_];
+        [[BoardModel SharedBoard] loadDocumentAsync:latestSnapshot];
+        [[QueueHandler SharedQueueHandler] clear];
+    } catch (std::exception e) {
+        [hbDelegate_ alert];
+    }
 }
 @end

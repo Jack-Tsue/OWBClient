@@ -17,8 +17,7 @@
 - (id)init
 {
     if (self) {
-        OwbClientUserList *userList = [[OwbClientUserList alloc] init];
-//        [[OwbClientServerDelegate sharedServerDelegate] getCurrentUserList:@""];
+        ul_ = [[OwbClientUserList alloc] init];
         self.view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"userList.png"]];
         self.view.frame = USER_LIST_FRAME;
         UIPanGestureRecognizer *userListGestureRecognizer = [[UIPanGestureRecognizer alloc]
@@ -26,16 +25,16 @@
                                                              action:@selector(handleUserListPan:)];
         [self.view setUserInteractionEnabled:YES];
         [self.view addGestureRecognizer:userListGestureRecognizer];
-        self.userTable_.backgroundColor = [UIColor clearColor];
         self.userTable_ = [[UITableView alloc] initWithFrame:USER_TABLE_FRAME style:UITableViewStyleGrouped];
         self.userTable_.backgroundColor = [UIColor clearColor];
         self.userTable_.delegate = self;
         self.userTable_.dataSource = self;
-        [self.userTable_ addPullToRefreshWithActionHandler:^{
-            // prepend data to dataSource, insert cells at top of table view
-            // call [tableView.pullToRefreshView stopAnimating] when done
-            [self.userTable_.pullToRefreshView stopAnimating];
-        }];
+//        [self.userTable_ addPullToRefreshWithActionHandler:^{
+//            // prepend data to dataSource, insert cells at top of table view
+//            // call [tableView.pullToRefreshView stopAnimating] when done
+//            [self.userTable_ reloadData];
+//            [self.userTable_.pullToRefreshView stopAnimating];
+//        }];
         [self.view addSubview:self.userTable_];
     }
     return self;
@@ -61,6 +60,7 @@
 # pragma mark - guesture handler
 - (void) handleUserListPan:(UIPanGestureRecognizer*) recognizer
 {
+//    NSLog(@"meeting id later: %@", mCode_);
     if( ([recognizer state] == UIGestureRecognizerStateBegan) ||
        ([recognizer state] == UIGestureRecognizerStateChanged) )
     {
@@ -92,7 +92,6 @@
                 
                 self.view.frame = USER_LIST_CLOSE_FRAME;
             } completion:^(BOOL finished) {
-                
             }];
         }
         else
@@ -101,10 +100,20 @@
                 
                 self.view.frame = USER_LIST_OPEN_FRAME;
             } completion:^(BOOL finished) {
-                
+                [self reload];
             }];
         }
     }
+}
+
+- (void)setUserList:(OwbClientUserList *)list
+{
+    ul_ = list;
+}
+
+- (void)setMeetingID:(NSString *)meetingCode
+{
+    mCode_ = meetingCode;
 }
 
 #pragma mark - Table view data source and delegate
@@ -116,8 +125,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning get from user list
-    return 10;
+    return [ul_.userList_ count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,12 +137,17 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-#warning info should get from user list
          
-        //test
         [cell.textLabel setBackgroundColor:[UIColor clearColor]];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0f];
-        cell.textLabel.text = @"Jack";
+        OwbClientUser *tmpUsr= [ul_.userList_ objectAtIndex:indexPath.row];
+        cell.textLabel.text = tmpUsr.userName_;
+        if (OwbHOST==tmpUsr.identity_) {
+            NSLog(@"red: %@", tmpUsr.userName_);
+            cell.textLabel.textColor = [UIColor redColor];
+        } else {
+            cell.textLabel.textColor = [UIColor blackColor];
+        }
     }
     return cell;
 }
@@ -160,5 +173,33 @@
     HeaderLabel.text = USER_HEADER_LABEL;
     [headerView addSubview:HeaderLabel];    
     return headerView;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OwbClientUser *tmpUsr= [ul_.userList_ objectAtIndex:indexPath.row];
+    int state = [[OwbClientServerDelegate sharedServerDelegate] transferAuth:tmpUsr.userName_ WithMeetingId:mCode_];
+    if (TRANS_SUC==state) {
+        [self closeHost];
+    } else if (TRANS_UNSURE==state){
+        ERROR_HUD(@"该用户可能假死，未能切换成功！");
+    } else {
+        ERROR_HUD(NETWORK_ERROR);
+    }
+    [self reload];
+}
+
+- (void)closeHost
+{
+    [self.setDrawableDelegate_ closeDraw];
+}
+
+- (void)reload
+{
+    NSLog(@"-----host------%d", [[BoardModel SharedBoard] inHostMode_]);
+    [self.userTable_ setUserInteractionEnabled:[[BoardModel SharedBoard] inHostMode_]];
+    TRY(ul_ = [[OwbClientServerDelegate sharedServerDelegate] getCurrentUserList:mCode_]);
+    self.userTable_.dataSource = self;
+    [self.userTable_ reloadData];
 }
 @end

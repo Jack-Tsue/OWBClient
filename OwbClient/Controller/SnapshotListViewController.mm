@@ -37,6 +37,7 @@
         self.snapshotHistoryTable_.delegate = self;
         self.snapshotHistoryTable_.dataSource = self;
         [self.view addSubview:self.snapshotHistoryTable_];
+        dl_ = [[OwbClientDocumentList alloc] init];
     }
     return self;
 }
@@ -59,6 +60,7 @@
 # pragma mark - guesture handler
 - (void) handleSnapListPan:(UIPanGestureRecognizer*) recognizer
 {
+    [self reload];
     if( ([recognizer state] == UIGestureRecognizerStateBegan) ||
        ([recognizer state] == UIGestureRecognizerStateChanged) )
     {
@@ -99,12 +101,22 @@
                 
                 self.view.frame = SNAP_LIST_OPEN_FRAME;
             } completion:^(BOOL finished) {
-                
+                [self reload];
+//                [self.refreshSnapshotDelegate_ refreshCurrentSnapshotBtn];
             }];
         }
     }
 }
 
+- (void)reload{
+    dl_ = [[OwbClientServerDelegate sharedServerDelegate] getHistorySnapshots:mCode_];
+    [self.snapshotHistoryTable_ reloadData];
+}
+
+- (void)setMeetingID:(NSString *)meetingCode
+{
+    mCode_ = meetingCode;
+}
 #pragma mark - Table view data source and delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -113,8 +125,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning get from snapshot list
-    return 10;
+    return [dl_.documentList_ count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -126,8 +137,9 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-#warning image should get from snapshot list
-//        cell.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cell_normal.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:0.0]];
+        OwbClientDocument *tmpDoc = [dl_.documentList_ objectAtIndex:indexPath.row];
+        UIImage *tmpImage = [UIImage imageWithData:tmpDoc.data_];
+        cell.backgroundView = [[UIImageView alloc] initWithImage:tmpImage];
     }
     return cell;
 }
@@ -155,9 +167,48 @@
     return headerView;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 保存当前画布
+    [[BoardModel SharedBoard] saveSnapshot];
+    
+    currentRow_ = indexPath.row;
+    
+    if ([[BoardModel SharedBoard] inHostMode_] ) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"查看还是修改？"
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"取消"
+                                                   destructiveButtonTitle:@"修改"
+                                                        otherButtonTitles:@"查看", nil];
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [actionSheet showFromRect:cell.bounds inView:cell animated:TRUE];
+    } else {
+        OwbClientDocument *tmpDoc = [dl_.documentList_ objectAtIndex:currentRow_];
+        OwbClientDocument *tmpBigDoc = [[OwbClientServerDelegate sharedServerDelegate] getDocument:mCode_ WithSerialNumber:tmpDoc.serialNumber_ ];
+        [[BoardModel SharedBoard] loadDocumentAsync:tmpBigDoc];
+    }
+    [self.refreshSnapshotDelegate_ refreshCurrentSnapshotBtn];
+    [self reload];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    
+	if(buttonIndex != [actionSheet cancelButtonIndex]){
+        // 得到完整大图
+        OwbClientDocument *tmpDoc = [dl_.documentList_ objectAtIndex:currentRow_];
+        OwbClientDocument *tmpBigDoc = [[OwbClientServerDelegate sharedServerDelegate] getDocument:mCode_ WithSerialNumber:tmpDoc.serialNumber_ ];
+        [[BoardModel SharedBoard] loadDocumentAsync:tmpBigDoc];
+        if (buttonIndex == [actionSheet destructiveButtonIndex]) {
+            NSLog(@"set doc --- %d", tmpDoc.serialNumber_);
+            [[OwbClientServerDelegate sharedServerDelegate] setDocument:tmpDoc.serialNumber_];
+        }
+	}
+}
+
 #pragma mark - btn handlers
 - (void)currentSnapBtnPress:(id)sender
 {
-    NSLog(@"===");
+    // 载入最新的Docment
+    [self.refreshSnapshotDelegate_ setCanvasImage:[[BoardModel SharedBoard] getLatestSnapshot:0]];
 }
 @end

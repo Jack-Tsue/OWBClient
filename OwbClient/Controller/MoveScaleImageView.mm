@@ -75,6 +75,10 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+    /*dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        CanvasViewController* canvasViewController = (CanvasViewController*)self.displayerDelegate_;
+        [canvasViewController refreshCurrentSnapshotBtn];
+    });*/
     [super drawRect:rect];
     [displayImage_ drawInRect:rect];
 //    NSLog(@"00000000");
